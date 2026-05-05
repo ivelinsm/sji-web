@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'light' | 'dark';
+  variant?: 'light' | 'dark' | 'transparent';
 }
 
 const { variant = 'light' } = Astro.props;
@@ -55,6 +55,19 @@ const { variant = 'light' } = Astro.props;
     border-bottom-color: rgba(255, 255, 255, 0.10);
   }
 
+  .navbar--transparent {
+    position:         absolute;
+    top:              0;
+    left:             0;
+    right:            0;
+    background-color: rgba(0, 0, 0, 0.08);
+    backdrop-filter:  blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom:    none;
+    color:            var(--color-white);
+    --nav-link-accent: var(--color-white);
+  }
+
   /* ── Inner layout ───────────────────────────────────────── */
   .navbar__inner {
     display:         flex;
@@ -71,9 +84,10 @@ const { variant = 'light' } = Astro.props;
   .navbar__links {
     display:         flex;
     align-items:     center;
-    gap:             var(--space-6);
+    gap:             var(--space-10);
     flex:            1;
-    justify-content: center;
+    justify-content: end;
+    margin-right: var(--space-5)
   }
 
   .navbar__actions {
@@ -130,6 +144,13 @@ const { variant = 'light' } = Astro.props;
     .navbar--dark .navbar__links,
     .navbar--dark .navbar__actions {
       background-color: var(--color-primary);
+    }
+
+    .navbar--transparent .navbar__links,
+    .navbar--transparent .navbar__actions {
+      background-color: rgba(10, 20, 60, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .navbar__links {

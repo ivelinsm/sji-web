@@ -15,43 +15,110 @@ const lang = 'bg';
 ---
 
 <Layout title={t(lang, 'meta.title')} description={t(lang, 'meta.description')}>
-  <Navbar slot="header" variant="light">
-    <span slot="logo" style="font-family: var(--font-heading); font-weight: 700; color: var(--color-primary); font-size: var(--text-xl);">
-      SJI
-    </span>
-    <NavLink slot="links" href="/"><span data-i18n="nav.home">Начало</span></NavLink>
-    <NavLink slot="links" href="/products"><span data-i18n="nav.products">Продукти</span></NavLink>
-    <NavLink slot="links" href="/about"><span data-i18n="nav.about">За нас</span></NavLink>
-    <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">Контакти</span></NavLink>
-    <Button slot="actions" variant="ghost" href="/contact" size="sm">
-      <span data-i18n="nav.cta.enquiry">Бизнес запитване</span>
-    </Button>
-    <Button slot="actions" variant="primary" href="/products" size="sm">
-      <span data-i18n="nav.cta.shop">Пазарувай</span>
-    </Button>
-    <LangSwitcher slot="actions" />
-  </Navbar>
 
-  <Section bg="gray">
-    <Container>
-      <Badge variant="secondary"><span data-i18n="hero.badge">Чистота от природата</span></Badge>
-      <Heading level={1} align="center" style="margin-top: var(--space-4);">
-        <span data-i18n="hero.title">Чисто. Освежаващо. Твоето.</span>
-      </Heading>
-      <p style="text-align: center; color: var(--color-text-muted); margin-top: var(--space-4); max-width: 600px; margin-inline: auto;">
-        <span data-i18n="hero.description">Премиум бутилирана вода и безалкохолни напитки за всеки момент — от ежедневна хидратация до бизнес партньорства.</span>
-      </p>
-      <div style="display: flex; gap: var(--space-3); justify-content: center; margin-top: var(--space-8); flex-wrap: wrap;">
-        <Button variant="primary" href="/products">
-          <span data-i18n="hero.cta.products">Разгледай продуктите</span>
-        </Button>
-        <Button variant="ghost" href="/contact">
-          <span data-i18n="hero.cta.partner">Стани партньор</span>
-        </Button>
+  <!-- ── Full-viewport hero ──────────────────────────────────── -->
+  <div class="hero">
+
+    <!-- Transparent navbar overlaid on hero image -->
+    <Navbar variant="transparent">
+      <span slot="logo" class="hero-logo">SJI</span>
+      <NavLink slot="links" href="/"><span data-i18n="nav.home">Начало</span></NavLink>
+      <NavLink slot="links" href="/products"><span data-i18n="nav.products">Продукти</span></NavLink>
+      <NavLink slot="links" href="/about"><span data-i18n="nav.about">За нас</span></NavLink>
+      <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">Контакти</span></NavLink>
+      <Button slot="actions" variant="ghost-white" href="/contact" size="sm">
+        <span data-i18n="nav.cta.enquiry">Бизнес запитване</span>
+      </Button>
+      <LangSwitcher slot="actions" />
+    </Navbar>
+
+    <!-- Main hero content -->
+    <div class="hero__body">
+      <div class="container">
+        <div class="hero__content">
+          <Heading level={1} color="white">
+            <span data-i18n="hero.title">Чисто. Освежаващо. Твоето.</span>
+          </Heading>
+          <p class="hero__subtitle">
+            <span data-i18n="hero.description">Премиум бутилирана вода и безалкохолни напитки за всеки момент — от ежедневна хидратация до бизнес партньорства.</span>
+          </p>
+          <div class="hero__cta">
+            <Button variant="ghost-white" href="/products">
+              <span data-i18n="hero.cta.products">Разгледай продуктите</span>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </Button>
+          </div>
+        </div>
       </div>
-    </Container>
-  </Section>
+    </div>
 
+    <!-- Stats strip -->
+    <div class="hero__stats">
+      <div class="container">
+        <div class="hero__stats-grid">
+
+          <div class="hero__stat">
+            <span class="hero__stat-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4C16 4 7 13 7 19a9 9 0 0 0 18 0c0-6-9-15-9-15z" stroke="white" stroke-width="1.75" stroke-linejoin="round" fill="none" opacity="0.85"/>
+              </svg>
+            </span>
+            <div>
+              <p class="hero__stat-title"><span data-i18n="hero.stat1.title">Премиум качество</span></p>
+              <p class="hero__stat-body"><span data-i18n="hero.stat1.body">Пречистено до съвършенство</span></p>
+            </div>
+          </div>
+
+          <div class="hero__stat">
+            <span class="hero__stat-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4l10 4v8c0 6-4 10-10 12C10 26 6 22 6 16V8l10-4z" stroke="white" stroke-width="1.75" stroke-linejoin="round" fill="none" opacity="0.85"/>
+                <path d="M12 16l3 3 5-5" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="hero__stat-title"><span data-i18n="hero.stat2.title">Безопасност на храните</span></p>
+              <p class="hero__stat-body"><span data-i18n="hero.stat2.body">Международни стандарти</span></p>
+            </div>
+          </div>
+
+          <div class="hero__stat">
+            <span class="hero__stat-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 28C9 28 5 22 5 16S9 4 16 4s11 6 11 12" stroke="white" stroke-width="1.75" stroke-linecap="round" fill="none" opacity="0.85"/>
+                <path d="M16 4c4 4 6 8 6 12" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+                <path d="M9 28c0-6 4-12 7-14" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="hero__stat-title"><span data-i18n="hero.stat3.title">Устойчиви практики</span></p>
+              <p class="hero__stat-body"><span data-i18n="hero.stat3.body">Грижа за нашата планета</span></p>
+            </div>
+          </div>
+
+          <div class="hero__stat">
+            <span class="hero__stat-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <circle cx="12" cy="10" r="4" stroke="white" stroke-width="1.75" fill="none" opacity="0.85"/>
+                <circle cx="22" cy="10" r="4" stroke="white" stroke-width="1.75" fill="none" opacity="0.85"/>
+                <path d="M4 26c0-4 4-7 8-7" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+                <path d="M14 26c0-4 4-7 8-7s8 3 8 7" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <div>
+              <p class="hero__stat-title"><span data-i18n="hero.stat4.title">Надежден партньор</span></p>
+              <p class="hero__stat-body"><span data-i18n="hero.stat4.body">Надежден. Последователен. Глобален.</span></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Products section ────────────────────────────────────── -->
   <Section bg="white">
     <Container>
       <Heading level={2} align="center">
@@ -86,4 +153,158 @@ const lang = 'bg';
   <p slot="footer" style="text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--text-sm);">
     <span data-i18n="footer.rights">© 2026 СЖИ. Всички права запазени.</span>
   </p>
+
 </Layout>
+
+<style>
+  /* ── Hero wrapper ─────────────────────────────────────────── */
+  .hero {
+    position:            relative;
+    min-height:          100vh;
+    display:             flex;
+    flex-direction:      column;
+    background-image:
+      linear-gradient(to bottom, rgba(8, 18, 55, 0.52) 0%, rgba(8, 18, 55, 0.68) 100%),
+      url('/images/hero.jpg');
+    background-size:     100% 100%, cover;
+    background-position: center, center;
+    background-repeat:   no-repeat;
+    background-color:    var(--color-primary-dark);
+  }
+
+  /* ── Logo text in transparent navbar ─────────────────────── */
+  .hero-logo {
+    font-family:  var(--font-heading);
+    font-weight:  var(--font-weight-bold);
+    font-size:    var(--text-2xl);
+    color:        var(--color-white);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Hero body (main content area) ───────────────────────── */
+  .hero__body {
+    flex:            1;
+    display:         flex;
+    align-items:     center;
+    padding-top:     72px; /* accounts for navbar height */
+    padding-bottom:  var(--space-20);
+  }
+
+  .hero__content {
+    max-width: 580px;
+  }
+
+  .hero__subtitle {
+    color:       rgba(255, 255, 255, 0.80);
+    font-size:   var(--text-xl);
+    margin-top:  var(--space-5);
+    line-height: var(--leading-relaxed);
+  }
+
+  .hero__cta {
+    margin-top: var(--space-10);
+  }
+
+  /* ── Stats strip ──────────────────────────────────────────── */
+  .hero__stats {
+    background-color: rgba(12, 28, 80, 0.62);
+    backdrop-filter:  blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top:       1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero__stats-grid {
+    display:               grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding:               var(--space-6) 0;
+  }
+
+  .hero__stat {
+    display:      flex;
+    gap:          var(--space-3);
+    align-items:  flex-start;
+    padding:      0 var(--space-8);
+    border-left:  1px solid rgba(255, 255, 255, 0.18);
+    color:        var(--color-white);
+  }
+
+  .hero__stat:first-child {
+    border-left:  none;
+    padding-left: 0;
+  }
+
+  .hero__stat:last-child {
+    padding-right: 0;
+  }
+
+  .hero__stat-icon {
+    flex-shrink: 0;
+    margin-top:  var(--space-1);
+  }
+
+  .hero__stat-title {
+    font-family:     var(--font-heading);
+    font-weight:     var(--font-weight-semibold);
+    font-size:       var(--text-sm);
+    text-transform:  uppercase;
+    letter-spacing:  0.06em;
+    color:           var(--color-white);
+    line-height:     var(--leading-tight);
+  }
+
+  .hero__stat-body {
+    font-size:  var(--text-sm);
+    color:      rgba(255, 255, 255, 0.62);
+    margin-top: var(--space-1);
+    line-height: var(--leading-normal);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .hero__content {
+      max-width: 100%;
+    }
+
+    .hero__subtitle {
+      font-size: var(--text-lg);
+    }
+
+    .hero__stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+      padding: var(--space-5) 0;
+    }
+
+    .hero__stat {
+      padding: 0 var(--space-4);
+    }
+
+    .hero__stat:nth-child(odd) {
+      border-left: none;
+      padding-left: 0;
+    }
+
+    .hero__stat:nth-child(even) {
+      border-left: 1px solid rgba(255, 255, 255, 0.18);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero__stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__stat,
+    .hero__stat:nth-child(even) {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: var(--space-4);
+    }
+
+    .hero__stat:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+</style>

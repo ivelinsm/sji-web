@@ -19,8 +19,9 @@ const isActive = active || Astro.url.pathname === href;
   .nav-link {
     font-family:    var(--font-body);
     font-size:      var(--text-base);
-    font-weight:    var(--font-weight-medium);
-    color:          inherit;
+    font-weight:    var(--font-weight-normal);
+    letter-spacing: 2px;
+    color:          var(--color-secondary-light);
     text-decoration: none;
     padding-block:  var(--space-1);
     position:       relative;
@@ -35,7 +36,7 @@ const isActive = active || Astro.url.pathname === href;
     inset-block-end:  -2px;
     inset-inline:     0;
     height:           2px;
-    background-color: var(--color-secondary);
+    background-color: var(--nav-link-accent, var(--color-secondary));
     border-radius:    var(--radius-full);
     transform:        scaleX(0);
     transform-origin: left;
@@ -43,7 +44,7 @@ const isActive = active || Astro.url.pathname === href;
   }
 
   .nav-link:hover {
-    color: var(--color-secondary);
+    color: var(--nav-link-accent, var(--color-secondary));
   }
 
   .nav-link:hover::after,
@@ -52,6 +53,6 @@ const isActive = active || Astro.url.pathname === href;
   }
 
   .nav-link--active {
-    color: var(--color-secondary);
+    color: var(--color-secondary-light, var(--color-secondary));
   }
 </style>

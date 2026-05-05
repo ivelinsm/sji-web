@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'ghost-white';
   href?: string;
   type?: 'button' | 'submit' | 'reset';
   size?: 'sm' | 'md' | 'lg';
@@ -114,5 +114,18 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, className];
     background-color: var(--color-primary);
     color:            var(--color-white);
     box-shadow:       var(--shadow-hover);
+  }
+
+  /* ── Ghost White (for use on dark/image backgrounds) ────── */
+  .btn--ghost-white {
+    background-color: transparent;
+    color:            var(--color-white);
+    border-color:     var(--color-white);
+  }
+
+  .btn--ghost-white:hover {
+    background-color: var(--color-white);
+    color:            var(--color-primary);
+    box-shadow:       0 8px 28px rgba(255, 255, 255, 0.18);
   }
 </style>
