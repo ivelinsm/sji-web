@@ -16,21 +16,21 @@ const lang = 'bg';
 
 <Layout title={t(lang, 'meta.title')} description={t(lang, 'meta.description')}>
 
+  <!-- ── Sticky transparent navbar ─────────────────────────── -->
+  <Navbar slot="header" variant="transparent">
+    <img slot="logo" src="/images/logo.png" alt="SJI" class="hero-logo" />
+    <NavLink slot="links" href="/"><span data-i18n="nav.home">Начало</span></NavLink>
+    <NavLink slot="links" href="/products"><span data-i18n="nav.products">Продукти</span></NavLink>
+    <NavLink slot="links" href="/about"><span data-i18n="nav.about">За нас</span></NavLink>
+    <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">Контакти</span></NavLink>
+    <Button slot="actions" variant="ghost-white" href="/contact" size="sm">
+      <span data-i18n="nav.cta.enquiry">Бизнес запитване</span>
+    </Button>
+    <LangSwitcher slot="actions" />
+  </Navbar>
+
   <!-- ── Full-viewport hero ──────────────────────────────────── -->
   <div class="hero">
-
-    <!-- Transparent navbar overlaid on hero image -->
-    <Navbar variant="transparent">
-      <img slot="logo" src="/images/logo.png" alt="SJI" class="hero-logo" />
-      <NavLink slot="links" href="/"><span data-i18n="nav.home">Начало</span></NavLink>
-      <NavLink slot="links" href="/products"><span data-i18n="nav.products">Продукти</span></NavLink>
-      <NavLink slot="links" href="/about"><span data-i18n="nav.about">За нас</span></NavLink>
-      <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">Контакти</span></NavLink>
-      <Button slot="actions" variant="ghost-white" href="/contact" size="sm">
-        <span data-i18n="nav.cta.enquiry">Бизнес запитване</span>
-      </Button>
-      <LangSwitcher slot="actions" />
-    </Navbar>
 
     <!-- Main hero content -->
     <div class="hero__body">
@@ -161,6 +161,7 @@ const lang = 'bg';
   .hero {
     position:            relative;
     min-height:          100vh;
+    margin-top:          -72px;
     display:             flex;
     flex-direction:      column;
     background-image:
