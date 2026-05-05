@@ -1,0 +1,26 @@
+---
+interface Props {
+  narrow?: boolean;
+  class?: string;
+}
+
+const { narrow = false, class: className } = Astro.props;
+---
+
+<div class:list={['container-wrap', narrow && 'container-wrap--narrow', className]}>
+  <slot />
+</div>
+
+<style>
+  .container-wrap {
+    width:          100%;
+    max-width:      var(--container-max);
+    margin-inline:  auto;
+    padding-inline: var(--container-padding);
+  }
+
+  /* Narrower max-width for text-heavy content (articles, forms) */
+  .container-wrap--narrow {
+    max-width: 768px;
+  }
+</style>

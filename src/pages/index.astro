@@ -1,16 +1,69 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Heading from '../components/Heading.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Navbar from '../components/Navbar.astro';
+import NavLink from '../components/NavLink.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="SJI — Pure Water & Refreshing Drinks">
+  <Navbar slot="header" variant="light">
+    <span slot="logo" style="font-family: var(--font-heading); font-weight: 700; color: var(--color-primary); font-size: var(--text-xl);">
+      SJI
+    </span>
+    <NavLink slot="links" href="/">Home</NavLink>
+    <NavLink slot="links" href="/products">Products</NavLink>
+    <NavLink slot="links" href="/about">About</NavLink>
+    <NavLink slot="links" href="/contact">Contact</NavLink>
+    <Button slot="actions" variant="ghost" href="/contact" size="sm">Business Enquiry</Button>
+    <Button slot="actions" variant="primary" href="/products" size="sm">Shop Now</Button>
+  </Navbar>
+
+  <!-- Design system preview — replace with real page content -->
+  <Section bg="gray">
+    <Container>
+      <Badge variant="secondary">Design System Preview</Badge>
+      <Heading level={1} align="center" style="margin-top: var(--space-4);">
+        Pure. Refreshing. Yours.
+      </Heading>
+      <p style="text-align: center; color: var(--color-text-muted); margin-top: var(--space-4); max-width: 600px; margin-inline: auto;">
+        Premium water bottling and soft drinks for every occasion — from everyday hydration to business partnerships.
+      </p>
+      <div style="display: flex; gap: var(--space-3); justify-content: center; margin-top: var(--space-8); flex-wrap: wrap;">
+        <Button variant="primary" href="/products">Explore Products</Button>
+        <Button variant="ghost" href="/contact">Partner With Us</Button>
+      </div>
+    </Container>
+  </Section>
+
+  <Section bg="white">
+    <Container>
+      <Heading level={2} align="center">Component Tokens</Heading>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-8);">
+        <Card accent>
+          <Badge variant="primary">Primary</Badge>
+          <Heading level={3} style="margin-top: var(--space-3);">Deep Blue</Heading>
+          <p>Used for headers, CTAs, and navigation backgrounds.</p>
+        </Card>
+        <Card accent>
+          <Badge variant="secondary">Secondary</Badge>
+          <Heading level={3} style="margin-top: var(--space-3);">Aqua Blue</Heading>
+          <p>Hover states, highlights, and icon accents.</p>
+        </Card>
+        <Card accent href="#">
+          <Badge variant="accent">New</Badge>
+          <Heading level={3} style="margin-top: var(--space-3);">Link Card</Heading>
+          <p>Hover this card — it lifts with a transition.</p>
+        </Card>
+      </div>
+    </Container>
+  </Section>
+
+  <p slot="footer" style="text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--text-sm);">
+    &copy; {new Date().getFullYear()} SJI. All rights reserved.
+  </p>
+</Layout>

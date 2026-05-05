@@ -1,0 +1,59 @@
+---
+interface Props {
+  level?: 1 | 2 | 3 | 4;
+  align?: 'left' | 'center' | 'right';
+  color?: 'primary' | 'inherit' | 'white';
+  class?: string;
+}
+
+const {
+  level = 2,
+  align = 'left',
+  color = 'primary',
+  class: className,
+} = Astro.props;
+
+const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4';
+---
+
+<Tag class:list={['heading', `heading--${level}`, `heading--${align}`, `heading--${color}`, className]}>
+  <slot />
+</Tag>
+
+<style>
+  .heading {
+    font-family: var(--font-heading);
+    line-height: var(--leading-tight);
+  }
+
+  /* ── Levels ─────────────────────────────────────────────── */
+  .heading--1 {
+    font-size:   var(--text-5xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .heading--2 {
+    font-size:   var(--text-4xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .heading--3 {
+    font-size:   var(--text-3xl);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .heading--4 {
+    font-size:   var(--text-2xl);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* ── Alignment ──────────────────────────────────────────── */
+  .heading--left   { text-align: left; }
+  .heading--center { text-align: center; }
+  .heading--right  { text-align: right; }
+
+  /* ── Color ──────────────────────────────────────────────── */
+  .heading--primary { color: var(--color-primary); }
+  .heading--inherit { color: inherit; }
+  .heading--white   { color: var(--color-white); }
+</style>

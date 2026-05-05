@@ -1,0 +1,165 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+}
+
+const { variant = 'light' } = Astro.props;
+---
+
+<nav class:list={['navbar', `navbar--${variant}`]} aria-label="Main navigation">
+  <div class="navbar__inner container">
+
+    <div class="navbar__logo">
+      <slot name="logo" />
+    </div>
+
+    <!-- Hidden checkbox powers the mobile toggle without JS -->
+    <input type="checkbox" id="nav-toggle" class="nav-toggle__input" aria-hidden="true" />
+    <label for="nav-toggle" class="nav-toggle__label" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <div class="navbar__links">
+      <slot name="links" />
+    </div>
+
+    <div class="navbar__actions">
+      <slot name="actions" />
+    </div>
+
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position:      sticky;
+    top:           0;
+    z-index:       100;
+    width:         100%;
+    border-bottom: 1px solid var(--color-border-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* ── Variants ───────────────────────────────────────────── */
+  .navbar--light {
+    background-color: rgba(255, 255, 255, 0.95);
+    color:            var(--color-text);
+  }
+
+  .navbar--dark {
+    background-color: rgba(47, 85, 151, 0.97);
+    color:            var(--color-white);
+    border-bottom-color: rgba(255, 255, 255, 0.10);
+  }
+
+  /* ── Inner layout ───────────────────────────────────────── */
+  .navbar__inner {
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    gap:             var(--space-6);
+    height:          72px;
+  }
+
+  .navbar__logo {
+    flex-shrink: 0;
+  }
+
+  .navbar__links {
+    display:         flex;
+    align-items:     center;
+    gap:             var(--space-6);
+    flex:            1;
+    justify-content: center;
+  }
+
+  .navbar__actions {
+    display:     flex;
+    align-items: center;
+    gap:         var(--space-3);
+    flex-shrink: 0;
+  }
+
+  /* ── Mobile toggle (CSS-only) ───────────────────────────── */
+  .nav-toggle__input {
+    display: none;
+  }
+
+  .nav-toggle__label {
+    display:        none;
+    flex-direction: column;
+    gap:            5px;
+    cursor:         pointer;
+    padding:        var(--space-2);
+  }
+
+  .nav-toggle__label span {
+    display:          block;
+    width:            24px;
+    height:           2px;
+    background-color: currentColor;
+    border-radius:    var(--radius-full);
+    transition:       transform var(--transition-base), opacity var(--transition-base);
+  }
+
+  /* ── Responsive: Mobile ─────────────────────────────────── */
+  @media (max-width: 768px) {
+    .nav-toggle__label {
+      display: flex;
+    }
+
+    .navbar__links,
+    .navbar__actions {
+      display:    none;
+      position:   absolute;
+      top:        72px;
+      left:       0;
+      right:      0;
+      padding:    var(--space-4) var(--space-6);
+      border-top: 1px solid var(--color-border-light);
+    }
+
+    .navbar--light .navbar__links,
+    .navbar--light .navbar__actions {
+      background-color: var(--color-surface);
+    }
+
+    .navbar--dark .navbar__links,
+    .navbar--dark .navbar__actions {
+      background-color: var(--color-primary);
+    }
+
+    .navbar__links {
+      flex-direction: column;
+      align-items:    flex-start;
+      gap:            var(--space-4);
+    }
+
+    .navbar__actions {
+      top:        auto;
+      flex-wrap:  wrap;
+    }
+
+    /* When toggle is checked, show menu */
+    .nav-toggle__input:checked ~ .navbar__links,
+    .nav-toggle__input:checked ~ .navbar__actions {
+      display: flex;
+    }
+
+    /* Animate hamburger to X */
+    .nav-toggle__input:checked ~ .nav-toggle__label span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .nav-toggle__input:checked ~ .nav-toggle__label span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle__input:checked ~ .nav-toggle__label span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>

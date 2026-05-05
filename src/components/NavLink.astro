@@ -1,0 +1,57 @@
+---
+interface Props {
+  href: string;
+  active?: boolean;
+  class?: string;
+}
+
+const { href, active = false, class: className } = Astro.props;
+
+/* Auto-detect active state if not passed explicitly */
+const isActive = active || Astro.url.pathname === href;
+---
+
+<a href={href} class:list={['nav-link', isActive && 'nav-link--active', className]} aria-current={isActive ? 'page' : undefined}>
+  <slot />
+</a>
+
+<style>
+  .nav-link {
+    font-family:    var(--font-body);
+    font-size:      var(--text-base);
+    font-weight:    var(--font-weight-medium);
+    color:          inherit;
+    text-decoration: none;
+    padding-block:  var(--space-1);
+    position:       relative;
+    transition:     color var(--transition-base);
+    white-space:    nowrap;
+  }
+
+  /* Animated underline */
+  .nav-link::after {
+    content:          '';
+    position:         absolute;
+    inset-block-end:  -2px;
+    inset-inline:     0;
+    height:           2px;
+    background-color: var(--color-secondary);
+    border-radius:    var(--radius-full);
+    transform:        scaleX(0);
+    transform-origin: left;
+    transition:       transform var(--transition-base);
+  }
+
+  .nav-link:hover {
+    color: var(--color-secondary);
+  }
+
+  .nav-link:hover::after,
+  .nav-link--active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link--active {
+    color: var(--color-secondary);
+  }
+</style>

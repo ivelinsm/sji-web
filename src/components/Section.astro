@@ -1,0 +1,50 @@
+---
+interface Props {
+  bg?: 'white' | 'gray' | 'primary' | 'transparent';
+  size?: 'sm' | 'md' | 'lg';
+  id?: string;
+  class?: string;
+}
+
+const {
+  bg   = 'white',
+  size = 'md',
+  id,
+  class: className,
+} = Astro.props;
+---
+
+<section id={id} class:list={['section', `section--${bg}`, `section--${size}`, className]}>
+  <slot />
+</section>
+
+<style>
+  .section { width: 100%; }
+
+  /* ── Vertical padding scale ─────────────────────────────── */
+  .section--sm { padding-block: var(--space-12); }
+  .section--md { padding-block: var(--space-20); }
+  .section--lg { padding-block: var(--space-24); }
+
+  /* ── Background variants ────────────────────────────────── */
+  .section--white       { background-color: var(--color-surface); }
+  .section--gray        { background-color: var(--color-bg); }
+  .section--transparent { background-color: transparent; }
+
+  .section--primary {
+    background-color: var(--color-primary);
+    color:            var(--color-white);
+  }
+
+  /* Headings inside primary sections should be white */
+  .section--primary :global(h1),
+  .section--primary :global(h2),
+  .section--primary :global(h3),
+  .section--primary :global(h4) {
+    color: var(--color-white);
+  }
+
+  .section--primary :global(p) {
+    color: rgba(255, 255, 255, 0.85);
+  }
+</style>
