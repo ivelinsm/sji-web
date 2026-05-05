@@ -21,7 +21,7 @@ const lang = 'bg';
 
     <!-- Transparent navbar overlaid on hero image -->
     <Navbar variant="transparent">
-      <span slot="logo" class="hero-logo">SJI</span>
+      <img slot="logo" src="/images/logo.png" alt="SJI" class="hero-logo" />
       <NavLink slot="links" href="/"><span data-i18n="nav.home">Начало</span></NavLink>
       <NavLink slot="links" href="/products"><span data-i18n="nav.products">Продукти</span></NavLink>
       <NavLink slot="links" href="/about"><span data-i18n="nav.about">За нас</span></NavLink>
@@ -172,13 +172,12 @@ const lang = 'bg';
     background-color:    var(--color-primary-dark);
   }
 
-  /* ── Logo text in transparent navbar ─────────────────────── */
+  /* ── Logo image in transparent navbar ────────────────────── */
   .hero-logo {
-    font-family:  var(--font-heading);
-    font-weight:  var(--font-weight-bold);
-    font-size:    var(--text-2xl);
-    color:        var(--color-white);
-    letter-spacing: 0.02em;
+    height:      72px;
+    width:       auto;
+    display:     block;
+    object-fit:  contain;
   }
 
   /* ── Hero body (main content area) ───────────────────────── */
@@ -205,18 +204,20 @@ const lang = 'bg';
     margin-top: var(--space-10);
   }
 
-  /* ── Stats strip ──────────────────────────────────────────── */
+  /* ── Stats pill ───────────────────────────────────────────── */
   .hero__stats {
-    background-color: rgba(12, 28, 80, 0.62);
-    backdrop-filter:  blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-top:       1px solid rgba(255, 255, 255, 0.12);
+    padding-bottom: var(--space-8);
   }
 
   .hero__stats-grid {
     display:               grid;
     grid-template-columns: repeat(4, 1fr);
-    padding:               var(--space-6) 0;
+    padding:               var(--space-5) var(--space-6);
+    background-color:      rgba(12, 28, 80, 0.62);
+    backdrop-filter:       blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border:                1px solid rgba(255, 255, 255, 0.15);
+    border-radius:         9999px;
   }
 
   .hero__stat {
@@ -230,11 +231,11 @@ const lang = 'bg';
 
   .hero__stat:first-child {
     border-left:  none;
-    padding-left: 0;
+    padding-left: var(--space-4);
   }
 
   .hero__stat:last-child {
-    padding-right: 0;
+    padding-right: var(--space-4);
   }
 
   .hero__stat-icon {
@@ -272,7 +273,8 @@ const lang = 'bg';
     .hero__stats-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-4);
-      padding: var(--space-5) 0;
+      padding: var(--space-5) var(--space-5);
+      border-radius: var(--radius-lg);
     }
 
     .hero__stat {
@@ -281,23 +283,29 @@ const lang = 'bg';
 
     .hero__stat:nth-child(odd) {
       border-left: none;
-      padding-left: 0;
+      padding-left: var(--space-2);
     }
 
     .hero__stat:nth-child(even) {
       border-left: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .hero__stat:first-child,
+    .hero__stat:last-child {
+      padding-right: var(--space-2);
     }
   }
 
   @media (max-width: 480px) {
     .hero__stats-grid {
       grid-template-columns: 1fr;
+      border-radius: var(--radius-lg);
     }
 
     .hero__stat,
     .hero__stat:nth-child(even) {
       border-left: none;
-      padding-left: 0;
+      padding-left: var(--space-2);
       border-top: 1px solid rgba(255, 255, 255, 0.12);
       padding-top: var(--space-4);
     }
