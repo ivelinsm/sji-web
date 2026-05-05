@@ -8,62 +8,82 @@ import Section from '../components/Section.astro';
 import Container from '../components/Container.astro';
 import Navbar from '../components/Navbar.astro';
 import NavLink from '../components/NavLink.astro';
+import LangSwitcher from '../components/LangSwitcher.astro';
+import { t } from '../i18n/utils';
+
+const lang = 'bg';
 ---
 
-<Layout title="SJI — Pure Water & Refreshing Drinks">
+<Layout title={t(lang, 'meta.title')} description={t(lang, 'meta.description')}>
   <Navbar slot="header" variant="light">
     <span slot="logo" style="font-family: var(--font-heading); font-weight: 700; color: var(--color-primary); font-size: var(--text-xl);">
       SJI
     </span>
-    <NavLink slot="links" href="/">Home</NavLink>
-    <NavLink slot="links" href="/products">Products</NavLink>
-    <NavLink slot="links" href="/about">About</NavLink>
-    <NavLink slot="links" href="/contact">Contact</NavLink>
-    <Button slot="actions" variant="ghost" href="/contact" size="sm">Business Enquiry</Button>
-    <Button slot="actions" variant="primary" href="/products" size="sm">Shop Now</Button>
+    <NavLink slot="links" href="/"><span data-i18n="nav.home">Начало</span></NavLink>
+    <NavLink slot="links" href="/products"><span data-i18n="nav.products">Продукти</span></NavLink>
+    <NavLink slot="links" href="/about"><span data-i18n="nav.about">За нас</span></NavLink>
+    <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">Контакти</span></NavLink>
+    <Button slot="actions" variant="ghost" href="/contact" size="sm">
+      <span data-i18n="nav.cta.enquiry">Бизнес запитване</span>
+    </Button>
+    <Button slot="actions" variant="primary" href="/products" size="sm">
+      <span data-i18n="nav.cta.shop">Пазарувай</span>
+    </Button>
+    <LangSwitcher slot="actions" />
   </Navbar>
 
-  <!-- Design system preview — replace with real page content -->
   <Section bg="gray">
     <Container>
-      <Badge variant="secondary">Design System Preview</Badge>
+      <Badge variant="secondary"><span data-i18n="hero.badge">Чистота от природата</span></Badge>
       <Heading level={1} align="center" style="margin-top: var(--space-4);">
-        Pure. Refreshing. Yours.
+        <span data-i18n="hero.title">Чисто. Освежаващо. Твоето.</span>
       </Heading>
       <p style="text-align: center; color: var(--color-text-muted); margin-top: var(--space-4); max-width: 600px; margin-inline: auto;">
-        Premium water bottling and soft drinks for every occasion — from everyday hydration to business partnerships.
+        <span data-i18n="hero.description">Премиум бутилирана вода и безалкохолни напитки за всеки момент — от ежедневна хидратация до бизнес партньорства.</span>
       </p>
       <div style="display: flex; gap: var(--space-3); justify-content: center; margin-top: var(--space-8); flex-wrap: wrap;">
-        <Button variant="primary" href="/products">Explore Products</Button>
-        <Button variant="ghost" href="/contact">Partner With Us</Button>
+        <Button variant="primary" href="/products">
+          <span data-i18n="hero.cta.products">Разгледай продуктите</span>
+        </Button>
+        <Button variant="ghost" href="/contact">
+          <span data-i18n="hero.cta.partner">Стани партньор</span>
+        </Button>
       </div>
     </Container>
   </Section>
 
   <Section bg="white">
     <Container>
-      <Heading level={2} align="center">Component Tokens</Heading>
+      <Heading level={2} align="center">
+        <span data-i18n="section.products.title">Нашите продукти</span>
+      </Heading>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-8);">
         <Card accent>
-          <Badge variant="primary">Primary</Badge>
-          <Heading level={3} style="margin-top: var(--space-3);">Deep Blue</Heading>
-          <p>Used for headers, CTAs, and navigation backgrounds.</p>
+          <Badge variant="secondary"><span data-i18n="card.water.badge">Вода</span></Badge>
+          <Heading level={3} style="margin-top: var(--space-3);">
+            <span data-i18n="card.water.title">Натурална вода</span>
+          </Heading>
+          <p><span data-i18n="card.water.body">Изворна вода с минерален баланс, бутилирана при строги стандарти за качество.</span></p>
         </Card>
         <Card accent>
-          <Badge variant="secondary">Secondary</Badge>
-          <Heading level={3} style="margin-top: var(--space-3);">Aqua Blue</Heading>
-          <p>Hover states, highlights, and icon accents.</p>
+          <Badge variant="primary"><span data-i18n="card.drinks.badge">Напитки</span></Badge>
+          <Heading level={3} style="margin-top: var(--space-3);">
+            <span data-i18n="card.drinks.title">Безалкохолни напитки</span>
+          </Heading>
+          <p><span data-i18n="card.drinks.body">Освежаващи напитки с естествени аромати, подходящи за всеки вкус.</span></p>
         </Card>
-        <Card accent href="#">
-          <Badge variant="accent">New</Badge>
-          <Heading level={3} style="margin-top: var(--space-3);">Link Card</Heading>
-          <p>Hover this card — it lifts with a transition.</p>
+        <Card accent href="/contact">
+          <Badge variant="accent"><span data-i18n="card.business.badge">Бизнес</span></Badge>
+          <Heading level={3} style="margin-top: var(--space-3);">
+            <span data-i18n="card.business.title">Бизнес решения</span>
+          </Heading>
+          <p><span data-i18n="card.business.body">Персонализирани бутилиращи решения за вашия бизнес — гъвкаво, надеждно, ефективно.</span></p>
         </Card>
       </div>
     </Container>
   </Section>
 
   <p slot="footer" style="text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--text-sm);">
-    &copy; {new Date().getFullYear()} SJI. All rights reserved.
+    <span data-i18n="footer.rights">© 2026 СЖИ. Всички права запазени.</span>
   </p>
 </Layout>

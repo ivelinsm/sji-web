@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import bg from '../i18n/bg.json';
+import en from '../i18n/en.json';
 
 interface Props {
   title: string;
@@ -10,31 +12,45 @@ interface Props {
 
 const {
   title,
-  description = 'Premium water bottling and soft drinks — fresh, clean, and refreshing.',
+  description = bg['meta.description'],
   ogImage = '/og-default.png',
   ogType = 'website',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : null;
+const translations = { bg, en };
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="bg" data-lang="bg">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Runs synchronously before paint — sets lang from localStorage or browser -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('sji-lang');
+        var browser = /^bg/i.test(navigator.language) ? 'bg'
+                    : /^en/i.test(navigator.language) ? 'en'
+                    : 'bg';
+        var lang = stored || browser;
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
+      })();
+    </script>
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalURL} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
 
     <!-- Open Graph -->
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={ogImage} />
     <meta property="og:type"        content={ogType} />
-    <meta property="og:url"         content={canonicalURL} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
@@ -45,11 +61,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Fonts: preconnect first, then load — avoids render-blocking -->
+    <!-- Fonts: Montserrat (Cyrillic + Latin headings) · Inter (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@600;700&family=Inter:wght@400;500&display=swap"
       rel="stylesheet"
     />
 
@@ -69,5 +85,54 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <footer>
       <slot name="footer" />
     </footer>
+
+    <!-- i18n engine: apply translations + expose window.__setLang -->
+    <script is:inline define:vars={{ translations }}>
+      window.__translations = translations;
+
+      function __applyLang(lang) {
+        var t = window.__translations[lang] || window.__translations['bg'];
+
+        // Fade out, swap text, fade back in
+        document.body.classList.add('lang-switching');
+
+        setTimeout(function () {
+          document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var key = el.getAttribute('data-i18n');
+            if (t[key] !== undefined) el.textContent = t[key];
+          });
+
+          document.documentElement.setAttribute('data-lang', lang);
+          document.documentElement.lang = lang;
+          localStorage.setItem('sji-lang', lang);
+          window.__lang = lang;
+
+          if (t['meta.title'])       document.title = t['meta.title'];
+          if (t['meta.description']) {
+            var metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', t['meta.description']);
+          }
+
+          // Update all switcher labels
+          document.querySelectorAll('[data-lang-label]').forEach(function (el) {
+            el.textContent = lang === 'bg' ? 'EN' : 'BG';
+          });
+
+          document.body.classList.remove('lang-switching');
+        }, 120);
+      }
+
+      window.__setLang = __applyLang;
+
+      // Apply detected language on first load
+      var initialLang = document.documentElement.getAttribute('data-lang') || 'bg';
+      window.__lang = initialLang;
+      if (initialLang !== 'bg') __applyLang(initialLang);
+
+      // Sync switcher labels to detected language on first load
+      document.querySelectorAll('[data-lang-label]').forEach(function (el) {
+        el.textContent = initialLang === 'bg' ? 'EN' : 'BG';
+      });
+    </script>
   </body>
 </html>

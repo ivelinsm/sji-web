@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"D:\\\\Projects\\\\SJI-SITE\\\\src\" -Recurse -Force)",
+      "Bash(Select-Object FullName)",
+      "Bash(Sort-Object FullName)",
+      "Bash(find D:\\\\\\\\Projects\\\\\\\\SJI-SITE\\\\\\\\src -type f)",
+      "Bash(npx astro *)"
+    ]
+  }
+}

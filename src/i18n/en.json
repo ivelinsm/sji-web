@@ -1,0 +1,30 @@
+{
+  "meta.title": "SJI — Pure Water & Refreshing Drinks",
+  "meta.description": "Premium water bottling and soft drinks — fresh, clean, and refreshing.",
+
+  "nav.home": "Home",
+  "nav.products": "Products",
+  "nav.about": "About",
+  "nav.contact": "Contact",
+  "nav.cta.enquiry": "Business Enquiry",
+  "nav.cta.shop": "Shop Now",
+
+  "hero.badge": "Pure from nature",
+  "hero.title": "Pure. Refreshing. Yours.",
+  "hero.description": "Premium water bottling and soft drinks for every occasion — from everyday hydration to business partnerships.",
+  "hero.cta.products": "Explore Products",
+  "hero.cta.partner": "Partner With Us",
+
+  "section.products.title": "Our Products",
+  "card.water.title": "Natural Water",
+  "card.water.body": "Spring water with a natural mineral balance, bottled to the highest quality standards.",
+  "card.drinks.title": "Soft Drinks",
+  "card.drinks.body": "Refreshing beverages with natural flavors to suit every taste.",
+  "card.business.title": "Business Solutions",
+  "card.business.body": "Custom bottling solutions for your business — flexible, reliable, and efficient.",
+  "card.water.badge": "Water",
+  "card.drinks.badge": "Drinks",
+  "card.business.badge": "Business",
+
+  "footer.rights": "© 2026 SJI. All rights reserved."
+}

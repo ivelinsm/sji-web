@@ -1,0 +1,46 @@
+---
+// Reads active language from the data-lang attribute set by the head script.
+// Click handler delegates to window.__setLang defined by the body-end script.
+---
+
+<button class="lang-switcher" type="button" aria-label="Switch language">
+  <span data-lang-label>BG</span>
+</button>
+
+<style>
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-3);
+    border: 1.5px solid currentColor;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    cursor: pointer;
+    background: transparent;
+    color: inherit;
+    transition: background var(--transition-base), color var(--transition-base), border-color var(--transition-base);
+    white-space: nowrap;
+  }
+
+  .lang-switcher:hover {
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: #fff;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    document.querySelectorAll('.lang-switcher').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var current = document.documentElement.getAttribute('data-lang') || 'bg';
+        var next = current === 'bg' ? 'en' : 'bg';
+        if (window.__setLang) window.__setLang(next);
+      });
+    });
+  })();
+</script>
