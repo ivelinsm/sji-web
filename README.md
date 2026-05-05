@@ -41,3 +41,14 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+
+## Important gotchas (worth knowing early)
+
+### `.nojekyll` (still relevant)
+GitHub Pages ignores _astro/ folders unless you disable Jekyll.
+
+#### Fix (if needed):
+```
+public/.nojekyll
+```
