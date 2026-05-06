@@ -121,6 +121,17 @@ const { variant = 'light' } = Astro.props;
       display: flex;
     }
 
+    .nav-toggle__label {
+    display: flex;
+    position: relative;
+    z-index: 20;
+    }
+
+    .navbar__links,
+    .navbar__actions {
+      z-index: 10;
+    }
+
     .navbar__links,
     .navbar__actions {
       display:    none;
@@ -128,8 +139,16 @@ const { variant = 'light' } = Astro.props;
       top:        72px;
       left:       0;
       right:      0;
-      padding:    var(--space-4) var(--space-6);
-      border-top: 1px solid var(--color-border-light);
+      width: 100%;
+      padding:    var(--space-5) var(--space-6);
+    }
+
+    .navbar___actions {
+      min-height: 74px;
+    }
+
+    .navbar__links {
+      border-bottom: 1px solid white;
     }
 
     .navbar--light .navbar__links,
