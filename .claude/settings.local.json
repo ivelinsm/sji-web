@@ -5,7 +5,9 @@
       "Bash(Select-Object FullName)",
       "Bash(Sort-Object FullName)",
       "Bash(find D:\\\\\\\\Projects\\\\\\\\SJI-SITE\\\\\\\\src -type f)",
-      "Bash(npx astro *)"
+      "Bash(npx astro *)",
+      "Bash(Get-Content src/components/ServiceCard.astro -TotalCount 5)",
+      "PowerShell(Get-Process *)"
     ]
   }
 }

@@ -23,6 +23,11 @@ const {
 ---
 
 <div class="svc-card">
+
+  <!-- Ghost watermark — same icon, scaled large, faded white -->
+  <div class="svc-card__watermark" aria-hidden="true" set:html={icon} />
+
+  <!-- Foreground icon in tinted container -->
   <div class="svc-card__icon-wrap" aria-hidden="true" set:html={icon} />
 
   <div class="svc-card__body">
@@ -43,44 +48,82 @@ const {
 </div>
 
 <style>
+  /* ── Card shell ──────────────────────────────────────────── */
   .svc-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     background: var(--color-surface);
     border-radius: var(--radius-xl);
     padding: var(--space-8);
-    box-shadow: var(--shadow-md);
-    border-top: 3px solid var(--color-secondary);
+    overflow: hidden;
+    isolation: isolate;
+    border: 1px solid rgba(15, 23, 42, 0.05);
+    box-shadow:
+      0 1px 2px rgba(15, 23, 42, 0.03),
+      0 6px 20px rgba(15, 23, 42, 0.05);
     transition:
       transform var(--transition-base),
-      box-shadow var(--transition-base);
+      box-shadow var(--transition-base),
+      border-color var(--transition-base);
   }
 
   .svc-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
+    border-color: rgba(15, 23, 42, 0.08);
+    box-shadow:
+      0 2px 4px rgba(15, 23, 42, 0.04),
+      0 12px 24px rgba(15, 23, 42, 0.06),
+      0 30px 60px rgba(15, 23, 42, 0.10);
   }
 
-  /* ── Icon ─────────────────────────────────────────────────── */
+  /* ── Ghost watermark icon (bottom-right, large, faded) ───── */
+  .svc-card__watermark {
+    position: absolute;
+    right: -28px;
+    bottom: -32px;
+    color: rgba(39, 169, 216, 0.07);
+    pointer-events: none;
+    z-index: 0;
+    transition: transform var(--transition-slow), color var(--transition-slow);
+  }
+
+  .svc-card__watermark :global(svg) {
+    width: 200px;
+    height: 200px;
+  }
+
+  .svc-card:hover .svc-card__watermark {
+    transform: translate(-4px, -6px) rotate(-4deg);
+    color: rgba(39, 169, 216, 0.13);
+  }
+
+  /* ── Foreground icon (no container — clean glyph) ───────── */
   .svc-card__icon-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    border-radius: var(--radius-lg);
-    background-color: var(--color-secondary-alpha-10);
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    color: var(--color-secondary);
     margin-bottom: var(--space-6);
-    flex-shrink: 0;
+    transform-origin: left center;
+    transition: transform var(--transition-base);
   }
 
-  /* SVG strokes inside the icon inherit aqua color */
+  .svc-card:hover .svc-card__icon-wrap {
+    transform: scale(1.08);
+  }
+
   .svc-card__icon-wrap :global(svg) {
     display: block;
+    width: 36px;
+    height: 36px;
+    stroke-width: 1.5;
   }
 
-  /* ── Body ─────────────────────────────────────────────────── */
+  /* ── Body text ───────────────────────────────────────────── */
   .svc-card__body {
+    position: relative;
+    z-index: 2;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -94,6 +137,7 @@ const {
     font-weight: var(--font-weight-semibold);
     color: var(--color-primary);
     line-height: var(--leading-tight);
+    letter-spacing: -0.01em;
     margin: 0;
   }
 
@@ -104,28 +148,27 @@ const {
     margin: 0;
   }
 
-  /* ── CTA ──────────────────────────────────────────────────── */
+  /* ── CTA ─────────────────────────────────────────────────── */
   .svc-card__cta {
+    position: relative;
+    z-index: 2;
     display: inline-flex;
     align-items: center;
     gap: var(--space-2);
     font-family: var(--font-body);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-medium);
-    color: var(--color-primary);
+    color: var(--color-secondary);
     text-decoration: none;
     padding: var(--space-2) 0;
-    border-bottom: 1.5px solid var(--color-border-light);
     width: fit-content;
     transition:
       color var(--transition-base),
-      border-color var(--transition-base),
       gap var(--transition-base);
   }
 
   .svc-card__cta:hover {
-    color: var(--color-secondary);
-    border-color: var(--color-secondary);
+    color: var(--color-secondary-hover);
     gap: var(--space-3);
   }
 
