@@ -13,6 +13,8 @@
   "hero.title": "Pure. Refreshing. Yours.",
   "hero.description": "Premium water bottling and soft drinks for every occasion — from everyday hydration to business partnerships.",
   "hero.cta.products": "Explore Products",
+  "hero.cta.forbusiness": "For business clients",
+  "hero.cta.forhome": "For home and the office",
   "hero.cta.partner": "Partner With Us",
 
   "hero.stat1.title": "Premium Quality",
@@ -35,5 +37,34 @@
   "card.drinks.badge": "Drinks",
   "card.business.badge": "Business",
 
-  "footer.rights": "© 2026 SJI. All rights reserved."
+  "footer.rights": "© 2026 SJI. All rights reserved.",
+
+  "services.section.title": "How Can We Help You?",
+  "services.section.subtitle": "Choose the solution that best fits your needs:",
+  "services.tab.home": "For Home & Office",
+  "services.tab.business": "For Business Clients",
+
+  "services.home.delivery.title": "Regular Water Deliveries",
+  "services.home.delivery.body": "Delivery of table water in a wide range of bottle sizes — from small 0.5L bottles for everyday use to convenient reusable 19L gallons — directly to your home or office.",
+  "services.home.delivery.cta": "Request Delivery",
+
+  "services.home.maintenance.title": "Dispenser Maintenance",
+  "services.home.maintenance.body": "Professional repair, sanitization, and scheduled technical maintenance for all types of water dispensers and hot/cold water systems.",
+  "services.home.maintenance.cta": "Learn More",
+
+  "services.home.co2.title": "CO₂ Cylinders for Sparkling Water",
+  "services.home.co2.body": "Fast and reliable CO₂ refill service for 60L cylinders used in home sparkling water machines. Enjoy fresh bubbles anytime.",
+  "services.home.co2.cta": "Refill Cylinder",
+
+  "services.business.wholesale.title": "Business Supply Solutions",
+  "services.business.wholesale.body": "Complete supply solutions for stores, warehouses, restaurants, and distributors — with a wide portfolio of carbonated drinks, iced tea, and beverage concentrates at preferential prices.",
+  "services.business.wholesale.cta": "Request an Offer",
+
+  "services.business.label.title": "Production Under Your Brand",
+  "services.business.label.body": "Build your own identity. We provide end-to-end production and bottling of premium table water, soft drinks, and sports beverages with your branding and packaging design.",
+  "services.business.label.cta": "Start a Project",
+
+  "services.business.slushy.title": "Professional Slushy Mixes",
+  "services.business.slushy.body": "Premium concentrates and slushy mixes for professional use in restaurants, kids centers, shops, kiosks, and seasonal summer locations.",
+  "services.business.slushy.cta": "Explore Flavors"
 }

@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'primary' | 'secondary' | 'ghost' | 'ghost-white';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'ghost-white' | 'ghost-white-primary';
   href?: string;
   type?: 'button' | 'submit' | 'reset';
   size?: 'sm' | 'md' | 'lg';
@@ -70,7 +70,7 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, className];
 
   /* ── Hover lift (shared) ────────────────────────────────── */
   .btn:hover {
-    transform: translateY(-2px);
+    /* transform: translateY(-2px); */
   }
 
   .btn:active {
@@ -124,6 +124,20 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, className];
   }
 
   .btn--ghost-white:hover {
+    background-color: var(--color-white);
+    color:            var(--color-primary);
+    box-shadow:       0 8px 28px rgba(255, 255, 255, 0.18);
+  }
+
+  /* ── Ghost White Primary ─────────────────────────────────── */
+
+  .btn--ghost-white-primary {
+    background-color: var(--color-bg);
+    color:            var(--color-primary-hover);
+    border-color:     var(--color-bg);
+  }
+
+  .btn--ghost-white-primary:hover {
     background-color: var(--color-white);
     color:            var(--color-primary);
     box-shadow:       0 8px 28px rgba(255, 255, 255, 0.18);

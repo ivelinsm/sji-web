@@ -1,0 +1,140 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  titleKey: string;
+  description: string;
+  descKey: string;
+  ctaLabel: string;
+  ctaKey: string;
+  ctaHref?: string;
+}
+
+const {
+  icon,
+  title,
+  titleKey,
+  description,
+  descKey,
+  ctaLabel,
+  ctaKey,
+  ctaHref = '#',
+} = Astro.props;
+---
+
+<div class="svc-card">
+  <div class="svc-card__icon-wrap" aria-hidden="true" set:html={icon} />
+
+  <div class="svc-card__body">
+    <h3 class="svc-card__title">
+      <span data-i18n={titleKey}>{title}</span>
+    </h3>
+    <p class="svc-card__desc">
+      <span data-i18n={descKey}>{description}</span>
+    </p>
+  </div>
+
+  <a href={ctaHref} class="svc-card__cta">
+    <span data-i18n={ctaKey}>{ctaLabel}</span>
+    <svg class="svc-card__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .svc-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+    border-top: 3px solid var(--color-secondary);
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+  }
+
+  .svc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* ── Icon ─────────────────────────────────────────────────── */
+  .svc-card__icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-secondary-alpha-10);
+    margin-bottom: var(--space-6);
+    flex-shrink: 0;
+  }
+
+  /* SVG strokes inside the icon inherit aqua color */
+  .svc-card__icon-wrap :global(svg) {
+    display: block;
+  }
+
+  /* ── Body ─────────────────────────────────────────────────── */
+  .svc-card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .svc-card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    line-height: var(--leading-tight);
+    margin: 0;
+  }
+
+  .svc-card__desc {
+    font-size: var(--text-base);
+    color: var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  /* ── CTA ──────────────────────────────────────────────────── */
+  .svc-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: var(--space-2) 0;
+    border-bottom: 1.5px solid var(--color-border-light);
+    width: fit-content;
+    transition:
+      color var(--transition-base),
+      border-color var(--transition-base),
+      gap var(--transition-base);
+  }
+
+  .svc-card__cta:hover {
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    gap: var(--space-3);
+  }
+
+  .svc-card__cta-arrow {
+    flex-shrink: 0;
+    transition: transform var(--transition-base);
+  }
+
+  .svc-card__cta:hover .svc-card__cta-arrow {
+    transform: translateX(3px);
+  }
+</style>

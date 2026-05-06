@@ -9,6 +9,7 @@ import Container from '../components/Container.astro';
 import Navbar from '../components/Navbar.astro';
 import NavLink from '../components/NavLink.astro';
 import LangSwitcher from '../components/LangSwitcher.astro';
+import ServicesSection from '../components/ServicesSection.astro';
 import { t } from '../i18n/utils';
 
 const lang = 'bg';
@@ -43,11 +44,11 @@ const lang = 'bg';
             <span data-i18n="hero.description">Премиум бутилирана вода и безалкохолни напитки за всеки момент — от ежедневна хидратация до бизнес партньорства.</span>
           </p>
           <div class="hero__cta">
+            <Button variant="ghost-white-primary" href="/products">
+              <span data-i18n="hero.cta.forhome">За дома и офиса</span> <!-- Za doma i ofisa -->
+            </Button>
             <Button variant="ghost-white" href="/products">
-              <span data-i18n="hero.cta.products">Разгледай продуктите</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+              <span data-i18n="hero.cta.forbusiness">За бизнеса</span> <!-- Za biznesa -->
             </Button>
           </div>
         </div>
@@ -117,6 +118,9 @@ const lang = 'bg';
       </div>
     </div>
   </div>
+
+  <!-- ── Services section ────────────────────────────────────── -->
+  <ServicesSection lang={lang} />
 
   <!-- ── Products section ────────────────────────────────────── -->
   <Section bg="white">
@@ -202,6 +206,8 @@ const lang = 'bg';
   }
 
   .hero__cta {
+    display: flex;
+    gap: var(--space-6);
     margin-top: var(--space-10);
   }
 
