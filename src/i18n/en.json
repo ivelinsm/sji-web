@@ -66,5 +66,26 @@
 
   "services.business.slushy.title": "Professional Slushy Mixes",
   "services.business.slushy.body": "Premium concentrates and slushy mixes for professional use in restaurants, kids centers, shops, kiosks, and seasonal summer locations.",
-  "services.business.slushy.cta": "Explore Flavors"
+  "services.business.slushy.cta": "Explore Flavors",
+
+  "filtration.eyebrow": "Phases",
+  "filtration.section.title": "The path to pure perfection",
+  "filtration.section.subtitle": "Our 6-stage water filtration",
+  "filtration.section.lead": "Before reaching the lab and being bottled, every drop of Aqua Viva water passes through a precise six-stage purification system.",
+  "filtration.phase.label": "Stage",
+  "filtration.nav.aria": "Filtration stages",
+  "filtration.progress.aria": "Current stage",
+
+  "filtration.phase1.title": "Pharmaceutical micron filter",
+  "filtration.phase1.body": "A pharmaceutical-grade micron filter that captures even the most microscopic residual elements.",
+  "filtration.phase2.title": "Activated carbon",
+  "filtration.phase2.body": "Eliminates organic contaminants, absorbs residual chlorine, and refines the taste and aroma of the water.",
+  "filtration.phase3.title": "Ion exchange resin",
+  "filtration.phase3.body": "Specialized resin that selectively swaps hardness ions and trace heavy metals for harmless ones, softening the water and fine-tuning its mineral balance.",
+  "filtration.phase4.title": "Reverse osmosis",
+  "filtration.phase4.body": "High-pressure filtration that fully removes excess minerals, salts, impurities, and trace heavy elements.",
+  "filtration.phase5.title": "Ultraviolet (UV) light",
+  "filtration.phase5.body": "Powerful UV disinfection that destroys 99.99% of microorganisms and bacteria without altering the composition of the water.",
+  "filtration.phase6.title": "Ozonation",
+  "filtration.phase6.body": "Ozone infusion delivers fully natural sterilization — lasting freshness and microbiological safety in every bottle."
 }

@@ -10,6 +10,7 @@ import Navbar from '../components/Navbar.astro';
 import NavLink from '../components/NavLink.astro';
 import LangSwitcher from '../components/LangSwitcher.astro';
 import ServicesSection from '../components/ServicesSection.astro';
+import FiltrationSection from '../components/FiltrationSection.astro';
 import { t } from '../i18n/utils';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.webp';
@@ -123,6 +124,9 @@ const lang = 'bg';
 
   <!-- ── Services section ────────────────────────────────────── -->
   <ServicesSection lang={lang} />
+
+  <!-- ── 6-stage filtration scrollytelling ───────────────────── -->
+  <FiltrationSection lang={lang} />
 
   <!-- ── Products section ────────────────────────────────────── -->
   <Section bg="white">

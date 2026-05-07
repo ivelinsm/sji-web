@@ -10,7 +10,8 @@
       "PowerShell(Get-Process *)",
       "Bash(mkdir -p \"D:\\\\Projects\\\\SJI-SITE\\\\src\\\\assets\")",
       "Bash(mv \"D:\\\\Projects\\\\SJI-SITE\\\\public\\\\images\\\\logo.webp\" \"D:\\\\Projects\\\\SJI-SITE\\\\src\\\\assets\\\\logo.webp\")",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(npx --no-install astro build)"
     ]
   }
 }
