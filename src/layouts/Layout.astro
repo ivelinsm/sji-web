@@ -28,14 +28,11 @@ const translations = { bg, en };
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Runs synchronously before paint — sets lang from localStorage or browser -->
+    <!-- Runs synchronously before paint — defaults to Bulgarian, honors prior user choice -->
     <script is:inline>
       (function () {
         var stored = localStorage.getItem('sji-lang');
-        var browser = /^bg/i.test(navigator.language) ? 'bg'
-                    : /^en/i.test(navigator.language) ? 'en'
-                    : 'bg';
-        var lang = stored || browser;
+        var lang = stored === 'en' ? 'en' : 'bg';
         document.documentElement.setAttribute('data-lang', lang);
         document.documentElement.lang = lang;
       })();
