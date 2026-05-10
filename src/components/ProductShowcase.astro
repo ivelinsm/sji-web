@@ -31,7 +31,7 @@ type ProductDef = {
     left?:   string;
     right?:  string;
     width:   string;
-    /* Image scale inside card — drives the editorial size variation */
+    /* Image scale inside card - drives the editorial size variation */
     scale:   number;
     /* Floating animation delay */
     delay:   string;
@@ -288,7 +288,7 @@ const products: ProductDef[] = [
     box-shadow: var(--shadow-lg);
   }
 
-  /* Slight settle on hover — pause the float, lift gently */
+  /* Slight settle on hover - pause the float, lift gently */
   .card.is-visible:hover {
     animation-play-state: paused;
     transform: translateY(-6px);
@@ -388,7 +388,7 @@ const products: ProductDef[] = [
     box-shadow: var(--shadow-lg);
     font-size: var(--text-sm);
     line-height: var(--leading-normal);
-    /* Hidden state — fade + slight rise */
+    /* Hidden state - fade + slight rise */
     opacity: 0;
     transform: translateY(6px);
     pointer-events: none;
@@ -422,7 +422,7 @@ const products: ProductDef[] = [
     transform: translateY(0);
   }
 
-  /* ── Float keyframes — gentle, premium ───────────────────── */
+  /* ── Float keyframes - gentle, premium ───────────────────── */
   @keyframes card-float {
     0%, 100% { transform: translateY(0); }
     50%      { transform: translateY(-10px); }
@@ -464,7 +464,7 @@ const products: ProductDef[] = [
       width: 100%;
       max-width: 420px;
       margin-inline: auto;
-      /* Disable float animation on mobile — feels cleaner stacked */
+      /* Disable float animation on mobile - feels cleaner stacked */
       animation: none !important;
     }
 
@@ -472,7 +472,7 @@ const products: ProductDef[] = [
       transform: none;
     }
 
-    /* Keep the editorial type — but smaller and partially cropped */
+    /* Keep the editorial type - but smaller and partially cropped */
     .showcase__bg-word--1 { top: -1%;   left: -10%; }
     .showcase__bg-word--2 { top: 35%;   right: -20%; }
     .showcase__bg-word--3 { bottom: 2%; left: -10%; }

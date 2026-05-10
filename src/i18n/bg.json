@@ -108,5 +108,110 @@
 
   "products.limonada.title": "Лимонада Наслада",
   "products.limonada.desc": "Класическа газирана лимонада, 2L.",
-  "products.limonada.details": "Газирана безалкохолна напитка Наслада Лимонада - традиционен вкус, ярка свежест и приятно газиране. Семейна опаковка от 2 литра."
+  "products.limonada.details": "Газирана безалкохолна напитка Наслада Лимонада - традиционен вкус, ярка свежест и приятно газиране. Семейна опаковка от 2 литра.",
+
+  "products.page.title": "Продукти и Услуги - СЖИ",
+  "products.page.description": "Пълен каталог на нашите продукти и услуги - бутилирана вода, безалкохолни напитки и бизнес решения.",
+  "products.page.hero.eyebrow": "Каталог",
+  "products.page.hero.title": "Продукти и Услуги",
+  "products.page.hero.subtitle": "Премиум бутилирана вода, безалкохолни напитки и гъвкави бизнес решения - всичко на едно място.",
+
+  "products.nav.waters": "Води",
+  "products.nav.drinks": "Напитки",
+  "products.nav.concentrates": "Концентрати",
+  "products.nav.b2b": "За бизнеса",
+
+  "products.section.waters": "Води",
+  "products.section.waters.desc": "Чиста, пречистена вода в различни разфасовки - за всеки момент и нужда.",
+  "products.section.drinks": "Безалкохолни напитки",
+  "products.section.drinks.desc": "Освежаващи газирани напитки, студен чай и лимонади с натурални аромати.",
+  "products.section.concentrates": "Концентрати и друго",
+  "products.section.concentrates.desc": "Концентрати, лимонов сок и PET опаковки - за домашна и търговска употреба.",
+
+  "products.badge.still": "Трапезна вода",
+  "products.badge.sparkling": "Газирана вода",
+  "products.badge.drinks": "Напитки",
+  "products.badge.tea": "Студен чай",
+  "products.badge.lemonade": "Лимонада",
+  "products.badge.concentrate": "Концентрат",
+  "products.badge.b2b": "Бизнес клиенти",
+  "products.badge.b2b.only": "Само за бизнес",
+  "products.badge.pet": "PET опаковки",
+  "products.badge.juice": "Лимонов сок",
+
+  "products.aquaviva.name": "Aqua Viva",
+  "products.aquaviva.desc": "Трапезна вода, пречистена чрез 6-степенна система за кристална чистота.",
+  "products.aquaviva.sizes": "0.5л · 1.5л · 5л · 10л · 19л галон",
+
+  "products.izvor.still.name": "Трапезна вода Извор",
+  "products.izvor.still.desc": "Чиста трапезна вода с балансиран вкус - в удобни разфасовки за дома и бизнеса.",
+  "products.izvor.still.sizes": "5л · 10л · 19л",
+
+  "products.santos.soda.name": "Santos - Газирана вода",
+  "products.santos.soda.desc": "Класическа газирана вода (сода) с лек и чист освежаващ вкус.",
+  "products.santos.soda.sizes": "0.5л · 1.5л",
+
+  "products.santos.soda.lemon.name": "Santos - Газирана вода с лимон",
+  "products.santos.soda.lemon.desc": "Газирана вода с нежен лимонов акцент - освежаваща и ароматна.",
+  "products.santos.soda.lemon.sizes": "0.5л",
+
+  "products.izvor.sparkling.name": "Газирана вода Izvor",
+  "products.izvor.sparkling.desc": "Газирана изворна вода с естествено освежаване и чист вкус.",
+  "products.izvor.sparkling.sizes": "1.5л",
+
+  "products.santos.drinks.name": "Серия Santos",
+  "products.santos.drinks.desc": "Газирани безалкохолни напитки с натурални плодови аромати.",
+  "products.santos.drinks.flavors": "Лимонада · Сайдер · Портокал · Ябълка и др.",
+  "products.santos.drinks.sizes": "0.33л · 0.5л",
+
+  "products.naslada.name": "Серия Наслада",
+  "products.naslada.desc": "Семейна газирана лимонада с класически и любим вкус.",
+  "products.naslada.sizes": "2л",
+
+  "products.santos.icetea.name": "Студен чай Santos",
+  "products.santos.icetea.desc": "Освежаващ студен чай с натурални плодови аромати - за всеки сезон.",
+  "products.santos.icetea.flavors": "Лимон · Праскова · Ягода · Боровинка",
+  "products.santos.icetea.sizes": "0.5л · 1.5л",
+
+  "products.lemonade.name": "Домашна лимонада с лимонов сок",
+  "products.lemonade.desc": "Лимонада с 10% натурален сок от лимон - автентичен, домашен вкус.",
+  "products.lemonade.sizes": "0.5л · 1л",
+
+  "products.jumbo.name": "Концентрат Jumbo",
+  "products.jumbo.desc": "Концентрат за приготвяне на освежаващи напитки - с разнообразни вкусове.",
+  "products.jumbo.sizes": "0.5л",
+  "products.jumbo.sizes.b2b": "5л · 10л за бизнес клиенти",
+
+  "products.slushy.name": "Скрежина (концентрат)",
+  "products.slushy.desc": "Концентрат за скрежина - за магазини, детски центрове и сезонни локации.",
+  "products.slushy.sizes": "0.5л · 1л · 5л · 10л",
+
+  "products.pet.name": "Празни PET бутилки",
+  "products.pet.desc": "Висококачествени PET бутилки с капачки - предимно за бизнес клиенти.",
+  "products.pet.sizes": "0.5л · 1л · 2л · 5л · 10л",
+
+  "products.bultop.name": "Лимонов сок BulTop",
+  "products.bultop.desc": "Натурален лимонов сок за кулинарни нужди и приготвяне на напитки.",
+
+  "products.b2b.section.eyebrow": "Партньорство",
+  "products.b2b.section.title": "Бизнес услуги",
+  "products.b2b.section.subtitle": "Гъвкави решения за дистрибутори, ресторанти и производители.",
+  "products.b2b.wholesale.title": "Доставки на едро",
+  "products.b2b.wholesale.desc": "Пълни решения за доставки за магазини, складове, ресторанти и дистрибутори - широко портфолио от газирани напитки, студен чай и концентрати на преференциални цени.",
+  "products.b2b.label.title": "Производство под ваша марка",
+  "products.b2b.label.desc": "Цялостно производство и бутилиране на трапезна вода, безалкохолни напитки и спортни напитки с вашия лого и опаковка.",
+  "products.b2b.slushy.title": "Концентрати за скрежина",
+  "products.b2b.slushy.desc": "Премиум концентрати за скрежина за магазини, детски центрове, ресторанти и сезонни летни локации.",
+  "products.b2b.cta": "Изпратете запитване",
+
+  "products.consumer.section.eyebrow": "За вас",
+  "products.consumer.section.title": "Услуги за дома и офиса",
+  "products.consumer.section.subtitle": "Удобни и надеждни решения за вашето ежедневие.",
+  "products.consumer.delivery.title": "Редовни доставки на вода",
+  "products.consumer.delivery.desc": "Доставка до дома или офиса - от 0.5л бутилки до 19л галони за диспенсъри.",
+  "products.consumer.maintenance.title": "Сервиз на диспенсъри",
+  "products.consumer.maintenance.desc": "Ремонт, дезинфекция и техническа поддръжка за всички видове водни диспенсъри.",
+  "products.consumer.co2.title": "Зареждане на CO₂",
+  "products.consumer.co2.desc": "Бързо зареждане на CO₂ цилиндри (60л) за домашни машини за газирана вода.",
+  "products.consumer.cta": "Свържете се с нас"
 }

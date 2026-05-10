@@ -108,5 +108,110 @@
 
   "products.limonada.title": "Naslada Lemonade",
   "products.limonada.desc": "Classic sparkling lemonade, 2L.",
-  "products.limonada.details": "Naslada sparkling lemonade - traditional flavor, bright freshness, and a pleasant fizz. Family-size 2-liter bottle."
+  "products.limonada.details": "Naslada sparkling lemonade - traditional flavor, bright freshness, and a pleasant fizz. Family-size 2-liter bottle.",
+
+  "products.page.title": "Products & Services - SJI",
+  "products.page.description": "Full catalog of our products and services - bottled water, soft drinks, and business solutions.",
+  "products.page.hero.eyebrow": "Catalog",
+  "products.page.hero.title": "Products & Services",
+  "products.page.hero.subtitle": "Premium bottled water, soft drinks, and flexible business solutions - all in one place.",
+
+  "products.nav.waters": "Waters",
+  "products.nav.drinks": "Drinks",
+  "products.nav.concentrates": "Concentrates",
+  "products.nav.b2b": "For Business",
+
+  "products.section.waters": "Waters",
+  "products.section.waters.desc": "Clean, purified water in various sizes - for every moment and need.",
+  "products.section.drinks": "Soft Drinks",
+  "products.section.drinks.desc": "Refreshing carbonated drinks, iced teas, and lemonades with natural flavors.",
+  "products.section.concentrates": "Concentrates & Other",
+  "products.section.concentrates.desc": "Concentrates, lemon juice, and PET packaging - for home and commercial use.",
+
+  "products.badge.still": "Still Water",
+  "products.badge.sparkling": "Sparkling Water",
+  "products.badge.drinks": "Soft Drinks",
+  "products.badge.tea": "Iced Tea",
+  "products.badge.lemonade": "Lemonade",
+  "products.badge.concentrate": "Concentrate",
+  "products.badge.b2b": "Business Clients",
+  "products.badge.b2b.only": "Business Only",
+  "products.badge.pet": "PET Packaging",
+  "products.badge.juice": "Lemon Juice",
+
+  "products.aquaviva.name": "Aqua Viva",
+  "products.aquaviva.desc": "Table water purified through a 6-stage system for crystal clarity.",
+  "products.aquaviva.sizes": "0.5L · 1.5L · 5L · 10L · 19L gallon",
+
+  "products.izvor.still.name": "Still Water Izvor",
+  "products.izvor.still.desc": "Clean table water with a balanced taste - in convenient sizes for home and business.",
+  "products.izvor.still.sizes": "5L · 10L · 19L",
+
+  "products.santos.soda.name": "Santos - Sparkling Water",
+  "products.santos.soda.desc": "Classic sparkling water (soda) with a light, clean, refreshing taste.",
+  "products.santos.soda.sizes": "0.5L · 1.5L",
+
+  "products.santos.soda.lemon.name": "Santos - Sparkling Water with Lemon",
+  "products.santos.soda.lemon.desc": "Sparkling water with a gentle lemon accent - refreshing and aromatic.",
+  "products.santos.soda.lemon.sizes": "0.5L",
+
+  "products.izvor.sparkling.name": "Sparkling Water Izvor",
+  "products.izvor.sparkling.desc": "Sparkling spring water with natural refreshment and a clean taste.",
+  "products.izvor.sparkling.sizes": "1.5L",
+
+  "products.santos.drinks.name": "Santos Series",
+  "products.santos.drinks.desc": "Carbonated soft drinks with natural fruit flavors.",
+  "products.santos.drinks.flavors": "Lemonade · Cider · Orange · Apple and more",
+  "products.santos.drinks.sizes": "0.33L · 0.5L",
+
+  "products.naslada.name": "Naslada Series",
+  "products.naslada.desc": "Family-size sparkling lemonade with a classic, beloved flavor.",
+  "products.naslada.sizes": "2L",
+
+  "products.santos.icetea.name": "Santos Iced Tea",
+  "products.santos.icetea.desc": "Refreshing iced tea with natural fruit aromas - for every season.",
+  "products.santos.icetea.flavors": "Lemon · Peach · Strawberry · Blueberry",
+  "products.santos.icetea.sizes": "0.5L · 1.5L",
+
+  "products.lemonade.name": "Homestyle Lemonade with Lemon Juice",
+  "products.lemonade.desc": "Lemonade with 10% natural lemon juice - authentic, homestyle flavor.",
+  "products.lemonade.sizes": "0.5L · 1L",
+
+  "products.jumbo.name": "Jumbo Concentrate",
+  "products.jumbo.desc": "Beverage concentrate for preparing refreshing drinks in a variety of flavors.",
+  "products.jumbo.sizes": "0.5L",
+  "products.jumbo.sizes.b2b": "5L · 10L for business clients",
+
+  "products.slushy.name": "Slushy Mix (Concentrate)",
+  "products.slushy.desc": "Slushy concentrate for shops, children's centers, restaurants, and seasonal locations.",
+  "products.slushy.sizes": "0.5L · 1L · 5L · 10L",
+
+  "products.pet.name": "Empty PET Bottles",
+  "products.pet.desc": "High-quality PET bottles with caps - primarily for business clients.",
+  "products.pet.sizes": "0.5L · 1L · 2L · 5L · 10L",
+
+  "products.bultop.name": "BulTop Lemon Juice",
+  "products.bultop.desc": "Natural lemon juice for culinary use and beverage preparation.",
+
+  "products.b2b.section.eyebrow": "Partnership",
+  "products.b2b.section.title": "Business Services",
+  "products.b2b.section.subtitle": "Flexible solutions for distributors, restaurants, and manufacturers.",
+  "products.b2b.wholesale.title": "Wholesale Supply",
+  "products.b2b.wholesale.desc": "Complete supply solutions for stores, warehouses, restaurants, and distributors - a wide portfolio of carbonated drinks, iced teas, and concentrates at preferential prices.",
+  "products.b2b.label.title": "Production Under Your Brand",
+  "products.b2b.label.desc": "End-to-end production and bottling of table water, soft drinks, and sports beverages with your branding and packaging design.",
+  "products.b2b.slushy.title": "Slushy Concentrates",
+  "products.b2b.slushy.desc": "Premium slushy concentrates for shops, children's centers, restaurants, and seasonal summer locations.",
+  "products.b2b.cta": "Send an Enquiry",
+
+  "products.consumer.section.eyebrow": "For You",
+  "products.consumer.section.title": "Home & Office Services",
+  "products.consumer.section.subtitle": "Convenient and reliable solutions for your everyday life.",
+  "products.consumer.delivery.title": "Regular Water Deliveries",
+  "products.consumer.delivery.desc": "Delivery to your home or office - from 0.5L bottles to 19L gallons for dispensers.",
+  "products.consumer.maintenance.title": "Dispenser Servicing",
+  "products.consumer.maintenance.desc": "Repair, sanitization, and technical maintenance for all types of water dispensers.",
+  "products.consumer.co2.title": "CO₂ Refills",
+  "products.consumer.co2.desc": "Fast CO₂ cylinder refills (60L) for home sparkling water machines.",
+  "products.consumer.cta": "Get in Touch"
 }
