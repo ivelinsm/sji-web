@@ -213,5 +213,54 @@
   "products.consumer.maintenance.desc": "Ремонт, дезинфекция и техническа поддръжка за всички видове водни диспенсъри.",
   "products.consumer.co2.title": "Зареждане на CO₂",
   "products.consumer.co2.desc": "Бързо зареждане на CO₂ цилиндри (60л) за домашни машини за газирана вода.",
-  "products.consumer.cta": "Свържете се с нас"
+  "products.consumer.cta": "Свържете се с нас",
+
+  "contact.page.title": "Контакти - СЖИ",
+  "contact.page.description": "Свържете се с нас за въпроси, поръчки и бизнес запитвания. Готови сме да ви помогнем.",
+  "contact.hero.eyebrow": "Контакти",
+  "contact.hero.title": "Свържете се с нас",
+  "contact.hero.subtitle": "Имате въпрос или искате да станете партньор? Оставете ни съобщение и ще се свържем с вас възможно най-скоро.",
+
+  "contact.form.title": "Изпратете съобщение",
+  "contact.form.subtitle": "Попълнете формата и ще се свържем с вас в рамките на 1 - 2 работни дни.",
+
+  "contact.form.name.label": "Име",
+  "contact.form.name.placeholder": "Вашето име",
+  "contact.form.name.error": "Моля, въведете името си.",
+
+  "contact.form.email.label": "Имейл",
+  "contact.form.email.placeholder": "you@example.com",
+  "contact.form.email.error": "Моля, въведете валиден имейл адрес.",
+
+  "contact.form.phone.label": "Телефон (по избор)",
+  "contact.form.phone.placeholder": "+359 ...",
+
+  "contact.form.inquiryType.label": "Тип запитване",
+  "contact.form.inquiryType.option.general": "Общо запитване",
+  "contact.form.inquiryType.option.business": "Бизнес запитване",
+  "contact.form.inquiryType.option.distribution": "Дистрибуция",
+  "contact.form.inquiryType.option.press": "Преса и медии",
+
+  "contact.form.subject.label": "Тема",
+  "contact.form.subject.placeholder": "Кратка тема на съобщението",
+
+  "contact.form.message.label": "Съобщение",
+  "contact.form.message.placeholder": "Кажете ни как можем да помогнем...",
+  "contact.form.message.error": "Моля, въведете съобщение.",
+
+  "contact.form.consent": "Съгласен/съгласна съм данните ми да бъдат използвани за отговор на това запитване.",
+  "contact.form.consent.error": "Моля, потвърдете съгласието си.",
+
+  "contact.form.submit": "Изпрати съобщение",
+  "contact.form.submitting": "Изпращане...",
+  "contact.form.success": "Благодарим! Съобщението ви беше изпратено успешно.",
+  "contact.form.error": "Възникна грешка при изпращането. Моля, опитайте отново или ни пишете директно на имейл.",
+  "contact.form.noscript": "За да изпратите съобщение, моля активирайте JavaScript или ни пишете директно по имейл.",
+
+  "contact.info.title": "Други начини за връзка",
+  "contact.info.email.label": "Имейл",
+  "contact.info.phone.label": "Телефон",
+  "contact.info.address.label": "Адрес",
+  "contact.info.hours.label": "Работно време",
+  "contact.info.hours.value": "Понеделник - Петък, 09:00 - 17:00"
 }

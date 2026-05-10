@@ -213,5 +213,54 @@
   "products.consumer.maintenance.desc": "Repair, sanitization, and technical maintenance for all types of water dispensers.",
   "products.consumer.co2.title": "CO₂ Refills",
   "products.consumer.co2.desc": "Fast CO₂ cylinder refills (60L) for home sparkling water machines.",
-  "products.consumer.cta": "Get in Touch"
+  "products.consumer.cta": "Get in Touch",
+
+  "contact.page.title": "Contact - SJI",
+  "contact.page.description": "Get in touch for questions, orders, and business enquiries. We're here to help.",
+  "contact.hero.eyebrow": "Contact",
+  "contact.hero.title": "Get in touch",
+  "contact.hero.subtitle": "Have a question or want to partner with us? Send us a message and we'll get back to you as soon as possible.",
+
+  "contact.form.title": "Send us a message",
+  "contact.form.subtitle": "Fill in the form and we'll respond within 1 - 2 business days.",
+
+  "contact.form.name.label": "Name",
+  "contact.form.name.placeholder": "Your name",
+  "contact.form.name.error": "Please enter your name.",
+
+  "contact.form.email.label": "Email",
+  "contact.form.email.placeholder": "you@example.com",
+  "contact.form.email.error": "Please enter a valid email address.",
+
+  "contact.form.phone.label": "Phone (optional)",
+  "contact.form.phone.placeholder": "+359 ...",
+
+  "contact.form.inquiryType.label": "Type of enquiry",
+  "contact.form.inquiryType.option.general": "General enquiry",
+  "contact.form.inquiryType.option.business": "Business enquiry",
+  "contact.form.inquiryType.option.distribution": "Distribution",
+  "contact.form.inquiryType.option.press": "Press & media",
+
+  "contact.form.subject.label": "Subject",
+  "contact.form.subject.placeholder": "A short subject line",
+
+  "contact.form.message.label": "Message",
+  "contact.form.message.placeholder": "Tell us how we can help...",
+  "contact.form.message.error": "Please enter a message.",
+
+  "contact.form.consent": "I agree that my information may be used to respond to this enquiry.",
+  "contact.form.consent.error": "Please confirm your consent.",
+
+  "contact.form.submit": "Send message",
+  "contact.form.submitting": "Sending...",
+  "contact.form.success": "Thank you! Your message has been sent successfully.",
+  "contact.form.error": "Something went wrong. Please try again or email us directly.",
+  "contact.form.noscript": "To send a message, please enable JavaScript or email us directly.",
+
+  "contact.info.title": "Other ways to reach us",
+  "contact.info.email.label": "Email",
+  "contact.info.phone.label": "Phone",
+  "contact.info.address.label": "Address",
+  "contact.info.hours.label": "Hours",
+  "contact.info.hours.value": "Monday - Friday, 9:00 - 17:00"
 }

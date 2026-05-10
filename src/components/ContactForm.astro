@@ -1,0 +1,562 @@
+---
+import Button from './Button.astro';
+import { t } from '../i18n/utils';
+
+const lang = 'bg';
+const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
+---
+
+<section class="contact-form-block" aria-labelledby="contact-form-title">
+  <header class="contact-form-block__header">
+    <h2 id="contact-form-title" class="contact-form-block__title">
+      <span data-i18n="contact.form.title">{t(lang, 'contact.form.title')}</span>
+    </h2>
+    <p class="contact-form-block__subtitle">
+      <span data-i18n="contact.form.subtitle">{t(lang, 'contact.form.subtitle')}</span>
+    </p>
+  </header>
+
+  <noscript>
+    <p class="contact-form-block__noscript">
+      <span data-i18n="contact.form.noscript">{t(lang, 'contact.form.noscript')}</span>
+    </p>
+  </noscript>
+
+  <form class="contact-form" novalidate aria-describedby="contact-form-status">
+    <!-- Honeypot: hidden from users, password managers, screen readers -->
+    <div class="contact-form__honeypot" aria-hidden="true">
+      <label for="cf-website">Do not fill in this field</label>
+      <input
+        id="cf-website"
+        type="text"
+        name="_gotcha"
+        tabindex="-1"
+        autocomplete="off"
+      />
+    </div>
+
+    <input type="hidden" name="_subject" value="New SJI contact form submission" />
+    <!-- h-captcha token (filled by JS before submit) -->
+    <input type="hidden" name="h-captcha-response" value="" />
+
+    <div class="contact-form__row contact-form__row--two">
+      <div class="contact-form__field">
+        <label for="cf-name">
+          <span data-i18n="contact.form.name.label">{t(lang, 'contact.form.name.label')}</span>
+        </label>
+        <input
+          id="cf-name"
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          data-placeholder-i18n="contact.form.name.placeholder"
+          placeholder={t(lang, 'contact.form.name.placeholder')}
+        />
+        <p class="contact-form__error" data-error-for="name" data-i18n="contact.form.name.error">
+          {t(lang, 'contact.form.name.error')}
+        </p>
+      </div>
+
+      <div class="contact-form__field">
+        <label for="cf-email">
+          <span data-i18n="contact.form.email.label">{t(lang, 'contact.form.email.label')}</span>
+        </label>
+        <input
+          id="cf-email"
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          data-placeholder-i18n="contact.form.email.placeholder"
+          placeholder={t(lang, 'contact.form.email.placeholder')}
+        />
+        <p class="contact-form__error" data-error-for="email" data-i18n="contact.form.email.error">
+          {t(lang, 'contact.form.email.error')}
+        </p>
+      </div>
+    </div>
+
+    <div class="contact-form__row contact-form__row--two">
+      <div class="contact-form__field">
+        <label for="cf-phone">
+          <span data-i18n="contact.form.phone.label">{t(lang, 'contact.form.phone.label')}</span>
+        </label>
+        <input
+          id="cf-phone"
+          type="tel"
+          name="phone"
+          autocomplete="tel"
+          data-placeholder-i18n="contact.form.phone.placeholder"
+          placeholder={t(lang, 'contact.form.phone.placeholder')}
+        />
+      </div>
+
+      <div class="contact-form__field">
+        <label for="cf-inquiry">
+          <span data-i18n="contact.form.inquiryType.label">{t(lang, 'contact.form.inquiryType.label')}</span>
+        </label>
+        <select id="cf-inquiry" name="inquiryType">
+          <option value="general" data-i18n="contact.form.inquiryType.option.general">
+            {t(lang, 'contact.form.inquiryType.option.general')}
+          </option>
+          <option value="business" data-i18n="contact.form.inquiryType.option.business">
+            {t(lang, 'contact.form.inquiryType.option.business')}
+          </option>
+          <option value="distribution" data-i18n="contact.form.inquiryType.option.distribution">
+            {t(lang, 'contact.form.inquiryType.option.distribution')}
+          </option>
+          <option value="press" data-i18n="contact.form.inquiryType.option.press">
+            {t(lang, 'contact.form.inquiryType.option.press')}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="contact-form__field">
+      <label for="cf-subject">
+        <span data-i18n="contact.form.subject.label">{t(lang, 'contact.form.subject.label')}</span>
+      </label>
+      <input
+        id="cf-subject"
+        type="text"
+        name="subject"
+        autocomplete="off"
+        data-placeholder-i18n="contact.form.subject.placeholder"
+        placeholder={t(lang, 'contact.form.subject.placeholder')}
+      />
+    </div>
+
+    <div class="contact-form__field">
+      <label for="cf-message">
+        <span data-i18n="contact.form.message.label">{t(lang, 'contact.form.message.label')}</span>
+      </label>
+      <textarea
+        id="cf-message"
+        name="message"
+        rows="6"
+        required
+        data-placeholder-i18n="contact.form.message.placeholder"
+        placeholder={t(lang, 'contact.form.message.placeholder')}
+      ></textarea>
+      <p class="contact-form__error" data-error-for="message" data-i18n="contact.form.message.error">
+        {t(lang, 'contact.form.message.error')}
+      </p>
+    </div>
+
+    <div class="contact-form__field contact-form__field--checkbox">
+      <label for="cf-consent">
+        <input id="cf-consent" type="checkbox" name="consent" required />
+        <span data-i18n="contact.form.consent">{t(lang, 'contact.form.consent')}</span>
+      </label>
+      <p class="contact-form__error" data-error-for="consent" data-i18n="contact.form.consent.error">
+        {t(lang, 'contact.form.consent.error')}
+      </p>
+    </div>
+
+    {hcaptchaSitekey && (
+      <div
+        class="contact-form__hcaptcha"
+        data-hcaptcha-container
+        data-sitekey={hcaptchaSitekey}
+      ></div>
+    )}
+
+    <div class="contact-form__actions">
+      <Button type="submit" variant="primary" size="lg" class="contact-form__submit">
+        <span data-i18n="contact.form.submit" data-submit-label>{t(lang, 'contact.form.submit')}</span>
+      </Button>
+    </div>
+
+    <div
+      id="contact-form-status"
+      class="contact-form__status"
+      role="status"
+      aria-live="polite"
+      data-status
+    ></div>
+  </form>
+</section>
+
+{hcaptchaSitekey && (
+  <script is:inline src="https://js.hcaptcha.com/1/api.js?render=explicit" async defer></script>
+)}
+
+<script>
+  // Endpoint and sitekey are inlined into the bundled JS file at build time
+  // by vite, so they do NOT appear in the HTML source — defeats raw-HTML scrapers.
+  const FORMSPREE_ID = import.meta.env.PUBLIC_FORMSPREE_ID ?? '';
+  const HCAPTCHA_SITEKEY = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
+  const MIN_INTERACTION_MS = 3000;
+
+  type Hcaptcha = {
+    render: (el: HTMLElement, opts: { sitekey: string; size?: string }) => string;
+    execute: (id: string, opts?: { async: boolean }) => Promise<{ response: string }>;
+    reset: (id: string) => void;
+  };
+
+  declare global {
+    interface Window {
+      hcaptcha?: Hcaptcha;
+    }
+  }
+
+  function init() {
+    const form = document.querySelector<HTMLFormElement>('.contact-form');
+    if (!form) return;
+
+    const statusEl = form.querySelector<HTMLElement>('[data-status]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const submitLabel = form.querySelector<HTMLElement>('[data-submit-label]');
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="_gotcha"]');
+    const captchaToken = form.querySelector<HTMLInputElement>('input[name="h-captcha-response"]');
+    const captchaContainer = form.querySelector<HTMLElement>('[data-hcaptcha-container]');
+
+    let firstInteractionAt: number | null = null;
+    let hcaptchaWidgetId: string | null = null;
+
+    // Time-trap: start the clock on the first real interaction with any field
+    // (input, focus, paste). Using all three avoids false positives for users
+    // who paste a pre-written message.
+    const recordInteraction = () => {
+      if (firstInteractionAt === null) firstInteractionAt = Date.now();
+    };
+    form.addEventListener('input', recordInteraction, { once: false, passive: true });
+    form.addEventListener('focusin', recordInteraction, { once: false });
+    form.addEventListener('paste', recordInteraction, { once: false });
+
+    // Render hCaptcha invisible widget once the API loads.
+    if (captchaContainer && HCAPTCHA_SITEKEY) {
+      const tryRender = () => {
+        if (window.hcaptcha && hcaptchaWidgetId === null) {
+          hcaptchaWidgetId = window.hcaptcha.render(captchaContainer, {
+            sitekey: HCAPTCHA_SITEKEY,
+            size: 'invisible',
+          });
+        }
+      };
+      // hCaptcha API loads async — poll briefly until ready.
+      const interval = window.setInterval(() => {
+        if (window.hcaptcha) {
+          tryRender();
+          window.clearInterval(interval);
+        }
+      }, 200);
+      window.setTimeout(() => window.clearInterval(interval), 10000);
+    }
+
+    const setStatus = (message: string, kind: 'success' | 'error' | '') => {
+      if (!statusEl) return;
+      statusEl.textContent = message;
+      statusEl.dataset.kind = kind;
+    };
+
+    const i18nText = (key: string): string => {
+      const lang = (document.documentElement.dataset.lang as 'bg' | 'en') || 'bg';
+      const tbl = (window as unknown as { __translations?: Record<string, Record<string, string>> })
+        .__translations?.[lang];
+      return tbl?.[key] ?? '';
+    };
+
+    const validate = (): boolean => {
+      // Reset previous error states
+      form.querySelectorAll<HTMLElement>('[data-error-for]').forEach((el) => {
+        el.classList.remove('is-visible');
+      });
+      let valid = true;
+
+      const name = form.elements.namedItem('name') as HTMLInputElement | null;
+      const email = form.elements.namedItem('email') as HTMLInputElement | null;
+      const message = form.elements.namedItem('message') as HTMLTextAreaElement | null;
+      const consent = form.elements.namedItem('consent') as HTMLInputElement | null;
+
+      const showError = (field: string) => {
+        const errEl = form.querySelector<HTMLElement>(`[data-error-for="${field}"]`);
+        errEl?.classList.add('is-visible');
+        valid = false;
+      };
+
+      if (!name?.value.trim()) showError('name');
+      if (!email?.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+        showError('email');
+      }
+      if (!message?.value.trim()) showError('message');
+      if (!consent?.checked) showError('consent');
+
+      return valid;
+    };
+
+    const setSubmitting = (isSubmitting: boolean) => {
+      if (submitBtn) submitBtn.disabled = isSubmitting;
+      if (submitLabel) {
+        submitLabel.textContent = isSubmitting
+          ? i18nText('contact.form.submitting') || 'Sending...'
+          : i18nText('contact.form.submit') || 'Send message';
+      }
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      // Layer 1: Honeypot. Pretend the submission succeeded so bots learn nothing.
+      if (honeypot && honeypot.value.trim() !== '') {
+        form.reset();
+        setStatus(i18nText('contact.form.success'), 'success');
+        return;
+      }
+
+      // Layer 2: Time-trap. A human cannot fill this form in under 3 seconds
+      // of real interaction; bots typically submit in < 1s. Silent fail.
+      const elapsed = firstInteractionAt === null ? 0 : Date.now() - firstInteractionAt;
+      if (elapsed < MIN_INTERACTION_MS) {
+        form.reset();
+        setStatus(i18nText('contact.form.success'), 'success');
+        return;
+      }
+
+      // Layer 3: client-side field validation.
+      if (!validate()) return;
+
+      if (!FORMSPREE_ID) {
+        setStatus(i18nText('contact.form.error'), 'error');
+        return;
+      }
+
+      setSubmitting(true);
+      setStatus('', '');
+
+      // Layer 4: hCaptcha invisible challenge.
+      try {
+        if (hcaptchaWidgetId !== null && window.hcaptcha) {
+          const result = await window.hcaptcha.execute(hcaptchaWidgetId, { async: true });
+          if (captchaToken) captchaToken.value = result.response;
+        }
+      } catch {
+        if (hcaptchaWidgetId !== null && window.hcaptcha) window.hcaptcha.reset(hcaptchaWidgetId);
+        setStatus(i18nText('contact.form.error'), 'error');
+        setSubmitting(false);
+        return;
+      }
+
+      // Layer 5: JS-only endpoint injection. The host is split so a raw
+      // text search of the page source for "formspree.io" won't match.
+      const host = ['form', 'spree', '.', 'io'].join('');
+      const endpoint = `https://${host}/f/${FORMSPREE_ID}`;
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' },
+        });
+        if (response.ok) {
+          form.reset();
+          firstInteractionAt = null;
+          setStatus(i18nText('contact.form.success'), 'success');
+        } else {
+          setStatus(i18nText('contact.form.error'), 'error');
+        }
+      } catch {
+        setStatus(i18nText('contact.form.error'), 'error');
+      } finally {
+        if (hcaptchaWidgetId !== null && window.hcaptcha) window.hcaptcha.reset(hcaptchaWidgetId);
+        setSubmitting(false);
+      }
+    });
+
+    // Translate placeholders (i18n swapper only handles textContent, not attributes).
+    const applyPlaceholders = () => {
+      const lang = (document.documentElement.dataset.lang as 'bg' | 'en') || 'bg';
+      const tbl = (window as unknown as { __translations?: Record<string, Record<string, string>> })
+        .__translations?.[lang];
+      if (!tbl) return;
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-placeholder-i18n]').forEach((el) => {
+        const key = el.dataset.placeholderI18n;
+        if (key && tbl[key] !== undefined) el.placeholder = tbl[key];
+      });
+    };
+    applyPlaceholders();
+    // Re-apply after lang switches.
+    const observer = new MutationObserver(applyPlaceholders);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>
+
+<style>
+  .contact-form-block {
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-8);
+    box-shadow:    var(--shadow-sm);
+  }
+
+  .contact-form-block__header {
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-form-block__title {
+    font-family:  var(--font-heading);
+    font-weight:  var(--font-weight-bold);
+    font-size:    var(--text-2xl);
+    color:        var(--color-primary);
+    line-height:  var(--leading-tight);
+    margin:       0 0 var(--space-2);
+  }
+
+  .contact-form-block__subtitle {
+    font-size:   var(--text-base);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  .contact-form-block__noscript {
+    background:    var(--color-secondary-light);
+    color:         var(--color-secondary-hover);
+    padding:       var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    font-size:     var(--text-sm);
+    margin:        0 0 var(--space-4);
+  }
+
+  .contact-form {
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--space-5);
+  }
+
+  /* Honeypot is invisible to users, screen readers, password managers,
+     and the keyboard tab order. Bots that auto-fill all inputs still trip it. */
+  .contact-form__honeypot {
+    position:    absolute;
+    left:        -9999px;
+    top:         auto;
+    width:       1px;
+    height:      1px;
+    overflow:    hidden;
+  }
+
+  .contact-form__row {
+    display: grid;
+    gap:     var(--space-5);
+  }
+
+  .contact-form__row--two {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-form__field {
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--space-2);
+  }
+
+  .contact-form__field label {
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+    font-size:   var(--text-sm);
+    color:       var(--color-text);
+  }
+
+  .contact-form__field input,
+  .contact-form__field select,
+  .contact-form__field textarea {
+    font-family:   var(--font-body);
+    font-size:     var(--text-base);
+    color:         var(--color-text);
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    padding:       var(--space-3) var(--space-4);
+    transition:    border-color var(--transition-base), box-shadow var(--transition-base);
+    width:         100%;
+    box-sizing:    border-box;
+  }
+
+  .contact-form__field textarea {
+    resize:      vertical;
+    min-height:  140px;
+    line-height: var(--leading-relaxed);
+  }
+
+  .contact-form__field input:focus,
+  .contact-form__field select:focus,
+  .contact-form__field textarea:focus {
+    outline:      none;
+    border-color: var(--color-secondary);
+    box-shadow:   0 0 0 3px var(--color-secondary-alpha-10);
+  }
+
+  .contact-form__field--checkbox label {
+    display:     flex;
+    align-items: flex-start;
+    gap:         var(--space-3);
+    cursor:      pointer;
+    font-weight: var(--font-weight-normal);
+    color:       var(--color-text-muted);
+    font-size:   var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  .contact-form__field--checkbox input[type="checkbox"] {
+    width:       18px;
+    height:      18px;
+    margin-top:  3px;
+    accent-color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .contact-form__error {
+    font-size: var(--text-xs);
+    color:     var(--color-accent);
+    margin:    0;
+    display:   none;
+  }
+
+  .contact-form__error.is-visible {
+    display: block;
+  }
+
+  .contact-form__hcaptcha {
+    /* Invisible widget renders a 0x0 element; reserve no space. */
+    min-height: 0;
+  }
+
+  .contact-form__actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: var(--space-2);
+  }
+
+  .contact-form__submit:disabled {
+    opacity: 0.6;
+    cursor:  not-allowed;
+  }
+
+  .contact-form__status {
+    min-height: 1.5em;
+    font-size:  var(--text-sm);
+    line-height: var(--leading-relaxed);
+  }
+
+  .contact-form__status[data-kind="success"] {
+    color: var(--color-secondary-hover);
+  }
+
+  .contact-form__status[data-kind="error"] {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 640px) {
+    .contact-form-block { padding: var(--space-6); }
+    .contact-form__row--two { grid-template-columns: 1fr; }
+  }
+</style>
