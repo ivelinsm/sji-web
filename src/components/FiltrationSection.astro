@@ -65,7 +65,6 @@ const phases: Phase[] = [
           <li class={`filt__mobile-item ${i === 0 ? 'is-active' : ''}`} data-mobile-step={i}>
             <a href={`#filtration-phase-${p.num}`} class="filt__mobile-pill">
               <span class="filt__mobile-num" aria-hidden="true">{p.pad}</span>
-              <span class="filt__mobile-label" data-i18n={p.titleKey}>{t(lang, p.titleKey)}</span>
             </a>
           </li>
         ))}
