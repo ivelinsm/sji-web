@@ -2,15 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
 import Heading from '../components/Heading.astro';
-import Card from '../components/Card.astro';
-import Badge from '../components/Badge.astro';
-import Section from '../components/Section.astro';
-import Container from '../components/Container.astro';
 import Navbar from '../components/Navbar.astro';
 import NavLink from '../components/NavLink.astro';
 import LangSwitcher from '../components/LangSwitcher.astro';
 import ServicesSection from '../components/ServicesSection.astro';
 import FiltrationSection from '../components/FiltrationSection.astro';
+import ProductShowcase from '../components/ProductShowcase.astro';
 import { t } from '../i18n/utils';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.webp';
@@ -129,36 +126,7 @@ const lang = 'bg';
   <FiltrationSection lang={lang} />
 
   <!-- ── Products section ────────────────────────────────────── -->
-  <Section bg="white">
-    <Container>
-      <Heading level={2} align="center">
-        <span data-i18n="section.products.title">Нашите продукти</span>
-      </Heading>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-8);">
-        <Card accent>
-          <Badge variant="secondary"><span data-i18n="card.water.badge">Вода</span></Badge>
-          <Heading level={3} style="margin-top: var(--space-3);">
-            <span data-i18n="card.water.title">Натурална вода</span>
-          </Heading>
-          <p><span data-i18n="card.water.body">Изворна вода с минерален баланс, бутилирана при строги стандарти за качество.</span></p>
-        </Card>
-        <Card accent>
-          <Badge variant="primary"><span data-i18n="card.drinks.badge">Напитки</span></Badge>
-          <Heading level={3} style="margin-top: var(--space-3);">
-            <span data-i18n="card.drinks.title">Безалкохолни напитки</span>
-          </Heading>
-          <p><span data-i18n="card.drinks.body">Освежаващи напитки с естествени аромати, подходящи за всеки вкус.</span></p>
-        </Card>
-        <Card accent href="/contact">
-          <Badge variant="accent"><span data-i18n="card.business.badge">Бизнес</span></Badge>
-          <Heading level={3} style="margin-top: var(--space-3);">
-            <span data-i18n="card.business.title">Бизнес решения</span>
-          </Heading>
-          <p><span data-i18n="card.business.body">Персонализирани бутилиращи решения за вашия бизнес — гъвкаво, надеждно, ефективно.</span></p>
-        </Card>
-      </div>
-    </Container>
-  </Section>
+  <ProductShowcase lang={lang} />
 
   <p slot="footer" style="text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--text-sm);">
     <span data-i18n="footer.rights">© 2026 СЖИ. Всички права запазени.</span>

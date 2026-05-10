@@ -1,6 +1,6 @@
 {
-  "meta.title": "SJI — Pure Water & Refreshing Drinks",
-  "meta.description": "Premium water bottling and soft drinks — fresh, clean, and refreshing.",
+  "meta.title": "SJI - Pure Water & Refreshing Drinks",
+  "meta.description": "Premium water bottling and soft drinks - fresh, clean, and refreshing.",
 
   "nav.home": "Home",
   "nav.products": "Products",
@@ -11,7 +11,7 @@
 
   "hero.badge": "Pure from nature",
   "hero.title": "Pure. Refreshing. Yours.",
-  "hero.description": "Premium water bottling and soft drinks for every occasion — from everyday hydration to business partnerships.",
+  "hero.description": "Premium water bottling and soft drinks for every occasion - from everyday hydration to business partnerships.",
   "hero.cta.products": "Explore Products",
   "hero.cta.forbusiness": "For business clients",
   "hero.cta.forhome": "For home and the office",
@@ -32,7 +32,7 @@
   "card.drinks.title": "Soft Drinks",
   "card.drinks.body": "Refreshing beverages with natural flavors to suit every taste.",
   "card.business.title": "Business Solutions",
-  "card.business.body": "Custom bottling solutions for your business — flexible, reliable, and efficient.",
+  "card.business.body": "Custom bottling solutions for your business - flexible, reliable, and efficient.",
   "card.water.badge": "Water",
   "card.drinks.badge": "Drinks",
   "card.business.badge": "Business",
@@ -45,7 +45,7 @@
   "services.tab.business": "For Business Clients",
 
   "services.home.delivery.title": "Regular Water Deliveries",
-  "services.home.delivery.body": "Delivery of table water in a wide range of bottle sizes — from small 0.5L bottles for everyday use to convenient reusable 19L gallons — directly to your home or office.",
+  "services.home.delivery.body": "Delivery of table water in a wide range of bottle sizes - from small 0.5L bottles for everyday use to convenient reusable 19L gallons - directly to your home or office.",
   "services.home.delivery.cta": "Request Delivery",
 
   "services.home.maintenance.title": "Dispenser Maintenance",
@@ -57,7 +57,7 @@
   "services.home.co2.cta": "Refill Cylinder",
 
   "services.business.wholesale.title": "Business Supply Solutions",
-  "services.business.wholesale.body": "Complete supply solutions for stores, warehouses, restaurants, and distributors — with a wide portfolio of carbonated drinks, iced tea, and beverage concentrates at preferential prices.",
+  "services.business.wholesale.body": "Complete supply solutions for stores, warehouses, restaurants, and distributors - with a wide portfolio of carbonated drinks, iced tea, and beverage concentrates at preferential prices.",
   "services.business.wholesale.cta": "Request an Offer",
 
   "services.business.label.title": "Production Under Your Brand",
@@ -87,5 +87,26 @@
   "filtration.phase5.title": "Ultraviolet (UV) light",
   "filtration.phase5.body": "Powerful UV disinfection that destroys 99.99% of microorganisms and bacteria without altering the composition of the water.",
   "filtration.phase6.title": "Ozonation",
-  "filtration.phase6.body": "Ozone infusion delivers fully natural sterilization — lasting freshness and microbiological safety in every bottle."
+  "filtration.phase6.body": "Ozone infusion delivers fully natural sterilization - lasting freshness and microbiological safety in every bottle.",
+
+  "products.showcase.eyebrow": "Collection",
+  "products.showcase.title": "Refreshment, crafted with care",
+  "products.showcase.subtitle": "Our drinks and waters - designed for taste, purity, and moments worth remembering.",
+  "products.showcase.cta.all": "See all products",
+
+  "products.apple.title": "Santos Apple",
+  "products.apple.desc": "Natural apple flavor, no added sugar overload.",
+  "products.apple.details": "A refreshing apple drink with a balanced flavor and a gentle sparkle - made for everyday moments. No artificial colors.",
+
+  "products.galon.title": "Aqua Viva 19L",
+  "products.galon.desc": "Table water for home and office.",
+  "products.galon.details": "Pure spring water in a 19-liter gallon - for dispensers at home and at the office. Delivered to your door with certified quality and consistent freshness.",
+
+  "products.icetea.title": "Santos Ice Tea Peach",
+  "products.icetea.desc": "Cold tea with a soft peach finish.",
+  "products.icetea.details": "Santos Ice Tea Peach - a refreshing iced tea with natural peach aroma. The perfect balance between freshness and sweetness for warm days.",
+
+  "products.limonada.title": "Naslada Lemonade",
+  "products.limonada.desc": "Classic sparkling lemonade, 2L.",
+  "products.limonada.details": "Naslada sparkling lemonade - traditional flavor, bright freshness, and a pleasant fizz. Family-size 2-liter bottle."
 }

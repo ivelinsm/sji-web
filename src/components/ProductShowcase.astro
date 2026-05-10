@@ -1,0 +1,485 @@
+---
+import { Image } from 'astro:assets';
+import Section from './Section.astro';
+import Container from './Container.astro';
+import Heading from './Heading.astro';
+import { t } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+import appleDrink from '../assets/apple drink.webp';
+import galon      from '../assets/galon.webp';
+import iceTea     from '../assets/ice tea.webp';
+import limonada   from '../assets/limonada.webp';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+type ProductDef = {
+  id:         string;
+  image:      ImageMetadata;
+  alt:        string;
+  titleKey:   string;
+  descKey:    string;
+  detailsKey: string;
+  /* Asymmetric placement on desktop */
+  pos: {
+    top?:    string;
+    bottom?: string;
+    left?:   string;
+    right?:  string;
+    width:   string;
+    /* Image scale inside card — drives the editorial size variation */
+    scale:   number;
+    /* Floating animation delay */
+    delay:   string;
+  };
+};
+
+const products: ProductDef[] = [
+  {
+    id:         'apple',
+    image:      appleDrink,
+    alt:        'Apple drink',
+    titleKey:   'products.apple.title',
+    descKey:    'products.apple.desc',
+    detailsKey: 'products.apple.details',
+    pos: { top: '4%',    left: '3%',   width: '21%', scale: 0.95, delay: '0s'   },
+  },
+  {
+    id:         'galon',
+    image:      galon,
+    alt:        'AquaViva 19L gallon',
+    titleKey:   'products.galon.title',
+    descKey:    'products.galon.desc',
+    detailsKey: 'products.galon.details',
+    pos: { top: '1%',   right: '4%',  width: '27%', scale: 1.06, delay: '1.2s' },
+  },
+  {
+    id:         'limonada',
+    image:      limonada,
+    alt:        'Naslada Lemonade',
+    titleKey:   'products.limonada.title',
+    descKey:    'products.limonada.desc',
+    detailsKey: 'products.limonada.details',
+    pos: { bottom: '1%', right: '22%', width: '24%', scale: 0.88, delay: '3.6s' },
+  },
+  {
+    id:         'icetea',
+    image:      iceTea,
+    alt:        'Santos Ice Tea',
+    titleKey:   'products.icetea.title',
+    descKey:    'products.icetea.desc',
+    detailsKey: 'products.icetea.details',
+    pos: { bottom: '6%', left: '26%',  width: '23%', scale: 0.92, delay: '2.4s' },
+  },
+  
+];
+---
+
+<Section bg="gray" size="lg" id="product-showcase">
+  <Container>
+
+    <!-- ── Section header ──────────────────────────────────────── -->
+    <div class="showcase__header">
+      <span class="label" data-i18n="products.showcase.eyebrow">{t(lang, 'products.showcase.eyebrow')}</span>
+      <Heading level={2} align="center" class="showcase__title">
+        <span data-i18n="products.showcase.title">{t(lang, 'products.showcase.title')}</span>
+      </Heading>
+      <p class="showcase__subtitle">
+        <span data-i18n="products.showcase.subtitle">{t(lang, 'products.showcase.subtitle')}</span>
+      </p>
+    </div>
+
+    <!-- ── Floating canvas ─────────────────────────────────────── -->
+    <div class="showcase__canvas">
+
+      <!-- Background editorial typography -->
+      <div class="showcase__bg" aria-hidden="true">
+        <span class="showcase__bg-word showcase__bg-word--1">REFRESH</span>
+        <span class="showcase__bg-word showcase__bg-word--2">AQUA</span>
+        <span class="showcase__bg-word showcase__bg-word--3">PURE</span>
+      </div>
+
+      <!-- Floating product cards -->
+      <div class="showcase__cards">
+        {products.map((p, i) => (
+          <article
+            class="card"
+            style={`
+              top: ${p.pos.top ?? 'auto'};
+              bottom: ${p.pos.bottom ?? 'auto'};
+              left: ${p.pos.left ?? 'auto'};
+              right: ${p.pos.right ?? 'auto'};
+              --card-width: ${p.pos.width};
+              --img-scale: ${p.pos.scale};
+              --float-delay: ${p.pos.delay};
+              --reveal-delay: ${i * 120}ms;
+            `}
+          >
+            <div class="card__media">
+              <Image
+                src={p.image}
+                alt={p.alt}
+                class="card__bottle"
+                loading="lazy"
+                widths={[240, 360, 480]}
+                sizes="(max-width: 768px) 70vw, 30vw"
+              />
+            </div>
+
+            <div class="card__body">
+              <h3 class="card__title" data-i18n={p.titleKey}>{t(lang, p.titleKey)}</h3>
+              <p  class="card__desc"  data-i18n={p.descKey}>{t(lang, p.descKey)}</p>
+            </div>
+
+            <div class="card__plus-wrap">
+              <a
+                href="/products"
+                class="card__plus"
+                aria-label={t(lang, 'products.showcase.cta.all')}
+                aria-describedby={`tip-${p.id}`}
+                data-product={p.id}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                  <path d="M9 3.5v11M3.5 9h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </a>
+              <div class="card__tooltip" role="tooltip" id={`tip-${p.id}`}>
+                <span class="card__tooltip-text" data-i18n={p.detailsKey}>
+                  {t(lang, p.detailsKey)}
+                </span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+  </Container>
+</Section>
+
+<script>
+  /* ── Reveal-on-scroll ───────────────────────────────────────── */
+  const cards = document.querySelectorAll<HTMLElement>('#product-showcase .card');
+  if ('IntersectionObserver' in window && cards.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+    cards.forEach((c) => io.observe(c));
+  } else {
+    cards.forEach((c) => c.classList.add('is-visible'));
+  }
+</script>
+
+<style>
+  /* ── Header ──────────────────────────────────────────────── */
+  .showcase__header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    position: relative;
+    z-index: 2;
+  }
+
+  .showcase__title {
+    margin-top: var(--space-3);
+  }
+
+  .showcase__subtitle {
+    margin-top: var(--space-4);
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 560px;
+    margin-inline: auto;
+    line-height: var(--leading-relaxed);
+  }
+
+  /* ── Floating canvas ─────────────────────────────────────── */
+  .showcase__canvas {
+    position: relative;
+    width: 100%;
+    min-height: 1020px;
+    isolation: isolate;
+  }
+
+  /* ── Background editorial typography ─────────────────────── */
+  .showcase__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .showcase__bg-word {
+    position: absolute;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+    color: var(--color-primary);
+    opacity: 0.045;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .showcase__bg-word--1 {
+    top: -2%;
+    left: -4%;
+    font-size: clamp(8rem, 18vw, 22rem);
+  }
+
+  .showcase__bg-word--2 {
+    top: 38%;
+    right: -6%;
+    font-size: clamp(7rem, 16vw, 20rem);
+  }
+
+  .showcase__bg-word--3 {
+    bottom: -4%;
+    left: 30%;
+    font-size: clamp(7rem, 17vw, 22rem);
+    color: var(--color-accent);
+    opacity: 0.05;
+  }
+
+  /* ── Card layer ──────────────────────────────────────────── */
+  .showcase__cards {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  /* ── Card ────────────────────────────────────────────────── */
+  .card {
+    position: absolute;
+    width: var(--card-width);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-md);
+    /* Reveal state */
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity   600ms ease,
+      transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow var(--transition-slow);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    /* Once revealed, hand over to the float animation */
+    animation: card-float 9s var(--float-delay, 0s) ease-in-out infinite;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Slight settle on hover — pause the float, lift gently */
+  .card.is-visible:hover {
+    animation-play-state: paused;
+    transform: translateY(-6px);
+  }
+
+  /* ── Card media ──────────────────────────────────────────── */
+  .card__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-xl);
+    background-color: var(--color-bg);
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+  }
+
+  .card__bottle {
+    width: calc(100% * var(--img-scale, 1));
+    height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition-slow);
+  }
+
+  .card:hover .card__bottle {
+    transform: scale(1.04);
+  }
+
+  /* ── Card body ───────────────────────────────────────────── */
+  .card__body {
+    padding-top: var(--space-5);
+    padding-right: var(--space-12); /* leaves room for the floating + */
+  }
+
+  .card__title {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+    line-height: var(--leading-tight);
+  }
+
+  .card__desc {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: var(--leading-normal);
+  }
+
+  /* ── Floating purple plus button (link to /products) ─────── */
+  .card__plus-wrap {
+    position: absolute;
+    bottom: var(--space-6);
+    right: var(--space-6);
+  }
+
+  .card__plus {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-full);
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 6px 18px rgba(214, 90, 154, 0.32);
+    transition:
+      transform        var(--transition-base),
+      background-color var(--transition-base),
+      box-shadow       var(--transition-base);
+  }
+
+  .card__plus:hover {
+    transform: scale(1.10);
+    background-color: var(--color-accent-hover);
+    color: var(--color-white);
+    box-shadow: 0 10px 24px rgba(214, 90, 154, 0.42);
+  }
+
+  .card__plus:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+  }
+
+  /* ── Hover tooltip / bubble ──────────────────────────────── */
+  .card__tooltip {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    right: -8px;
+    width: max-content;
+    max-width: 260px;
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    /* Hidden state — fade + slight rise */
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition:
+      opacity   var(--transition-base),
+      transform var(--transition-base);
+    z-index: 5;
+  }
+
+  /* Speech-bubble tail pointing down to the + button */
+  .card__tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 22px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-top-color: var(--color-primary);
+    border-bottom: 0;
+  }
+
+  .card__tooltip-text {
+    display: block;
+  }
+
+  /* Show on hover or keyboard focus of the + button */
+  .card__plus-wrap:hover .card__tooltip,
+  .card__plus:focus-visible + .card__tooltip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Float keyframes — gentle, premium ───────────────────── */
+  @keyframes card-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card.is-visible { animation: none; }
+    .card { transition: opacity 200ms ease; transform: none; }
+  }
+
+  /* ── Tablet (≤1024px): tighter offsets, preserve floating feel ── */
+  @media (max-width: 1024px) {
+    .showcase__canvas { min-height: 760px; }
+
+    .card {
+      padding: var(--space-5);
+    }
+
+    .card__plus-wrap {
+      bottom: var(--space-5);
+      right: var(--space-5);
+    }
+  }
+
+  /* ── Mobile (≤768px): convert to clean stacked layout ──── */
+  @media (max-width: 768px) {
+    .showcase__canvas {
+      min-height: 0;
+    }
+
+    .showcase__cards {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .card {
+      position: static;
+      width: 100%;
+      max-width: 420px;
+      margin-inline: auto;
+      /* Disable float animation on mobile — feels cleaner stacked */
+      animation: none !important;
+    }
+
+    .card.is-visible:hover {
+      transform: none;
+    }
+
+    /* Keep the editorial type — but smaller and partially cropped */
+    .showcase__bg-word--1 { top: -1%;   left: -10%; }
+    .showcase__bg-word--2 { top: 35%;   right: -20%; }
+    .showcase__bg-word--3 { bottom: 2%; left: -10%; }
+  }
+
+  @media (max-width: 480px) {
+    .showcase__title { font-size: var(--text-3xl); }
+    .showcase__subtitle { font-size: var(--text-base); }
+  }
+</style>
