@@ -1,0 +1,14 @@
+# Force LF line endings for all text files in this repo.
+# This overrides core.autocrlf=true on Windows so that Astro's compiler
+# does not embed CRLF into template literals, which breaks esbuild.
+* text=auto eol=lf
+
+# Treat these explicitly as binary so git never touches their line endings.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
