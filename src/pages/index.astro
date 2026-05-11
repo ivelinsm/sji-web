@@ -13,6 +13,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo.webp';
 
 const lang = 'bg';
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={t(lang, 'meta.title')} description={t(lang, 'meta.description')}>
@@ -20,11 +21,11 @@ const lang = 'bg';
   <!-- ── Sticky transparent navbar ─────────────────────────── -->
   <Navbar slot="header" variant="transparent">
     <Image slot="logo" src={logo} alt="SJI" class="hero-logo" />
-    <NavLink slot="links" href="/"><span data-i18n="nav.home">Начало</span></NavLink>
-    <NavLink slot="links" href="/products"><span data-i18n="nav.products">Продукти</span></NavLink>
-    <NavLink slot="links" href="/about"><span data-i18n="nav.about">За нас</span></NavLink>
-    <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">Контакти</span></NavLink>
-    <Button slot="actions" variant="ghost-white" href="/contact" size="sm">
+    <NavLink slot="links" href={base}><span data-i18n="nav.home">Начало</span></NavLink>
+    <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">Продукти</span></NavLink>
+    <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">За нас</span></NavLink>
+    <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">Контакти</span></NavLink>
+    <Button slot="actions" variant="ghost-white" href={`${base}contact`} size="sm">
       <span data-i18n="nav.cta.enquiry">Бизнес запитване</span>
     </Button>
     <LangSwitcher slot="actions" />
@@ -44,10 +45,10 @@ const lang = 'bg';
             <span data-i18n="hero.description">Премиум бутилирана вода и безалкохолни напитки за всеки момент - от ежедневна хидратация до бизнес партньорства.</span>
           </p>
           <div class="hero__cta">
-            <Button variant="ghost-white-primary" href="/products">
+            <Button variant="ghost-white-primary" href={`${base}products`}>
               <span data-i18n="hero.cta.forhome">За дома и офиса</span> <!-- Za doma i ofisa -->
             </Button>
-            <Button variant="ghost-white" href="/products">
+            <Button variant="ghost-white" href={`${base}products`}>
               <span data-i18n="hero.cta.forbusiness">За бизнеса</span> <!-- Za biznesa -->
             </Button>
           </div>

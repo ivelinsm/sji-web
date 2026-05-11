@@ -6,6 +6,8 @@ import Heading from './Heading.astro';
 import { t } from '../i18n/utils';
 import type { Lang } from '../i18n/utils';
 
+const base = import.meta.env.BASE_URL;
+
 import appleDrink from '../assets/apple drink.webp';
 import galon      from '../assets/galon.webp';
 import iceTea     from '../assets/ice tea.webp';
@@ -137,7 +139,7 @@ const products: ProductDef[] = [
 
             <div class="card__plus-wrap">
               <a
-                href="/products"
+                href={`${base}products`}
                 class="card__plus"
                 aria-label={t(lang, 'products.showcase.cta.all')}
                 aria-describedby={`tip-${p.id}`}

@@ -17,6 +17,7 @@ import santosIceTeaImg from '../assets/santos ice tea.webp';
 import petBottlesImg from '../assets/pet-bottles.webp';
 
 const lang = 'bg';
+const base = import.meta.env.BASE_URL;
 const bottlesImg = await getImage({ src: bottlesRaw });
 ---
 
@@ -25,11 +26,11 @@ const bottlesImg = await getImage({ src: bottlesRaw });
   <!-- ── Navbar ─────────────────────────────────────────────── -->
   <Navbar slot="header" variant="transparent">
     <Image slot="logo" src={logo} alt="SJI" class="nav-logo" />
-    <NavLink slot="links" href="/"><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></NavLink>
-    <NavLink slot="links" href="/products"><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
-    <NavLink slot="links" href="/about"><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
-    <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
-    <Button slot="actions" variant="ghost-white" href="/contact" size="sm">
+    <NavLink slot="links" href={base}><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></NavLink>
+    <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
+    <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
+    <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
+    <Button slot="actions" variant="ghost-white" href={`${base}contact`} size="sm">
       <span data-i18n="nav.cta.enquiry">{t(lang, 'nav.cta.enquiry')}</span>
     </Button>
     <LangSwitcher slot="actions" />
@@ -598,7 +599,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
       </div>
 
       <div class="b2b-cta">
-        <Button variant="ghost-white" href="/contact" size="lg">
+        <Button variant="ghost-white" href={`${base}contact`} size="lg">
           <span data-i18n="products.b2b.cta">{t(lang, 'products.b2b.cta')}</span>
         </Button>
       </div>
@@ -680,7 +681,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
       </div>
 
       <div class="consumer-cta">
-        <Button variant="primary" href="/contact">
+        <Button variant="primary" href={`${base}contact`}>
           <span data-i18n="products.consumer.cta">{t(lang, 'products.consumer.cta')}</span>
         </Button>
       </div>

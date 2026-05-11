@@ -11,6 +11,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
 
 /* ── SVG Icons ─────────────────────────────────────────────────────────── */
 
@@ -81,21 +82,21 @@ const homeCards: CardDef[] = [
     titleKey: 'services.home.delivery.title',
     descKey:  'services.home.delivery.body',
     ctaKey:   'services.home.delivery.cta',
-    ctaHref:  '/contact',
+    ctaHref:  `${base}contact`,
   },
   {
     icon: iconMaintenance,
     titleKey: 'services.home.maintenance.title',
     descKey:  'services.home.maintenance.body',
     ctaKey:   'services.home.maintenance.cta',
-    ctaHref:  '/contact',
+    ctaHref:  `${base}contact`,
   },
   {
     icon: iconCO2,
     titleKey: 'services.home.co2.title',
     descKey:  'services.home.co2.body',
     ctaKey:   'services.home.co2.cta',
-    ctaHref:  '/contact',
+    ctaHref:  `${base}contact`,
   },
 ];
 
@@ -105,21 +106,21 @@ const businessCards: CardDef[] = [
     titleKey: 'services.business.wholesale.title',
     descKey:  'services.business.wholesale.body',
     ctaKey:   'services.business.wholesale.cta',
-    ctaHref:  '/contact',
+    ctaHref:  `${base}contact`,
   },
   {
     icon: iconLabel,
     titleKey: 'services.business.label.title',
     descKey:  'services.business.label.body',
     ctaKey:   'services.business.label.cta',
-    ctaHref:  '/contact',
+    ctaHref:  `${base}contact`,
   },
   {
     icon: iconSlushy,
     titleKey: 'services.business.slushy.title',
     descKey:  'services.business.slushy.body',
     ctaKey:   'services.business.slushy.cta',
-    ctaHref:  '/contact',
+    ctaHref:  `${base}contact`,
   },
 ];
 ---
