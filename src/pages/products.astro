@@ -9,7 +9,12 @@ import Badge from '../components/Badge.astro';
 import { t } from '../i18n/utils';
 import { Image, getImage } from 'astro:assets';
 import logo from '../assets/logo.webp';
-import bottlesRaw from '../assets/all.png';
+import bottlesRaw from '../assets/all.webp';
+import aquaVivaImg from '../assets/aqua viva.webp';
+import izvorImg from '../assets/izvor.webp';
+import nasladaImg from '../assets/naslada.webp';
+import santosIceTeaImg from '../assets/santos ice tea.webp';
+import petBottlesImg from '../assets/pet-bottles.webp';
 
 const lang = 'bg';
 const bottlesImg = await getImage({ src: bottlesRaw });
@@ -24,7 +29,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
     <NavLink slot="links" href="/products"><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
     <NavLink slot="links" href="/about"><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
     <NavLink slot="links" href="/contact"><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
-    <Button slot="actions" variant="ghost" href="/contact" size="sm">
+    <Button slot="actions" variant="ghost-white" href="/contact" size="sm">
       <span data-i18n="nav.cta.enquiry">{t(lang, 'nav.cta.enquiry')}</span>
     </Button>
     <LangSwitcher slot="actions" />
@@ -106,7 +111,10 @@ const bottlesImg = await getImage({ src: bottlesRaw });
       <div class="products-grid">
 
         <!-- Aqua Viva -->
-        <div class="product-card">
+        <div class="product-card product-card--has-photo">
+          <div class="product-card__img">
+            <Image src={aquaVivaImg} alt="Aqua Viva натурална минерална вода" />
+          </div>
           <div class="product-card__top">
             <span class="product-icon product-icon--blue">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -130,7 +138,10 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         </div>
 
         <!-- Izvor Still -->
-        <div class="product-card">
+        <div class="product-card product-card--has-photo">
+          <div class="product-card__img">
+            <Image src={izvorImg} alt="Извор натурална изворна вода" />
+          </div>
           <div class="product-card__top">
             <span class="product-icon product-icon--blue">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -155,16 +166,16 @@ const bottlesImg = await getImage({ src: bottlesRaw });
 
         <!-- Santos Sparkling -->
         <div class="product-card">
+          <div class="product-card__visual product-card__visual--teal">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M8 2h8l1 6H7L8 2z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M7 8c0 8 2 12 5 12s5-4 5-12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+              <circle cx="10" cy="13" r="1" fill="currentColor"/>
+              <circle cx="14" cy="11" r="1" fill="currentColor"/>
+              <circle cx="11" cy="16" r="0.75" fill="currentColor"/>
+            </svg>
+          </div>
           <div class="product-card__top">
-            <span class="product-icon product-icon--teal">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M8 2h8l1 6H7L8 2z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
-                <path d="M7 8c0 8 2 12 5 12s5-4 5-12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                <circle cx="10" cy="13" r="1" fill="currentColor"/>
-                <circle cx="14" cy="11" r="1" fill="currentColor"/>
-                <circle cx="11" cy="16" r="0.75" fill="currentColor"/>
-              </svg>
-            </span>
             <Badge variant="primary">
               <span data-i18n="products.badge.sparkling">{t(lang, 'products.badge.sparkling')}</span>
             </Badge>
@@ -182,13 +193,13 @@ const bottlesImg = await getImage({ src: bottlesRaw });
 
         <!-- Santos Sparkling Lemon -->
         <div class="product-card">
+          <div class="product-card__visual product-card__visual--teal">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.75"/>
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="product-card__top">
-            <span class="product-icon product-icon--teal">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.75"/>
-                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
             <Badge variant="primary">
               <span data-i18n="products.badge.sparkling">{t(lang, 'products.badge.sparkling')}</span>
             </Badge>
@@ -205,7 +216,10 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         </div>
 
         <!-- Izvor Sparkling -->
-        <div class="product-card">
+        <div class="product-card product-card--has-photo">
+          <div class="product-card__img">
+            <Image src={izvorImg} alt="Извор газирана изворна вода" />
+          </div>
           <div class="product-card__top">
             <span class="product-icon product-icon--teal">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -263,16 +277,16 @@ const bottlesImg = await getImage({ src: bottlesRaw });
 
         <!-- Santos Drinks Series -->
         <div class="product-card product-card--featured">
+          <div class="product-card__visual product-card__visual--aqua">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M8 2h8l1 6H7L8 2z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+              <path d="M7 8c0 8 2 12 5 12s5-4 5-12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+              <circle cx="10" cy="13" r="1" fill="currentColor"/>
+              <circle cx="14" cy="10" r="1" fill="currentColor"/>
+              <circle cx="11.5" cy="16.5" r="0.75" fill="currentColor"/>
+            </svg>
+          </div>
           <div class="product-card__top">
-            <span class="product-icon product-icon--aqua">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M8 2h8l1 6H7L8 2z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
-                <path d="M7 8c0 8 2 12 5 12s5-4 5-12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                <circle cx="10" cy="13" r="1" fill="currentColor"/>
-                <circle cx="14" cy="10" r="1" fill="currentColor"/>
-                <circle cx="11.5" cy="16.5" r="0.75" fill="currentColor"/>
-              </svg>
-            </span>
             <Badge variant="secondary">
               <span data-i18n="products.badge.drinks">{t(lang, 'products.badge.drinks')}</span>
             </Badge>
@@ -292,7 +306,10 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         </div>
 
         <!-- Naslada -->
-        <div class="product-card">
+        <div class="product-card product-card--has-photo">
+          <div class="product-card__img">
+            <Image src={nasladaImg} alt="Наслада плодова напитка" />
+          </div>
           <div class="product-card__top">
             <span class="product-icon product-icon--aqua">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -317,7 +334,10 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         </div>
 
         <!-- Ice Tea -->
-        <div class="product-card product-card--featured">
+        <div class="product-card product-card--featured product-card--has-photo">
+          <div class="product-card__img">
+            <Image src={santosIceTeaImg} alt="Santos студен чай" />
+          </div>
           <div class="product-card__top">
             <span class="product-icon product-icon--green">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -346,14 +366,14 @@ const bottlesImg = await getImage({ src: bottlesRaw });
 
         <!-- Homestyle Lemonade -->
         <div class="product-card">
+          <div class="product-card__visual product-card__visual--yellow">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.75"/>
+              <path d="M9 9c.5-1 1.5-2 3-2s2.5 1 2.5 2.5c0 2-2 3-3 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="12" cy="17" r="0.75" fill="currentColor"/>
+            </svg>
+          </div>
           <div class="product-card__top">
-            <span class="product-icon product-icon--yellow">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.75"/>
-                <path d="M9 9c.5-1 1.5-2 3-2s2.5 1 2.5 2.5c0 2-2 3-3 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <circle cx="12" cy="17" r="0.75" fill="currentColor"/>
-              </svg>
-            </span>
             <Badge variant="secondary">
               <span data-i18n="products.badge.lemonade">{t(lang, 'products.badge.lemonade')}</span>
             </Badge>
@@ -401,14 +421,14 @@ const bottlesImg = await getImage({ src: bottlesRaw });
 
         <!-- Jumbo Concentrate -->
         <div class="product-card">
+          <div class="product-card__visual product-card__visual--aqua">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="8" y="4" width="8" height="16" rx="2" stroke="currentColor" stroke-width="1.75"/>
+              <path d="M10 4V2M14 4V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M10 10h4M10 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="product-card__top">
-            <span class="product-icon product-icon--aqua">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <rect x="8" y="4" width="8" height="16" rx="2" stroke="currentColor" stroke-width="1.75"/>
-                <path d="M10 4V2M14 4V2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                <path d="M10 10h4M10 14h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
             <Badge variant="secondary">
               <span data-i18n="products.badge.concentrate">{t(lang, 'products.badge.concentrate')}</span>
             </Badge>
@@ -429,13 +449,13 @@ const bottlesImg = await getImage({ src: bottlesRaw });
 
         <!-- Slushy -->
         <div class="product-card product-card--b2b">
+          <div class="product-card__visual product-card__visual--blue">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+              <path d="M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
           <div class="product-card__top">
-            <span class="product-icon product-icon--blue">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 3v18M3 12h18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
-                <path d="M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
-              </svg>
-            </span>
             <Badge variant="primary">
               <span data-i18n="products.badge.b2b.only">{t(lang, 'products.badge.b2b.only')}</span>
             </Badge>
@@ -452,7 +472,10 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         </div>
 
         <!-- PET Bottles -->
-        <div class="product-card product-card--b2b">
+        <div class="product-card product-card--b2b product-card--has-photo">
+          <div class="product-card__img">
+            <Image src={petBottlesImg} alt="PET бутилки за пълнене" />
+          </div>
           <div class="product-card__top">
             <span class="product-icon product-icon--neutral">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -478,13 +501,13 @@ const bottlesImg = await getImage({ src: bottlesRaw });
 
         <!-- BulTop -->
         <div class="product-card">
+          <div class="product-card__visual product-card__visual--yellow">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.75"/>
+              <path d="M8.5 12c0-2 1.5-4 3.5-4s3.5 2 3.5 4-1.5 4-3.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
           <div class="product-card__top">
-            <span class="product-icon product-icon--yellow">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="1.75"/>
-                <path d="M8.5 12c0-2 1.5-4 3.5-4s3.5 2 3.5 4-1.5 4-3.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              </svg>
-            </span>
             <Badge variant="secondary">
               <span data-i18n="products.badge.juice">{t(lang, 'products.badge.juice')}</span>
             </Badge>
@@ -882,6 +905,49 @@ const bottlesImg = await getImage({ src: bottlesRaw });
     font-weight: var(--font-weight-medium);
     margin:      0;
   }
+
+  /* ── Product card photo area ───────────────────────────────── */
+  .product-card__img {
+    width:         100%;
+    height:        120px;
+    border-radius: var(--radius-md);
+    overflow:      hidden;
+    flex-shrink:   0;
+  }
+
+  .product-card__img img {
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    display:    block;
+  }
+
+  .product-card__img--placeholder {
+    background: linear-gradient(135deg, var(--color-primary-alpha-10) 0%, var(--color-secondary-light) 100%);
+    display:    flex;
+    align-items: center;
+    justify-content: center;
+    color:      var(--color-text-muted);
+    border:     1px dashed var(--color-border-light);
+  }
+
+  /* ── Product card visual band (icon-only cards) ────────────── */
+  .product-card__visual {
+    width:         100%;
+    height:        120px;
+    border-radius: var(--radius-md);
+    display:       flex;
+    align-items:   center;
+    justify-content: center;
+    flex-shrink:   0;
+  }
+
+  .product-card__visual--blue    { background: var(--color-primary-alpha-10);       color: var(--color-primary); }
+  .product-card__visual--teal    { background: var(--color-primary-alpha-10);       color: var(--color-primary); }
+  .product-card__visual--aqua    { background: var(--color-secondary-light);        color: var(--color-secondary-hover); }
+  .product-card__visual--green   { background: rgba(39, 169, 90, 0.10);            color: #1a7a3f; }
+  .product-card__visual--yellow  { background: rgba(214, 170, 40, 0.12);           color: #9a6e00; }
+  .product-card__visual--neutral { background: var(--color-border-light);          color: var(--color-text-muted); }
 
   /* ── Product icon ──────────────────────────────────────── */
   .product-icon {
