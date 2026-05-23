@@ -342,5 +342,10 @@
   "footer.social.facebook": "Facebook",
 
   "contact.map.title": "Намерете ни",
-  "contact.map.directions": "Получете упътване"
+  "contact.map.directions": "Получете упътване",
+
+  "privateLabel.badge": "Частна марка",
+  "privateLabel.feature1": "Персонализиран дизайн на етикета",
+  "privateLabel.feature2": "Гъвкави обеми и формати на бутилките",
+  "privateLabel.feature3": "Пълен производствен контрол и качество"
 }

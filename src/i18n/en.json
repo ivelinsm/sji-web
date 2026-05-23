@@ -342,5 +342,10 @@
   "footer.social.facebook": "Facebook",
 
   "contact.map.title": "Find Us",
-  "contact.map.directions": "Get Directions"
+  "contact.map.directions": "Get Directions",
+
+  "privateLabel.badge": "Private Label",
+  "privateLabel.feature1": "Custom label and packaging design",
+  "privateLabel.feature2": "Flexible volumes and bottle formats",
+  "privateLabel.feature3": "End-to-end production with quality assurance"
 }

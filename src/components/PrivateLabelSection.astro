@@ -1,0 +1,229 @@
+---
+import Section from './Section.astro';
+import Container from './Container.astro';
+import Heading from './Heading.astro';
+import Button from './Button.astro';
+import Badge from './Badge.astro';
+import { Image } from 'astro:assets';
+import vodaHydra from '../assets/products/voda-hydra.webp';
+import vodaVeranda from '../assets/products/voda-veranda.webp';
+import vodaXbody from '../assets/products/voda-xbody.webp';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Section bg="gray" size="lg">
+  <Container>
+    <div class="pl-grid">
+
+      <!-- Content -->
+      <div class="pl-content">
+        <div class="pl-eyebrow">
+          <Badge variant="secondary">
+            <span data-i18n="privateLabel.badge">Частна марка</span>
+          </Badge>
+        </div>
+
+        <Heading level={2}>
+          <span data-i18n="services.business.label.title">Производство под ваша марка</span>
+        </Heading>
+
+        <p class="pl-description">
+          <span data-i18n="services.business.label.body">Изградете собствена идентичност. Предоставяме цялостно производство и бутилиране на премиум трапезна вода, безалкохолни напитки и спортни напитки с вашата марка и дизайн на опаковка.</span>
+        </p>
+
+        <ul class="pl-features">
+          <li class="pl-feature">
+            <span class="pl-check" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="8.25" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span data-i18n="privateLabel.feature1">Персонализиран дизайн на етикета</span>
+          </li>
+          <li class="pl-feature">
+            <span class="pl-check" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="8.25" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span data-i18n="privateLabel.feature2">Гъвкави обеми и формати на бутилките</span>
+          </li>
+          <li class="pl-feature">
+            <span class="pl-check" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <circle cx="9" cy="9" r="8.25" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M5.5 9l2.5 2.5 4.5-4.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span data-i18n="privateLabel.feature3">Пълен производствен контрол и качество</span>
+          </li>
+        </ul>
+
+        <Button href={`${base}contact`} variant="primary" size="lg">
+          <span data-i18n="services.business.label.cta">Стартирайте проект</span>
+        </Button>
+      </div>
+
+      <!-- Bottle visual -->
+      <div class="pl-visual" aria-hidden="true">
+        <div class="pl-glow"></div>
+        <div class="pl-bottles">
+          <div class="pl-bottle pl-bottle--left">
+            <Image src={vodaHydra} alt="" width={148} height={370} />
+          </div>
+          <div class="pl-bottle pl-bottle--center">
+            <Image src={vodaVeranda} alt="" width={168} height={420} />
+          </div>
+          <div class="pl-bottle pl-bottle--right">
+            <Image src={vodaXbody} alt="" width={148} height={370} />
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </Container>
+</Section>
+
+<style>
+  .pl-grid {
+    display:               grid;
+    grid-template-columns: 1fr 1fr;
+    gap:                   var(--space-16);
+    align-items:           center;
+  }
+
+  /* ── Content ────────────────────────────────────────── */
+  .pl-eyebrow {
+    margin-bottom: var(--space-4);
+  }
+
+  .pl-description {
+    color:         var(--color-text);
+    font-size:     var(--text-lg);
+    line-height:   var(--leading-relaxed);
+    margin-top:    var(--space-5);
+    margin-bottom: var(--space-8);
+    max-width:     480px;
+  }
+
+  .pl-features {
+    list-style:     none;
+    padding:        0;
+    margin:         0 0 var(--space-10) 0;
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--space-4);
+  }
+
+  .pl-feature {
+    display:     flex;
+    align-items: center;
+    gap:         var(--space-3);
+    font-size:   var(--text-base);
+    color:       var(--color-text);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .pl-check {
+    color:       var(--color-secondary);
+    flex-shrink: 0;
+  }
+
+  /* ── Visual ─────────────────────────────────────────── */
+  .pl-visual {
+    position:        relative;
+    display:         flex;
+    align-items:     flex-end;
+    justify-content: center;
+    min-height:      480px;
+  }
+
+  .pl-glow {
+    position:         absolute;
+    inset:            0;
+    background:       radial-gradient(ellipse at 50% 60%, var(--color-secondary-alpha-10) 0%, transparent 68%);
+    border-radius:    var(--radius-2xl);
+    pointer-events:   none;
+  }
+
+  .pl-bottles {
+    position:        relative;
+    display:         flex;
+    align-items:     flex-end;
+    justify-content: center;
+    gap:             var(--space-3);
+    z-index:         1;
+    padding-bottom:  var(--space-4);
+  }
+
+  .pl-bottle {
+    transition: transform var(--transition-slow);
+  }
+
+  .pl-bottle :global(img) {
+    display: block;
+    filter:  drop-shadow(0 16px 28px rgba(0, 0, 0, 0.15));
+    border: 4px solid white;
+    border-radius: 24px;
+  }
+
+  .pl-bottle--left {
+    transform: rotate(-7deg) translateY(28px);
+    z-index:   1;
+  }
+
+  .pl-bottle--center {
+    transform: translateY(0);
+    z-index:   2;
+  }
+
+  .pl-bottle--right {
+    transform: rotate(7deg) translateY(16px);
+    z-index:   1;
+  }
+
+  .pl-bottles:hover .pl-bottle--left {
+    transform: rotate(-9deg) translateX(-6px) translateY(28px);
+  }
+
+  .pl-bottles:hover .pl-bottle--right {
+    transform: rotate(9deg) translateX(6px) translateY(16px);
+  }
+
+  /* ── Responsive ─────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .pl-grid {
+      grid-template-columns: 1fr;
+      gap:                   var(--space-12);
+    }
+
+    .pl-visual {
+      order:      -1;
+      min-height: 360px;
+    }
+
+    .pl-description {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pl-visual {
+      min-height: 280px;
+    }
+
+    .pl-bottle--left :global(img),
+    .pl-bottle--right :global(img) {
+      width:  110px;
+      height: auto;
+    }
+
+    .pl-bottle--center :global(img) {
+      width:  128px;
+      height: auto;
+    }
+  }
+</style>
