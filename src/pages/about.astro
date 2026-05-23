@@ -7,6 +7,7 @@ import NavLink from '../components/NavLink.astro';
 import LangSwitcher from '../components/LangSwitcher.astro';
 import Badge from '../components/Badge.astro';
 import FiltrationSection from '../components/FiltrationSection.astro';
+import HaccpBadge from '../components/HaccpBadge.astro';
 import { t } from '../i18n/utils';
 import { Image, getImage } from 'astro:assets';
 import logo from '../assets/logo.webp';
@@ -165,6 +166,13 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
         <p class="ab-science__intro">
           <span data-i18n="about.science.intro">{t(lang, 'about.science.intro')}</span>
         </p>
+
+        <div class="ab-science__trust">
+          <HaccpBadge variant="dark" size="md" lang={lang} />
+          <p class="ab-science__trust-caption">
+            <span data-i18n="certifications.haccp.description">{t(lang, 'certifications.haccp.description')}</span>
+          </p>
+        </div>
       </header>
 
       <div class="ab-stats">
@@ -860,6 +868,23 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
     font-size: var(--text-lg);
     color: rgba(255, 255, 255, 0.78);
     line-height: var(--leading-relaxed);
+  }
+
+  .ab-science__trust {
+    display:        flex;
+    flex-direction: column;
+    align-items:    center;
+    gap:            var(--space-3);
+    margin-top:     var(--space-8);
+  }
+
+  .ab-science__trust-caption {
+    font-size:   var(--text-sm);
+    color:       rgba(255, 255, 255, 0.62);
+    line-height: var(--leading-normal);
+    max-width:   420px;
+    margin:      0;
+    text-align:  center;
   }
 
   /* ── Stat cards ─────────────────────────────────────────────── */

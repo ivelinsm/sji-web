@@ -1,0 +1,265 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Navbar from '../components/Navbar.astro';
+import NavLink from '../components/NavLink.astro';
+import LangSwitcher from '../components/LangSwitcher.astro';
+import Badge from '../components/Badge.astro';
+import Footer from '../components/Footer.astro';
+import { t } from '../i18n/utils';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.webp';
+
+const lang = 'bg';
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title={t(lang, 'meta.404.title')} description={t(lang, 'meta.404.description')}>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <Navbar slot="header" variant="transparent">
+    <Image slot="logo" src={logo} alt="SJI" class="nav-logo" />
+    <NavLink slot="links" href={base}><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></NavLink>
+    <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
+    <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
+    <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
+    <Button slot="actions" variant="ghost" href={`${base}contact`} size="sm">
+      <span data-i18n="nav.cta.enquiry">{t(lang, 'nav.cta.enquiry')}</span>
+    </Button>
+    <LangSwitcher slot="actions" />
+  </Navbar>
+
+  <!-- ── Hero ───────────────────────────────────────────────── -->
+  <section class="nf-hero">
+    <span class="nf-hero__bg" aria-hidden="true"></span>
+    <span class="nf-hero__glow nf-hero__glow--a" aria-hidden="true"></span>
+    <span class="nf-hero__glow nf-hero__glow--b" aria-hidden="true"></span>
+
+    <div class="container nf-hero__inner">
+      <Badge variant="secondary">
+        <span data-i18n="error.404.badge">404</span>
+      </Badge>
+
+      <h1 class="nf-hero__title">
+        <span data-i18n="error.404.title">{t(lang, 'error.404.title')}</span>
+      </h1>
+
+      <p class="nf-hero__subtitle">
+        <span data-i18n="error.404.subtitle">{t(lang, 'error.404.subtitle')}</span>
+      </p>
+
+      <div class="nf-hero__cta">
+        <Button variant="ghost-white-primary" href={base}>
+          <span data-i18n="error.404.cta.home">{t(lang, 'error.404.cta.home')}</span>
+        </Button>
+        <Button variant="ghost-white" href={`${base}products`}>
+          <span data-i18n="error.404.cta.products">{t(lang, 'error.404.cta.products')}</span>
+        </Button>
+      </div>
+    </div>
+
+    <svg class="nf-hero__digits" viewBox="0 0 600 240" aria-hidden="true">
+      <text x="50%" y="78%" text-anchor="middle">404</text>
+    </svg>
+  </section>
+
+  <!-- ── Helpful links ──────────────────────────────────────── -->
+  <section class="nf-links">
+    <div class="container">
+      <h2 class="nf-links__title">
+        <span data-i18n="error.404.helpful">{t(lang, 'error.404.helpful')}</span>
+      </h2>
+      <ul class="nf-links__list">
+        <li>
+          <a href={base} class="nf-links__item">
+            <span data-i18n="nav.home">{t(lang, 'nav.home')}</span>
+          </a>
+        </li>
+        <li>
+          <a href={`${base}products`} class="nf-links__item">
+            <span data-i18n="nav.products">{t(lang, 'nav.products')}</span>
+          </a>
+        </li>
+        <li>
+          <a href={`${base}about`} class="nf-links__item">
+            <span data-i18n="nav.about">{t(lang, 'nav.about')}</span>
+          </a>
+        </li>
+        <li>
+          <a href={`${base}contact`} class="nf-links__item">
+            <span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <Footer slot="footer" lang={lang} />
+
+</Layout>
+
+<style>
+  .nav-logo {
+    height:     52px;
+    width:      auto;
+    display:    block;
+    object-fit: contain;
+  }
+
+  /* ── Hero ─────────────────────────────────────────────────── */
+  .nf-hero {
+    position:         relative;
+    background-color: var(--color-primary);
+    color:            var(--color-white);
+    margin-top:       -72px;
+    padding-top:      calc(72px + var(--space-24));
+    padding-bottom:   var(--space-24);
+    overflow:         hidden;
+    text-align:       center;
+  }
+
+  .nf-hero__bg {
+    position:   absolute;
+    inset:      0;
+    background:
+      radial-gradient(ellipse at 80% 30%, rgba(39, 169, 216, 0.28) 0%, transparent 60%),
+      radial-gradient(ellipse at 10% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .nf-hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter:   blur(80px);
+    opacity:  0.55;
+    pointer-events: none;
+  }
+
+  .nf-hero__glow--a {
+    width:  420px;
+    height: 420px;
+    background: var(--color-secondary);
+    top:   -120px;
+    left:  -120px;
+  }
+
+  .nf-hero__glow--b {
+    width:  360px;
+    height: 360px;
+    background: var(--color-accent);
+    bottom: -140px;
+    right:  -100px;
+    opacity: 0.28;
+  }
+
+  .nf-hero__inner {
+    position:        relative;
+    z-index:         2;
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    max-width:       640px;
+  }
+
+  .nf-hero__title {
+    font-family:   var(--font-heading);
+    font-weight:   var(--font-weight-bold);
+    font-size:     var(--text-5xl);
+    line-height:   var(--leading-tight);
+    margin:        var(--space-5) 0 0;
+    color:         var(--color-white);
+  }
+
+  .nf-hero__subtitle {
+    font-size:     var(--text-lg);
+    color:         rgba(255, 255, 255, 0.78);
+    line-height:   var(--leading-relaxed);
+    margin:        var(--space-4) 0 0;
+    max-width:     520px;
+  }
+
+  .nf-hero__cta {
+    display:  flex;
+    gap:      var(--space-4);
+    margin-top: var(--space-10);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nf-hero__digits {
+    position: absolute;
+    inset:    0;
+    width:    100%;
+    height:   100%;
+    z-index:  1;
+    pointer-events: none;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size:   320px;
+    fill:        rgba(255, 255, 255, 0.04);
+    letter-spacing: -0.04em;
+  }
+
+  /* ── Helpful links ────────────────────────────────────────── */
+  .nf-links {
+    background-color: var(--color-bg);
+    padding-block:    var(--space-16);
+    text-align:       center;
+  }
+
+  .nf-links__title {
+    font-family:    var(--font-body);
+    font-size:      var(--text-xs);
+    font-weight:    var(--font-weight-semibold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color:          var(--color-text-muted);
+    margin:         0 0 var(--space-6);
+  }
+
+  .nf-links__list {
+    list-style: none;
+    padding:    0;
+    margin:     0;
+    display:    flex;
+    justify-content: center;
+    flex-wrap:  wrap;
+    gap:        var(--space-3) var(--space-5);
+  }
+
+  .nf-links__item {
+    display:         inline-block;
+    padding:         var(--space-3) var(--space-5);
+    background:      var(--color-surface);
+    border:          1px solid var(--color-border-light);
+    border-radius:   var(--radius-full);
+    color:           var(--color-primary);
+    font-weight:     var(--font-weight-semibold);
+    text-decoration: none;
+    transition:
+      transform     var(--transition-base),
+      border-color  var(--transition-base),
+      color         var(--transition-base),
+      box-shadow    var(--transition-base);
+  }
+
+  .nf-links__item:hover {
+    transform:    translateY(-2px);
+    border-color: var(--color-secondary);
+    color:        var(--color-secondary);
+    box-shadow:   var(--shadow-md);
+  }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .nf-hero          { padding-top: calc(72px + var(--space-16)); padding-bottom: var(--space-16); }
+    .nf-hero__title   { font-size: var(--text-4xl); }
+    .nf-hero__digits  { font-size: 220px; }
+  }
+
+  @media (max-width: 480px) {
+    .nf-hero__title   { font-size: var(--text-3xl); }
+    .nf-hero__digits  { font-size: 160px; }
+    .nf-hero__subtitle { font-size: var(--text-base); }
+  }
+</style>

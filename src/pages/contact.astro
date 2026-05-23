@@ -75,10 +75,10 @@ const base = import.meta.env.BASE_URL;
                   <a
                     class="obfuscated-email"
                     href="#"
-                    data-user="office"
-                    data-domain="sji.bg"
+                    data-user="sjigrup"
+                    data-domain="abv.bg"
                     aria-label="Email"
-                  >office <span aria-hidden="true">[at]</span><span class="visually-hidden"> at </span> sji.bg</a>
+                  >sjigrup <span aria-hidden="true">[at]</span><span class="visually-hidden"> at </span> abv.bg</a>
                 </p>
               </div>
             </li>
@@ -91,16 +91,39 @@ const base = import.meta.env.BASE_URL;
               </span>
               <div>
                 <p class="contact-info__label">
-                  <span data-i18n="contact.info.phone.label">{t(lang, 'contact.info.phone.label')}</span>
+                  <span data-i18n="contact.info.phone.label.orders">{t(lang, 'contact.info.phone.label.orders')}</span>
                 </p>
                 <p class="contact-info__value">
                   <a
                     class="obfuscated-phone"
                     href="#"
                     data-cc="359"
-                    data-rest="000000000"
-                    data-display="00 000 0000"
-                    aria-label="Phone"
+                    data-rest="896730843"
+                    data-display="896 730 843"
+                    aria-label="Phone for orders and deliveries"
+                  >+359 <span aria-hidden="true">[click to reveal]</span></a>
+                </p>
+              </div>
+            </li>
+
+            <li class="contact-info__item">
+              <span class="contact-info__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div>
+                <p class="contact-info__label">
+                  <span data-i18n="contact.info.phone.label.business">{t(lang, 'contact.info.phone.label.business')}</span>
+                </p>
+                <p class="contact-info__value">
+                  <a
+                    class="obfuscated-phone"
+                    href="#"
+                    data-cc="359"
+                    data-rest="896697480"
+                    data-display="896 697 480"
+                    aria-label="Phone for business inquiries"
                   >+359 <span aria-hidden="true">[click to reveal]</span></a>
                 </p>
               </div>
@@ -117,7 +140,9 @@ const base = import.meta.env.BASE_URL;
                 <p class="contact-info__label">
                   <span data-i18n="contact.info.address.label">{t(lang, 'contact.info.address.label')}</span>
                 </p>
-                <p class="contact-info__value">София, България</p>
+                <p class="contact-info__value">
+                  <span data-i18n="contact.info.address.value">{t(lang, 'contact.info.address.value')}</span>
+                </p>
               </div>
             </li>
 
@@ -144,7 +169,7 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <!-- ── Map section ────────────────────────────────────────── -->
-  <section class="map-section">
+  <section class="map-section" id="map">
     <div class="container">
       <div class="map-section__header">
         <span class="map-section__eyebrow">
@@ -157,17 +182,17 @@ const base = import.meta.env.BASE_URL;
 
       <div class="map-section__map-wrap">
         <iframe
-          src="https://www.openstreetmap.org/export/embed.html?bbox=23.25%2C42.65%2C23.42%2C42.75&layer=mapnik&marker=42.6977%2C23.3219"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=27.797627%2C43.568623%2C27.837627%2C43.588623&layer=mapnik&marker=43.578623%2C27.817627"
           class="map-section__iframe"
           loading="lazy"
           title="СЖИ - Местоположение"
-          aria-label="Карта с местоположение на СЖИ в София"
+          aria-label="Карта с местоположение на СЖИ в Добрич, ул. Калиакра 54"
         ></iframe>
       </div>
 
       <div class="map-section__cta">
         <a
-          href="https://www.google.com/maps/place/Sofia,+Bulgaria"
+          href="https://www.google.com/maps/search/?api=1&query=%D1%83%D0%BB.%20%D0%9A%D0%B0%D0%BB%D0%B8%D0%B0%D0%BA%D1%80%D0%B0%2054%2C%20%D0%94%D0%BE%D0%B1%D1%80%D0%B8%D1%87"
           class="map-section__directions-btn"
           target="_blank"
           rel="noopener noreferrer"

@@ -1,6 +1,8 @@
 {
   "meta.title": "СЖИ - Чиста вода и освежаващи напитки",
   "meta.description": "Бутилирана вода и безалкохолни напитки от премиум клас - свежи, чисти и освежаващи.",
+  "meta.404.title": "Страницата не е намерена | СЖИ",
+  "meta.404.description": "Търсената страница не съществува.",
 
   "nav.home": "Начало",
   "nav.products": "Продукти",
@@ -260,7 +262,10 @@
   "contact.info.title": "Други начини за връзка",
   "contact.info.email.label": "Имейл",
   "contact.info.phone.label": "Телефон",
+  "contact.info.phone.label.orders": "Поръчки и доставки",
+  "contact.info.phone.label.business": "Бизнес запитвания",
   "contact.info.address.label": "Адрес",
+  "contact.info.address.value": "гр. Добрич, ул. Калиакра 54",
   "contact.info.hours.label": "Работно време",
   "contact.info.hours.value": "Понеделник - Петък, 09:00 - 17:00",
 
@@ -327,7 +332,7 @@
   "about.monitoring.live": "На живо",
 
   "about.closing.eyebrow": "Това, което остава",
-  "about.closing.title": "Напълно чиста, лека и безопасна вода.",
+  "about.closing.title": "Напълно чиста вода.",
   "about.closing.body": "Това е всичко, което обещаваме. И всичко, което всеки ден гарантираме - тихо, прецизно и последователно.",
   "about.closing.cta.contact": "Свържете се с нас",
   "about.closing.cta.partner": "Станете партньор",
@@ -339,6 +344,8 @@
   "footer.services.b2b": "Бизнес партньорство",
   "footer.services.co2": "CO₂ и поддръжка",
   "footer.info.title": "Контакти",
+  "footer.info.phone.orders": "Поръчки:",
+  "footer.info.phone.business": "Бизнес:",
   "footer.social.facebook": "Facebook",
 
   "contact.map.title": "Намерете ни",
@@ -347,5 +354,16 @@
   "privateLabel.badge": "Частна марка",
   "privateLabel.feature1": "Персонализиран дизайн на етикета",
   "privateLabel.feature2": "Гъвкави обеми и формати на бутилките",
-  "privateLabel.feature3": "Пълен производствен контрол и качество"
+  "privateLabel.feature3": "Пълен производствен контрол и качество",
+
+  "certifications.haccp.label": "Сертифициран",
+  "certifications.haccp.aria": "HACCP сертифицирано производство",
+  "certifications.haccp.description": "Производство по стандарт HACCP за безопасност на храните.",
+
+  "error.404.badge": "404",
+  "error.404.title": "Страницата не е намерена",
+  "error.404.subtitle": "Изглежда, че сте поели по грешен път. Връщаме ви обратно.",
+  "error.404.cta.home": "Към началната страница",
+  "error.404.cta.products": "Разгледай продуктите",
+  "error.404.helpful": "Полезни връзки"
 }

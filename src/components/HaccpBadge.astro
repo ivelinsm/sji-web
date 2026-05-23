@@ -1,0 +1,125 @@
+---
+import { t } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  variant?: 'light' | 'dark';
+  size?: 'sm' | 'md';
+  lang?: Lang;
+  class?: string;
+}
+
+const { variant = 'light', size = 'md', lang = 'bg', class: className } = Astro.props;
+---
+
+<span
+  class:list={['haccp', `haccp--${variant}`, `haccp--${size}`, className]}
+  role="img"
+  aria-label={t(lang, 'certifications.haccp.aria')}
+>
+  <span class="haccp__icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M12 2.5 4 5v6c0 4.6 3.2 8.6 8 10.5 4.8-1.9 8-5.9 8-10.5V5l-8-2.5Z"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linejoin="round"
+        fill="none"
+      />
+      <path
+        d="m8.5 12 2.5 2.5L15.5 10"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </span>
+  <span class="haccp__text">
+    <span class="haccp__mark">HACCP</span>
+    <span class="haccp__label" data-i18n="certifications.haccp.label">
+      {t(lang, 'certifications.haccp.label')}
+    </span>
+  </span>
+</span>
+
+<style>
+  .haccp {
+    display:        inline-flex;
+    align-items:    center;
+    gap:            var(--space-3);
+    padding:        var(--space-2) var(--space-4);
+    border-radius:  var(--radius-full);
+    border:         1px solid var(--color-border-light);
+    background:     var(--color-surface);
+    box-shadow:     var(--shadow-sm);
+    line-height:    1;
+    white-space:    nowrap;
+    transition:     transform var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .haccp__icon {
+    display:        inline-flex;
+    align-items:    center;
+    justify-content: center;
+    width:          28px;
+    height:         28px;
+    flex-shrink:    0;
+    color:          var(--color-secondary);
+  }
+
+  .haccp__icon svg {
+    width:  100%;
+    height: 100%;
+    display: block;
+  }
+
+  .haccp__text {
+    display:        inline-flex;
+    flex-direction: column;
+    gap:            2px;
+    text-align:     left;
+  }
+
+  .haccp__mark {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-sm);
+    letter-spacing: 0.08em;
+    color:          var(--color-primary);
+    line-height:    1;
+  }
+
+  .haccp__label {
+    font-family:    var(--font-body);
+    font-size:      10px;
+    font-weight:    var(--font-weight-medium);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color:          var(--color-text-muted);
+    line-height:    1;
+  }
+
+  /* ── Size: sm ─────────────────────────────────────────────── */
+  .haccp--sm {
+    padding: var(--space-1) var(--space-3);
+    gap:     var(--space-2);
+  }
+
+  .haccp--sm .haccp__icon { width: 22px; height: 22px; }
+  .haccp--sm .haccp__mark { font-size: var(--text-xs); }
+  .haccp--sm .haccp__label { font-size: 9px; }
+
+  /* ── Variant: dark (for hero / dark backgrounds) ──────────── */
+  .haccp--dark {
+    background:   rgba(255, 255, 255, 0.10);
+    border-color: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow:   none;
+  }
+
+  .haccp--dark .haccp__icon  { color: var(--color-secondary); }
+  .haccp--dark .haccp__mark  { color: var(--color-white); }
+  .haccp--dark .haccp__label { color: rgba(255, 255, 255, 0.72); }
+</style>

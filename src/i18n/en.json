@@ -1,6 +1,8 @@
 {
   "meta.title": "SJI - Pure Water & Refreshing Drinks",
   "meta.description": "Premium water bottling and soft drinks - fresh, clean, and refreshing.",
+  "meta.404.title": "Page not found | SJI",
+  "meta.404.description": "The page you're looking for doesn't exist.",
 
   "nav.home": "Home",
   "nav.products": "Products",
@@ -260,7 +262,10 @@
   "contact.info.title": "Other ways to reach us",
   "contact.info.email.label": "Email",
   "contact.info.phone.label": "Phone",
+  "contact.info.phone.label.orders": "Orders & deliveries",
+  "contact.info.phone.label.business": "Business inquiries",
   "contact.info.address.label": "Address",
+  "contact.info.address.value": "Dobrich, 54 Kaliakra St",
   "contact.info.hours.label": "Hours",
   "contact.info.hours.value": "Monday - Friday, 9:00 - 17:00",
 
@@ -327,7 +332,7 @@
   "about.monitoring.live": "Live",
 
   "about.closing.eyebrow": "What stays with you",
-  "about.closing.title": "Completely pure. Light. Safe.",
+  "about.closing.title": "Completely pure and light.",
   "about.closing.body": "That is everything we promise. And everything we deliver every day - quietly, precisely, consistently.",
   "about.closing.cta.contact": "Get in touch",
   "about.closing.cta.partner": "Become a partner",
@@ -339,6 +344,8 @@
   "footer.services.b2b": "B2B Partnership",
   "footer.services.co2": "CO₂ & Maintenance",
   "footer.info.title": "Contact Info",
+  "footer.info.phone.orders": "Orders:",
+  "footer.info.phone.business": "Business:",
   "footer.social.facebook": "Facebook",
 
   "contact.map.title": "Find Us",
@@ -347,5 +354,16 @@
   "privateLabel.badge": "Private Label",
   "privateLabel.feature1": "Custom label and packaging design",
   "privateLabel.feature2": "Flexible volumes and bottle formats",
-  "privateLabel.feature3": "End-to-end production with quality assurance"
+  "privateLabel.feature3": "End-to-end production with quality assurance",
+
+  "certifications.haccp.label": "Certified",
+  "certifications.haccp.aria": "HACCP-certified production",
+  "certifications.haccp.description": "Production to HACCP food-safety standard.",
+
+  "error.404.badge": "404",
+  "error.404.title": "Page not found",
+  "error.404.subtitle": "Looks like you took a wrong turn. Let's get you back on track.",
+  "error.404.cta.home": "Back to home",
+  "error.404.cta.products": "Browse products",
+  "error.404.helpful": "Helpful links"
 }
