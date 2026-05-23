@@ -9,6 +9,7 @@ import ContactForm from '../components/ContactForm.astro';
 import { t } from '../i18n/utils';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.webp';
+import Footer from '../components/Footer.astro';
 
 const lang = 'bg';
 const base = import.meta.env.BASE_URL;
@@ -142,9 +143,46 @@ const base = import.meta.env.BASE_URL;
     </div>
   </section>
 
-  <p slot="footer" style="text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--text-sm);">
-    <span data-i18n="footer.rights">{t(lang, 'footer.rights')}</span>
-  </p>
+  <!-- ── Map section ────────────────────────────────────────── -->
+  <section class="map-section">
+    <div class="container">
+      <div class="map-section__header">
+        <span class="map-section__eyebrow">
+          <span data-i18n="contact.hero.eyebrow">{t(lang, 'contact.hero.eyebrow')}</span>
+        </span>
+        <h2 class="map-section__title">
+          <span data-i18n="contact.map.title">{t(lang, 'contact.map.title')}</span>
+        </h2>
+      </div>
+
+      <div class="map-section__map-wrap">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=23.25%2C42.65%2C23.42%2C42.75&layer=mapnik&marker=42.6977%2C23.3219"
+          class="map-section__iframe"
+          loading="lazy"
+          title="СЖИ - Местоположение"
+          aria-label="Карта с местоположение на СЖИ в София"
+        ></iframe>
+      </div>
+
+      <div class="map-section__cta">
+        <a
+          href="https://www.google.com/maps/place/Sofia,+Bulgaria"
+          class="map-section__directions-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+            <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.75"/>
+          </svg>
+          <span data-i18n="contact.map.directions">{t(lang, 'contact.map.directions')}</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" lang={lang} />
 
 </Layout>
 
@@ -345,5 +383,87 @@ const base = import.meta.env.BASE_URL;
 
   @media (max-width: 480px) {
     .page-hero__title { font-size: var(--text-3xl); }
+  }
+
+  /* ── Map section ───────────────────────────────────────── */
+  .map-section {
+    background-color: var(--color-bg);
+    padding-block:    var(--space-16);
+  }
+
+  .map-section__header {
+    text-align:    center;
+    margin-bottom: var(--space-8);
+  }
+
+  .map-section__eyebrow {
+    display:        inline-block;
+    font-family:    var(--font-body);
+    font-size:      var(--text-xs);
+    font-weight:    var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color:          var(--color-secondary-hover);
+    margin-bottom:  var(--space-3);
+  }
+
+  .map-section__title {
+    font-family:  var(--font-heading);
+    font-weight:  var(--font-weight-bold);
+    font-size:    var(--text-3xl);
+    color:        var(--color-primary);
+    line-height:  var(--leading-tight);
+    margin:       0;
+  }
+
+  .map-section__map-wrap {
+    border-radius: var(--radius-lg);
+    overflow:      hidden;
+    border:        1px solid var(--color-border-light);
+    box-shadow:    var(--shadow-md);
+    line-height:   0;
+  }
+
+  .map-section__iframe {
+    width:   100%;
+    height:  420px;
+    border:  none;
+    display: block;
+  }
+
+  .map-section__cta {
+    display:         flex;
+    justify-content: center;
+    margin-top:      var(--space-6);
+  }
+
+  .map-section__directions-btn {
+    display:         inline-flex;
+    align-items:     center;
+    gap:             var(--space-2);
+    padding:         var(--space-3) var(--space-6);
+    background:      var(--color-primary);
+    color:           var(--color-white);
+    border-radius:   var(--radius-full);
+    font-family:     var(--font-body);
+    font-size:       var(--text-sm);
+    font-weight:     var(--font-weight-semibold);
+    text-decoration: none;
+    transition:
+      background    var(--transition-base),
+      transform     var(--transition-base),
+      box-shadow    var(--transition-base);
+  }
+
+  .map-section__directions-btn:hover {
+    background:  var(--color-primary-hover);
+    transform:   translateY(-2px);
+    box-shadow:  var(--shadow-hover);
+  }
+
+  @media (max-width: 768px) {
+    .map-section { padding-block: var(--space-12); }
+    .map-section__iframe { height: 300px; }
+    .map-section__title { font-size: var(--text-2xl); }
   }
 </style>

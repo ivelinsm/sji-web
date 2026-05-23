@@ -330,5 +330,17 @@
   "about.closing.title": "Completely pure. Light. Safe.",
   "about.closing.body": "That is everything we promise. And everything we deliver every day - quietly, precisely, consistently.",
   "about.closing.cta.contact": "Get in touch",
-  "about.closing.cta.partner": "Become a partner"
+  "about.closing.cta.partner": "Become a partner",
+
+  "footer.tagline": "Pure. Refreshing. Yours.",
+  "footer.nav.title": "Navigate",
+  "footer.services.title": "Services",
+  "footer.services.delivery": "Home Delivery",
+  "footer.services.b2b": "B2B Partnership",
+  "footer.services.co2": "CO₂ & Maintenance",
+  "footer.info.title": "Contact Info",
+  "footer.social.facebook": "Facebook",
+
+  "contact.map.title": "Find Us",
+  "contact.map.directions": "Get Directions"
 }

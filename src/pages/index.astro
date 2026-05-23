@@ -11,6 +11,7 @@ import ProductShowcase from '../components/ProductShowcase.astro';
 import { t } from '../i18n/utils';
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.webp';
+import Footer from '../components/Footer.astro';
 
 const lang = 'bg';
 const base = import.meta.env.BASE_URL;
@@ -129,9 +130,7 @@ const base = import.meta.env.BASE_URL;
   <!-- ── Products section ────────────────────────────────────── -->
   <ProductShowcase lang={lang} />
 
-  <p slot="footer" style="text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--text-sm);">
-    <span data-i18n="footer.rights">© 2026 СЖИ. Всички права запазени.</span>
-  </p>
+  <Footer slot="footer" lang={lang} />
 
 </Layout>
 

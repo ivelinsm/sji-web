@@ -330,5 +330,17 @@
   "about.closing.title": "Напълно чиста, лека и безопасна вода.",
   "about.closing.body": "Това е всичко, което обещаваме. И всичко, което всеки ден гарантираме - тихо, прецизно и последователно.",
   "about.closing.cta.contact": "Свържете се с нас",
-  "about.closing.cta.partner": "Станете партньор"
+  "about.closing.cta.partner": "Станете партньор",
+
+  "footer.tagline": "Чисто. Освежаващо. Твоето.",
+  "footer.nav.title": "Навигация",
+  "footer.services.title": "Услуги",
+  "footer.services.delivery": "Домашна доставка",
+  "footer.services.b2b": "Бизнес партньорство",
+  "footer.services.co2": "CO₂ и поддръжка",
+  "footer.info.title": "Контакти",
+  "footer.social.facebook": "Facebook",
+
+  "contact.map.title": "Намерете ни",
+  "contact.map.directions": "Получете упътване"
 }

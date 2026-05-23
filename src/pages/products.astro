@@ -9,18 +9,23 @@ import Badge from '../components/Badge.astro';
 import { t } from '../i18n/utils';
 import { Image, getImage } from 'astro:assets';
 import logo from '../assets/logo.webp';
+import Footer from '../components/Footer.astro';
 import bottlesRaw from '../assets/all.webp';
 import aquaVivaImg from '../assets/products/aqua-viva-1-5.webp';
 import izvorImg from '../assets/products/izvor-water.webp';
 import nasladaImg from '../assets/products/naslada.webp';
 import santosIceTeaImg from '../assets/products/ice-tea.webp';
+import santosDrink from '../assets/products/santos-grapefruit.webp';
 import petBottlesImg from '../assets/products/pet-bottles.webp';
 import bubbles from '../assets/products/bubbles.webp';
 import concentrate from '../assets/products/concentrate.webp';
 import lemonClay from '../assets/products/lemon.webp';
 import lemonColorfulClay from '../assets/products/lemon-colorful.webp';
+import limonata from '../assets/products/limonata-small-tint.webp';
+import sodaAqua from '../assets/products/soda-aqua.webp';
 import snowflake from '../assets/products/snowflake.webp';
-
+import lemonJuice from '../assets/products/lemon-juice-tint.webp';
+import jumbo from '../assets/products/jumbo.webp';
 
 const lang = 'bg';
 const base = import.meta.env.BASE_URL;
@@ -174,7 +179,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         <!-- Santos Sparkling -->
         <div class="product-card">
           <div class="product-card__visual product-card__visual--teal">
-              <Image src={bubbles} alt="Santos газирана вода - сода" />
+              <Image src={sodaAqua} alt="Santos газирана вода - сода" />
           </div>
           <div class="product-card__top">
             <Badge variant="primary">
@@ -276,7 +281,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         <!-- Santos Drinks Series -->
         <div class="product-card product-card--featured">
           <div class="product-card__visual product-card__visual--aqua">
-            <Image src={bubbles} alt="Газирана безалкохолна напитка Santos" />
+            <Image src={santosDrink} alt="Газирана безалкохолна напитка Santos" />
           </div>
           <div class="product-card__top">
             <Badge variant="secondary">
@@ -359,7 +364,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         <!-- Homestyle Lemonade -->
         <div class="product-card">
           <div class="product-card__visual product-card__visual--yellow">
-            <Image src={lemonColorfulClay} alt="Домашна лимонада" />
+            <Image src={limonata} alt="Домашна лимонада" />
           </div>
           <div class="product-card__top">
             <Badge variant="secondary">
@@ -410,7 +415,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         <!-- Jumbo Concentrate -->
         <div class="product-card">
           <div class="product-card__visual product-card__visual--aqua">
-            <Image src={concentrate} alt="Концентрат за напитки Jumbo" />
+            <Image src={jumbo} alt="Концентрат за напитки Jumbo" />
           </div>
           <div class="product-card__top">
             <Badge variant="secondary">
@@ -483,7 +488,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
         <!-- BulTop -->
         <div class="product-card">
           <div class="product-card__visual product-card__visual--yellow">
-            <Image src={lemonColorfulClay} alt="Дресинг за салати" />
+            <Image src={lemonJuice} alt="Дресинг за салати" />
           </div>
           <div class="product-card__top">
             <Badge variant="secondary">
@@ -666,9 +671,7 @@ const bottlesImg = await getImage({ src: bottlesRaw });
     </div>
   </section>
 
-  <p slot="footer" style="text-align: center; padding: var(--space-8); color: var(--color-text-muted); font-size: var(--text-sm);">
-    <span data-i18n="footer.rights">{t(lang, 'footer.rights')}</span>
-  </p>
+  <Footer slot="footer" lang={lang} />
 
 </Layout>
 
