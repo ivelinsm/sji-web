@@ -1,0 +1,20 @@
+{
+  "name": "SJ Group Soft Drinks",
+  "short_name": "SJ Group",
+  "description": "Production and bottling solutions for soft drinks and beverages.",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#2F5597",
+  "background_color": "#F2F2F2",
+  "display": "standalone"
+}

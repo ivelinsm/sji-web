@@ -10,14 +10,18 @@ interface Props {
   ogType?: string;
 }
 
+const base = import.meta.env.BASE_URL;
+
 const {
   title,
   description = bg['meta.description'],
-  ogImage = '/og-default.png',
+  ogImage = `${base}og-image.webp`,
   ogType = 'website',
 } = Astro.props;
 
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : null;
+// Social platforms require absolute URLs for og:image / twitter:image.
+const ogImageURL = Astro.site ? new URL(ogImage, Astro.site).toString() : ogImage;
 const translations = { bg, en };
 ---
 
@@ -45,7 +49,7 @@ const translations = { bg, en };
     <!-- Open Graph -->
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image"       content={ogImage} />
+    <meta property="og:image"       content={ogImageURL} />
     <meta property="og:type"        content={ogType} />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
 
@@ -53,13 +57,15 @@ const translations = { bg, en };
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image"       content={ogImage} />
+    <meta name="twitter:image"       content={ogImageURL} />
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}apple-touch-icon.png`}>
+    <link rel="icon" type="image/png" sizes="32x32" href={`${base}favicon-32x32.png`}>
+    <link rel="icon" type="image/png" sizes="16x16" href={`${base}favicon-16x16.png`}>
+    <link rel="icon" href={`${base}favicon.ico`} sizes="any">
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`}>
+    <link rel="manifest" href={`${base}site.webmanifest`}>
 
     <!-- Fonts: Montserrat (Cyrillic + Latin headings) · Inter (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
