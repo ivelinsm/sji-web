@@ -13,24 +13,52 @@ const { variant = 'light' } = Astro.props;
       <slot name="logo" />
     </div>
 
-    <!-- Hidden checkbox powers the mobile toggle without JS -->
-    <input type="checkbox" id="nav-toggle" class="nav-toggle__input" aria-hidden="true" />
-    <label for="nav-toggle" class="nav-toggle__label" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="navbar-links navbar-actions"
+      data-nav-toggle
+    >
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="sr-only" data-i18n="nav.menu.aria">Меню</span>
+    </button>
 
-    <div class="navbar__links">
+    <div class="navbar__links" id="navbar-links">
       <slot name="links" />
     </div>
 
-    <div class="navbar__actions">
+    <div class="navbar__actions" id="navbar-actions">
       <slot name="actions" />
     </div>
 
   </div>
 </nav>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-nav-toggle]').forEach((btn) => {
+    const nav = btn.closest('.navbar');
+    if (!nav) return;
+
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle('navbar--open', open);
+      btn.setAttribute('aria-expanded', String(open));
+    };
+
+    btn.addEventListener('click', () => {
+      setOpen(!nav.classList.contains('navbar--open'));
+    });
+
+    nav.addEventListener('keydown', (e: Event) => {
+      if ((e as KeyboardEvent).key === 'Escape' && nav.classList.contains('navbar--open')) {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+  });
+</script>
 
 <style>
   .navbar {
@@ -93,20 +121,23 @@ const { variant = 'light' } = Astro.props;
     flex-shrink: 0;
   }
 
-  /* ── Mobile toggle (CSS-only) ───────────────────────────── */
-  .nav-toggle__input {
-    display: none;
+  /* ── Mobile toggle button ───────────────────────────────── */
+  .nav-toggle {
+    display:    none;
+    background: transparent;
+    border:     none;
+    color:      inherit;
+    cursor:     pointer;
+    padding:    var(--space-2);
   }
 
-  .nav-toggle__label {
-    display:        none;
-    flex-direction: column;
-    gap:            5px;
-    cursor:         pointer;
-    padding:        var(--space-2);
+  .nav-toggle:focus-visible {
+    outline:        2px solid var(--color-secondary);
+    outline-offset: 2px;
+    border-radius:  var(--radius-sm);
   }
 
-  .nav-toggle__label span {
+  .nav-toggle__bar {
     display:          block;
     width:            24px;
     height:           2px;
@@ -115,21 +146,17 @@ const { variant = 'light' } = Astro.props;
     transition:       transform var(--transition-base), opacity var(--transition-base);
   }
 
+  .nav-toggle__bar + .nav-toggle__bar {
+    margin-top: 5px;
+  }
+
   /* ── Responsive: Mobile ─────────────────────────────────── */
   @media (max-width: 768px) {
-    .nav-toggle__label {
-      display: flex;
-    }
-
-    .nav-toggle__label {
-    display: flex;
-    position: relative;
-    z-index: 20;
-    }
-
-    .navbar__links,
-    .navbar__actions {
-      z-index: 10;
+    .nav-toggle {
+      display:        flex;
+      flex-direction: column;
+      position:       relative;
+      z-index:        20;
     }
 
     .navbar__links,
@@ -139,16 +166,17 @@ const { variant = 'light' } = Astro.props;
       top:        72px;
       left:       0;
       right:      0;
-      width: 100%;
+      width:      100%;
       padding:    var(--space-5) var(--space-6);
-    }
-
-    .navbar___actions {
-      min-height: 74px;
+      z-index:    10;
     }
 
     .navbar__links {
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .navbar--light .navbar__links {
+      border-bottom-color: var(--color-border-light);
     }
 
     .navbar--light .navbar__links,
@@ -179,22 +207,22 @@ const { variant = 'light' } = Astro.props;
       flex-wrap:  wrap;
     }
 
-    /* When toggle is checked, show menu */
-    .nav-toggle__input:checked ~ .navbar__links,
-    .nav-toggle__input:checked ~ .navbar__actions {
+    /* When the menu is open, show links + actions */
+    .navbar--open .navbar__links,
+    .navbar--open .navbar__actions {
       display: flex;
     }
 
     /* Animate hamburger to X */
-    .nav-toggle__input:checked ~ .nav-toggle__label span:nth-child(1) {
+    .navbar--open .nav-toggle__bar:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
 
-    .nav-toggle__input:checked ~ .nav-toggle__label span:nth-child(2) {
+    .navbar--open .nav-toggle__bar:nth-child(2) {
       opacity: 0;
     }
 
-    .nav-toggle__input:checked ~ .nav-toggle__label span:nth-child(3) {
+    .navbar--open .nav-toggle__bar:nth-child(3) {
       transform: translateY(-7px) rotate(-45deg);
     }
   }
