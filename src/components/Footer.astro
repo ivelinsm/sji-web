@@ -150,6 +150,10 @@ const base = import.meta.env.BASE_URL;
     <div class="container">
       <p class="site-footer__copyright">
         <span data-i18n="footer.rights">{t(lang, 'footer.rights')}</span>
+        <span class="site-footer__legal-sep" aria-hidden="true">·</span>
+        <a href={`${base}privacy`} class="site-footer__legal-link">
+          <span data-i18n="privacy.link.label">{t(lang, 'privacy.link.label')}</span>
+        </a>
       </p>
     </div>
   </div>
@@ -355,6 +359,20 @@ const base = import.meta.env.BASE_URL;
     color:       rgba(255, 255, 255, 0.45);
     text-align:  center;
     margin:      0;
+  }
+
+  .site-footer__legal-sep {
+    margin-inline: var(--space-2);
+  }
+
+  .site-footer__legal-link {
+    color:           rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition:      color var(--transition-base);
+  }
+
+  .site-footer__legal-link:hover {
+    color: var(--color-white);
   }
 
   /* ── Responsive ───────────────────────────────────────────── */

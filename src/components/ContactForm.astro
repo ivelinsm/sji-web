@@ -3,6 +3,7 @@ import Button from './Button.astro';
 import { t } from '../i18n/utils';
 
 const lang = 'bg';
+const base = import.meta.env.BASE_URL;
 const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
 ---
 
@@ -151,6 +152,11 @@ const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
       </label>
       <p class="contact-form__error" data-error-for="consent" data-i18n="contact.form.consent.error">
         {t(lang, 'contact.form.consent.error')}
+      </p>
+      <p class="contact-form__privacy-note">
+        <a href={`${base}privacy`}>
+          <span data-i18n="privacy.link.label">{t(lang, 'privacy.link.label')}</span>
+        </a>
       </p>
     </div>
 
@@ -512,6 +518,17 @@ const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
     margin-top:  3px;
     accent-color: var(--color-primary);
     flex-shrink: 0;
+  }
+
+  .contact-form__privacy-note {
+    font-size:   var(--text-xs);
+    margin:      var(--space-1) 0 0;
+    padding-left: calc(18px + var(--space-3)); /* aligns under the consent text */
+  }
+
+  .contact-form__privacy-note a {
+    color:           var(--color-secondary-hover);
+    text-decoration: underline;
   }
 
   .contact-form__error {

@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/Button.astro';
+import Navbar from '../components/Navbar.astro';
+import NavLink from '../components/NavLink.astro';
+import LangSwitcher from '../components/LangSwitcher.astro';
+import Badge from '../components/Badge.astro';
+import Footer from '../components/Footer.astro';
+import { t } from '../i18n/utils';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.webp';
+
+const lang = 'bg';
+const base = import.meta.env.BASE_URL;
+
+type PrivacySection = { titleKey: string; bodyKey: string };
+const sections: PrivacySection[] = [
+  { titleKey: 'privacy.controller.title', bodyKey: 'privacy.controller.body' },
+  { titleKey: 'privacy.data.title',       bodyKey: 'privacy.data.body' },
+  { titleKey: 'privacy.purpose.title',    bodyKey: 'privacy.purpose.body' },
+  { titleKey: 'privacy.legal.title',      bodyKey: 'privacy.legal.body' },
+  { titleKey: 'privacy.processors.title', bodyKey: 'privacy.processors.body' },
+  { titleKey: 'privacy.retention.title',  bodyKey: 'privacy.retention.body' },
+  { titleKey: 'privacy.cookies.title',    bodyKey: 'privacy.cookies.body' },
+  { titleKey: 'privacy.rights.title',     bodyKey: 'privacy.rights.body' },
+  { titleKey: 'privacy.contact.title',    bodyKey: 'privacy.contact.body' },
+];
+---
+
+<Layout
+  title={t(lang, 'privacy.page.title')}
+  description={t(lang, 'privacy.page.description')}
+  titleKey="privacy.page.title"
+  descriptionKey="privacy.page.description"
+>
+
+  <!-- ── Navbar ─────────────────────────────────────────────── -->
+  <Navbar slot="header" variant="transparent">
+    <Image slot="logo" src={logo} alt="SJI" class="nav-logo" />
+    <NavLink slot="links" href={base}><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></NavLink>
+    <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
+    <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
+    <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
+    <Button slot="actions" variant="ghost-white" href={`${base}contact`} size="sm">
+      <span data-i18n="nav.cta.enquiry">{t(lang, 'nav.cta.enquiry')}</span>
+    </Button>
+    <LangSwitcher slot="actions" />
+  </Navbar>
+
+  <!-- ── Page hero ──────────────────────────────────────────── -->
+  <div class="page-hero">
+    <div class="page-hero__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="page-hero__inner">
+        <Badge variant="secondary">
+          <span data-i18n="privacy.hero.eyebrow">{t(lang, 'privacy.hero.eyebrow')}</span>
+        </Badge>
+        <h1 class="page-hero__title">
+          <span data-i18n="privacy.hero.title">{t(lang, 'privacy.hero.title')}</span>
+        </h1>
+        <p class="page-hero__updated">
+          <span data-i18n="privacy.updated">{t(lang, 'privacy.updated')}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Policy body ────────────────────────────────────────── -->
+  <section class="privacy-section">
+    <div class="container">
+      <div class="privacy-body">
+        <p class="privacy-intro">
+          <span data-i18n="privacy.intro.body">{t(lang, 'privacy.intro.body')}</span>
+        </p>
+
+        {sections.map((s) => (
+          <div class="privacy-block">
+            <h2 class="privacy-block__title">
+              <span data-i18n={s.titleKey}>{t(lang, s.titleKey)}</span>
+            </h2>
+            <p class="privacy-block__body">
+              <span data-i18n={s.bodyKey}>{t(lang, s.bodyKey)}</span>
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" lang={lang} />
+
+</Layout>
+
+<style>
+  .nav-logo {
+    height:     52px;
+    width:      auto;
+    display:    block;
+    object-fit: contain;
+  }
+
+  /* ── Page hero (matches contact page pattern) ───────────── */
+  .page-hero {
+    position:         relative;
+    background-color: var(--color-primary);
+    margin-top:       -72px;
+    padding-top:      calc(72px + var(--space-20));
+    padding-bottom:   var(--space-16);
+    overflow:         hidden;
+  }
+
+  .page-hero__bg {
+    position:   absolute;
+    inset:      0;
+    background: radial-gradient(ellipse at 80% 30%, rgba(39, 169, 216, 0.28) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .page-hero .container {
+    position: relative;
+    z-index:  1;
+  }
+
+  .page-hero__inner {
+    max-width: 640px;
+  }
+
+  .page-hero__title {
+    font-family:   var(--font-heading);
+    font-weight:   var(--font-weight-bold);
+    font-size:     var(--text-5xl);
+    color:         var(--color-white);
+    line-height:   var(--leading-tight);
+    margin-top:    var(--space-4);
+    margin-bottom: 0;
+  }
+
+  .page-hero__updated {
+    font-size:   var(--text-sm);
+    color:       rgba(255, 255, 255, 0.65);
+    margin-top:  var(--space-4);
+  }
+
+  /* ── Policy body ────────────────────────────────────────── */
+  .privacy-section {
+    background-color: var(--color-bg);
+    padding-block:    var(--space-20);
+  }
+
+  .privacy-body {
+    max-width:     768px;
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-10);
+    box-shadow:    var(--shadow-sm);
+  }
+
+  .privacy-intro {
+    font-size:     var(--text-lg);
+    color:         var(--color-text);
+    line-height:   var(--leading-relaxed);
+    margin-bottom: var(--space-8);
+  }
+
+  .privacy-block + .privacy-block {
+    margin-top: var(--space-8);
+  }
+
+  .privacy-block__title {
+    font-family:  var(--font-heading);
+    font-weight:  var(--font-weight-semibold);
+    font-size:    var(--text-xl);
+    color:        var(--color-primary);
+    line-height:  var(--leading-tight);
+    margin:       0 0 var(--space-3);
+  }
+
+  .privacy-block__body {
+    font-size:   var(--text-base);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .page-hero__title { font-size: var(--text-4xl); }
+    .privacy-section  { padding-block: var(--space-16); }
+    .privacy-body     { padding: var(--space-6); }
+  }
+</style>
