@@ -22,7 +22,12 @@ const base = import.meta.env.BASE_URL;
 const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
 ---
 
-<Layout title={t(lang, 'about.page.title')} description={t(lang, 'about.page.description')}>
+<Layout
+  title={t(lang, 'about.page.title')}
+  description={t(lang, 'about.page.description')}
+  titleKey="about.page.title"
+  descriptionKey="about.page.description"
+>
 
   <!-- ── Navbar ─────────────────────────────────────────────── -->
   <Navbar slot="header" variant="transparent">

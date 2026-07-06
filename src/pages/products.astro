@@ -33,7 +33,12 @@ const base = import.meta.env.BASE_URL;
 const bottlesImg = await getImage({ src: bottlesRaw });
 ---
 
-<Layout title={t(lang, 'products.page.title')} description={t(lang, 'products.page.description')}>
+<Layout
+  title={t(lang, 'products.page.title')}
+  description={t(lang, 'products.page.description')}
+  titleKey="products.page.title"
+  descriptionKey="products.page.description"
+>
 
   <!-- ── Navbar ─────────────────────────────────────────────── -->
   <Navbar slot="header" variant="transparent">

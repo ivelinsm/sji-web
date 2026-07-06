@@ -14,7 +14,12 @@ const lang = 'bg';
 const base = import.meta.env.BASE_URL;
 ---
 
-<Layout title={t(lang, 'meta.404.title')} description={t(lang, 'meta.404.description')}>
+<Layout
+  title={t(lang, 'meta.404.title')}
+  description={t(lang, 'meta.404.description')}
+  titleKey="meta.404.title"
+  descriptionKey="meta.404.description"
+>
 
   <!-- ── Navbar ─────────────────────────────────────────────── -->
   <Navbar slot="header" variant="transparent">

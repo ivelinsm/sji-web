@@ -2,12 +2,17 @@
 import '../styles/global.css';
 import bg from '../i18n/bg.json';
 import en from '../i18n/en.json';
+import logo from '../assets/logo.webp';
 
 interface Props {
   title: string;
   description?: string;
   ogImage?: string;
   ogType?: string;
+  /** i18n keys for this page's title/description so the runtime language
+      switcher swaps to the page-specific values, not the homepage ones. */
+  titleKey?: string;
+  descriptionKey?: string;
 }
 
 const base = import.meta.env.BASE_URL;
@@ -15,18 +20,30 @@ const base = import.meta.env.BASE_URL;
 const {
   title,
   description = bg['meta.description'],
-  ogImage = `${base}og-image.webp`,
+  ogImage = `${base}og-image.jpg`,
   ogType = 'website',
+  titleKey = 'meta.title',
+  descriptionKey = 'meta.description',
 } = Astro.props;
 
 const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : null;
 // Social platforms require absolute URLs for og:image / twitter:image.
 const ogImageURL = Astro.site ? new URL(ogImage, Astro.site).toString() : ogImage;
 const translations = { bg, en };
+
+const orgSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'СЖИ Груп ЕООД',
+  alternateName: 'SJI Group Ltd',
+  url: Astro.site ? Astro.site.toString() : 'https://sjigrup.com/',
+  logo: Astro.site ? new URL(logo.src, Astro.site).toString() : logo.src,
+  sameAs: ['https://www.facebook.com/aquavivawater/'],
+});
 ---
 
 <!doctype html>
-<html lang="bg" data-lang="bg">
+<html lang="bg" data-lang="bg" data-title-key={titleKey} data-desc-key={descriptionKey}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -51,7 +68,12 @@ const translations = { bg, en };
     <meta property="og:description" content={description} />
     <meta property="og:image"       content={ogImageURL} />
     <meta property="og:type"        content={ogType} />
+    <meta property="og:site_name"   content="СЖИ Груп" />
+    <meta property="og:locale"      content="bg_BG" />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={orgSchema} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
@@ -110,10 +132,14 @@ const translations = { bg, en };
           localStorage.setItem('sji-lang', lang);
           window.__lang = lang;
 
-          if (t['meta.title'])       document.title = t['meta.title'];
-          if (t['meta.description']) {
+          // Swap to this page's own title/description keys (set by Layout props),
+          // falling back to the site-wide meta keys.
+          var titleKey = document.documentElement.getAttribute('data-title-key') || 'meta.title';
+          var descKey  = document.documentElement.getAttribute('data-desc-key')  || 'meta.description';
+          if (t[titleKey]) document.title = t[titleKey];
+          if (t[descKey]) {
             var metaDesc = document.querySelector('meta[name="description"]');
-            if (metaDesc) metaDesc.setAttribute('content', t['meta.description']);
+            if (metaDesc) metaDesc.setAttribute('content', t[descKey]);
           }
 
           // Update all switcher labels
