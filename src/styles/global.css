@@ -20,7 +20,7 @@
   --color-border:       #A6A6A6;
   --color-border-light: #E0E0E0;
   --color-text:         #333333;
-  --color-text-muted:   #A6A6A6;
+  --color-text-muted:   #5C6B7A; /* AA-compliant on white (was #A6A6A6, 2.3:1) */
   --color-white:        #FFFFFF;
 
   /* ── Colors: Accent (use sparingly) ───────────────────── */
