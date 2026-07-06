@@ -533,7 +533,7 @@ const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
 
   .contact-form__error {
     font-size: var(--text-xs);
-    color:     var(--color-accent);
+    color:     var(--color-error);
     margin:    0;
     display:   none;
   }
@@ -569,7 +569,7 @@ const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
   }
 
   .contact-form__status[data-kind="error"] {
-    color: var(--color-accent);
+    color: var(--color-error);
   }
 
   @media (max-width: 640px) {

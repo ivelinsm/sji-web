@@ -1,0 +1,71 @@
+---
+import Badge from './Badge.astro';
+import { t } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+  eyebrowKey?: string;
+  titleKey: string;
+  subtitleKey?: string;
+}
+
+const { lang = 'bg', eyebrowKey, titleKey, subtitleKey } = Astro.props;
+---
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__inner">
+      {eyebrowKey && (
+        <Badge variant="secondary">
+          <span data-i18n={eyebrowKey}>{t(lang, eyebrowKey)}</span>
+        </Badge>
+      )}
+      <h1 class="page-hero__title">
+        <span data-i18n={titleKey}>{t(lang, titleKey)}</span>
+      </h1>
+      {subtitleKey && (
+        <p class="page-hero__subtitle">
+          <span data-i18n={subtitleKey}>{t(lang, subtitleKey)}</span>
+        </p>
+      )}
+      <slot name="extra" />
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Light, water-derived hero: daylight instead of dark overlays. */
+  .page-hero {
+    background: linear-gradient(180deg, var(--color-tint) 0%, var(--color-bg) 100%);
+    padding-block: var(--space-16) var(--space-12);
+  }
+
+  .page-hero__inner {
+    max-width: 760px;
+  }
+
+  .page-hero__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-5xl);
+    line-height:    var(--leading-none);
+    letter-spacing: -0.015em;
+    color:          var(--color-primary);
+    margin:         var(--space-4) 0 0;
+  }
+
+  .page-hero__subtitle {
+    font-size:   var(--text-lg);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin-top:  var(--space-4);
+    max-width:   62ch;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero {
+      padding-block: var(--space-12) var(--space-10);
+    }
+  }
+</style>

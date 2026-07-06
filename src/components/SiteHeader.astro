@@ -1,0 +1,49 @@
+---
+import Navbar from './Navbar.astro';
+import NavLink from './NavLink.astro';
+import Button from './Button.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.webp';
+import { t } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'bg' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<Navbar variant="light">
+  <a slot="logo" href={base} class="site-logo" aria-label="СЖИ - Начало">
+    <Image src={logo} alt="СЖИ" class="site-logo__img" />
+  </a>
+
+  <NavLink slot="links" href={base}><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></NavLink>
+  <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
+  <NavLink slot="links" href={`${base}kachestvo`}><span data-i18n="nav.quality">{t(lang, 'nav.quality')}</span></NavLink>
+  <NavLink slot="links" href={`${base}b2b`}><span data-i18n="nav.b2b">{t(lang, 'nav.b2b')}</span></NavLink>
+  <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
+  <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
+
+  <Button slot="actions" variant="primary" size="sm" href={`${base}uslugi`}>
+    <span data-i18n="nav.cta.order">{t(lang, 'nav.cta.order')}</span>
+  </Button>
+  <LangSwitcher slot="actions" />
+</Navbar>
+
+<style>
+  .site-logo {
+    display:     block;
+    line-height: 0;
+  }
+
+  .site-logo :global(.site-logo__img) {
+    height:     48px;
+    width:      auto;
+    display:    block;
+    object-fit: contain;
+  }
+</style>
