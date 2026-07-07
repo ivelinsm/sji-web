@@ -1,14 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Button from '../components/Button.astro';
-import Navbar from '../components/Navbar.astro';
-import NavLink from '../components/NavLink.astro';
-import LangSwitcher from '../components/LangSwitcher.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Badge from '../components/Badge.astro';
 import Footer from '../components/Footer.astro';
 import { t } from '../i18n/utils';
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.webp';
 
 const lang = 'bg';
 const base = import.meta.env.BASE_URL;
@@ -21,25 +17,10 @@ const base = import.meta.env.BASE_URL;
   descriptionKey="meta.404.description"
 >
 
-  <!-- ── Navbar ─────────────────────────────────────────────── -->
-  <Navbar slot="header" variant="transparent">
-    <Image slot="logo" src={logo} alt="SJI" class="nav-logo" />
-    <NavLink slot="links" href={base}><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></NavLink>
-    <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
-    <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
-    <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
-    <Button slot="actions" variant="ghost" href={`${base}contact`} size="sm">
-      <span data-i18n="nav.cta.enquiry">{t(lang, 'nav.cta.enquiry')}</span>
-    </Button>
-    <LangSwitcher slot="actions" />
-  </Navbar>
+  <SiteHeader slot="header" lang={lang} />
 
   <!-- ── Hero ───────────────────────────────────────────────── -->
   <section class="nf-hero">
-    <span class="nf-hero__bg" aria-hidden="true"></span>
-    <span class="nf-hero__glow nf-hero__glow--a" aria-hidden="true"></span>
-    <span class="nf-hero__glow nf-hero__glow--b" aria-hidden="true"></span>
-
     <div class="container nf-hero__inner">
       <Badge variant="secondary">
         <span data-i18n="error.404.badge">404</span>
@@ -104,57 +85,14 @@ const base = import.meta.env.BASE_URL;
 </Layout>
 
 <style>
-  .nav-logo {
-    height:     52px;
-    width:      auto;
-    display:    block;
-    object-fit: contain;
-  }
-
   /* ── Hero ─────────────────────────────────────────────────── */
   .nf-hero {
     position:         relative;
     background-color: var(--color-primary);
     color:            var(--color-white);
-    margin-top:       -72px;
-    padding-top:      calc(72px + var(--space-24));
-    padding-bottom:   var(--space-24);
+    padding-block:    var(--space-24);
     overflow:         hidden;
     text-align:       center;
-  }
-
-  .nf-hero__bg {
-    position:   absolute;
-    inset:      0;
-    background:
-      radial-gradient(ellipse at 80% 30%, rgba(39, 169, 216, 0.28) 0%, transparent 60%),
-      radial-gradient(ellipse at 10% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 55%);
-    pointer-events: none;
-  }
-
-  .nf-hero__glow {
-    position: absolute;
-    border-radius: 50%;
-    filter:   blur(80px);
-    opacity:  0.55;
-    pointer-events: none;
-  }
-
-  .nf-hero__glow--a {
-    width:  420px;
-    height: 420px;
-    background: var(--color-secondary);
-    top:   -120px;
-    left:  -120px;
-  }
-
-  .nf-hero__glow--b {
-    width:  360px;
-    height: 360px;
-    background: var(--color-accent);
-    bottom: -140px;
-    right:  -100px;
-    opacity: 0.28;
   }
 
   .nf-hero__inner {
@@ -257,7 +195,7 @@ const base = import.meta.env.BASE_URL;
 
   /* ── Responsive ───────────────────────────────────────────── */
   @media (max-width: 768px) {
-    .nf-hero          { padding-top: calc(72px + var(--space-16)); padding-bottom: var(--space-16); }
+    .nf-hero          { padding-block: var(--space-16); }
     .nf-hero__title   { font-size: var(--text-4xl); }
     .nf-hero__digits  { font-size: 220px; }
   }
