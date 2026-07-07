@@ -1,326 +1,679 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Button from '../components/Button.astro';
-import Heading from '../components/Heading.astro';
-import Navbar from '../components/Navbar.astro';
-import NavLink from '../components/NavLink.astro';
-import LangSwitcher from '../components/LangSwitcher.astro';
-import ServicesSection from '../components/ServicesSection.astro';
-import FiltrationSection from '../components/FiltrationSection.astro';
-import ProductShowcase from '../components/ProductShowcase.astro';
-import PrivateLabelSection from '../components/PrivateLabelSection.astro';
+import Badge from '../components/Badge.astro';
+import ProductCard from '../components/ProductCard.astro';
 import HaccpBadge from '../components/HaccpBadge.astro';
+import Footer from '../components/Footer.astro';
 import { t } from '../i18n/utils';
 import { Image } from 'astro:assets';
-import logo from '../assets/logo.webp';
-import Footer from '../components/Footer.astro';
+
+import heroBottle from '../assets/aqua-viva-bottle.webp';
+import qualityPhoto from '../assets/phase5.webp';
 
 const lang = 'bg';
 const base = import.meta.env.BASE_URL;
+
+const featured = (await getCollection('products', (p) => p.data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 4);
+
+const proofs = [
+  { valueKey: 'home.proof.years.value',  labelKey: 'home.proof.years.label',  bodyKey: 'home.proof.years.body',  href: `${base}about` },
+  { valueKey: 'home.proof.params.value', labelKey: 'home.proof.params.label', bodyKey: 'home.proof.params.body', href: `${base}kachestvo#lab` },
+  { valueKey: 'home.proof.haccp.value',  labelKey: 'home.proof.haccp.label',  bodyKey: 'home.proof.haccp.body',  href: `${base}kachestvo` },
+];
 ---
 
 <Layout title={t(lang, 'meta.title')} description={t(lang, 'meta.description')}>
 
-  <!-- ── Sticky transparent navbar ─────────────────────────── -->
-  <Navbar slot="header" variant="transparent">
-    <Image slot="logo" src={logo} alt="SJI" class="hero-logo" />
-    <NavLink slot="links" href={base}><span data-i18n="nav.home">Начало</span></NavLink>
-    <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">Продукти</span></NavLink>
-    <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">За нас</span></NavLink>
-    <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">Контакти</span></NavLink>
-    <Button slot="actions" variant="ghost-white" href={`${base}contact`} size="sm">
-      <span data-i18n="nav.cta.enquiry">Бизнес запитване</span>
-    </Button>
-    <LangSwitcher slot="actions" />
-  </Navbar>
+  <SiteHeader slot="header" lang={lang} />
 
-  <!-- ── Full-viewport hero ──────────────────────────────────── -->
-  <div class="hero" style={`--hero-image: url('${base}images/hero.webp')`}>
+  <!-- ── Hero: one claim, one bottle, daylight ──────────────── -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <Badge variant="secondary">
+          <span data-i18n="hero.badge">{t(lang, 'hero.badge')}</span>
+        </Badge>
 
-    <!-- Main hero content -->
-    <div class="hero__body">
-      <div class="container">
-        <div class="hero__content">
-          <div class="hero__trust">
-            <HaccpBadge variant="dark" size="sm" lang={lang} />
-          </div>
-          <Heading level={1} color="white">
-            <span data-i18n="hero.title">Чисто. Освежаващо. Твоето.</span>
-          </Heading>
-          <p class="hero__subtitle">
-            <span data-i18n="hero.description">Премиум бутилирана вода и безалкохолни напитки за всеки момент - от ежедневна хидратация до бизнес партньорства.</span>
+        <h1 class="hero__title">
+          <span data-i18n="hero.title">{t(lang, 'hero.title')}</span>
+        </h1>
+
+        <p class="hero__subtitle">
+          <span data-i18n="hero.description">{t(lang, 'hero.description')}</span>
+        </p>
+
+        <div class="hero__cta">
+          <Button variant="primary" size="lg" href={`${base}uslugi`}>
+            <span data-i18n="nav.cta.order">{t(lang, 'nav.cta.order')}</span>
+          </Button>
+          <Button variant="ghost" size="lg" href={`${base}b2b`}>
+            <span data-i18n="hero.cta.forbusiness">{t(lang, 'hero.cta.forbusiness')}</span>
+          </Button>
+        </div>
+
+        <p class="hero__kicker">
+          <span data-i18n="hero.kicker">{t(lang, 'hero.kicker')}</span>
+        </p>
+      </div>
+
+      <div class="hero__media">
+        <Image
+          src={heroBottle}
+          alt="Бутилка Aqua Viva 1.5 л на дневна светлина"
+          widths={[480, 720, 1073]}
+          sizes="(max-width: 900px) 92vw, 520px"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Proof bar: three verifiable claims ─────────────────── -->
+  <section class="proof">
+    <div class="container">
+      <div class="proof__grid">
+        {proofs.map((p) => (
+          <a href={p.href} class="proof__item">
+            <span class="proof__value" data-i18n={p.valueKey}>{t(lang, p.valueKey)}</span>
+            <span class="proof__label" data-i18n={p.labelKey}>{t(lang, p.labelKey)}</span>
+            <span class="proof__body" data-i18n={p.bodyKey}>{t(lang, p.bodyKey)}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Two paths: home/office vs business ─────────────────── -->
+  <section class="paths">
+    <div class="container">
+      <h2 class="paths__title">
+        <span data-i18n="home.paths.title">{t(lang, 'home.paths.title')}</span>
+      </h2>
+
+      <div class="paths__grid">
+        <article class="path-card">
+          <h3 class="path-card__title">
+            <span data-i18n="home.paths.home.title">{t(lang, 'home.paths.home.title')}</span>
+          </h3>
+          <p class="path-card__body">
+            <span data-i18n="home.paths.home.body">{t(lang, 'home.paths.home.body')}</span>
           </p>
-          <div class="hero__cta">
-            <Button variant="ghost-white-primary" href={`${base}products`}>
-              <span data-i18n="hero.cta.forhome">За дома и офиса</span> <!-- Za doma i ofisa -->
-            </Button>
-            <Button variant="ghost-white" href={`${base}products#b2b`}>
-              <span data-i18n="hero.cta.forbusiness">За бизнеса</span> <!-- Za biznesa -->
-            </Button>
-          </div>
+          <ul class="path-card__list" role="list">
+            {[1, 2, 3].map((n) => (
+              <li>
+                <span class="path-card__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                    <path d="M4 9.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span data-i18n={`home.paths.home.item${n}`}>{t(lang, `home.paths.home.item${n}`)}</span>
+              </li>
+            ))}
+          </ul>
+          <Button variant="primary" href={`${base}uslugi`}>
+            <span data-i18n="home.paths.home.cta">{t(lang, 'home.paths.home.cta')}</span>
+          </Button>
+        </article>
+
+        <article class="path-card path-card--business">
+          <h3 class="path-card__title">
+            <span data-i18n="home.paths.business.title">{t(lang, 'home.paths.business.title')}</span>
+          </h3>
+          <p class="path-card__body">
+            <span data-i18n="home.paths.business.body">{t(lang, 'home.paths.business.body')}</span>
+          </p>
+          <ul class="path-card__list" role="list">
+            {[1, 2, 3].map((n) => (
+              <li>
+                <span class="path-card__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 18 18" fill="none">
+                    <path d="M4 9.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span data-i18n={`home.paths.business.item${n}`}>{t(lang, `home.paths.business.item${n}`)}</span>
+              </li>
+            ))}
+          </ul>
+          <Button variant="ghost-white" href={`${base}b2b`}>
+            <span data-i18n="home.paths.business.cta">{t(lang, 'home.paths.business.cta')}</span>
+          </Button>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Featured products ──────────────────────────────────── -->
+  <section class="featured">
+    <div class="container">
+      <header class="featured__header">
+        <span class="eyebrow" data-i18n="home.featured.eyebrow">{t(lang, 'home.featured.eyebrow')}</span>
+        <h2 class="featured__title">
+          <span data-i18n="home.featured.title">{t(lang, 'home.featured.title')}</span>
+        </h2>
+        <p class="featured__subtitle">
+          <span data-i18n="home.featured.subtitle">{t(lang, 'home.featured.subtitle')}</span>
+        </p>
+      </header>
+
+      <div class="featured__grid">
+        {featured.map((p) => (
+          <ProductCard product={p} lang={lang} />
+        ))}
+      </div>
+
+      <div class="featured__cta">
+        <Button variant="ghost" href={`${base}products`}>
+          <span data-i18n="home.featured.cta">{t(lang, 'home.featured.cta')}</span>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quality teaser ─────────────────────────────────────── -->
+  <section class="quality">
+    <div class="container quality__inner">
+      <div class="quality__media">
+        <Image
+          src={qualityPhoto}
+          alt=""
+          widths={[480, 720, 960]}
+          sizes="(max-width: 900px) 92vw, 560px"
+          loading="lazy"
+        />
+      </div>
+      <div class="quality__text">
+        <span class="eyebrow" data-i18n="home.quality.eyebrow">{t(lang, 'home.quality.eyebrow')}</span>
+        <h2 class="quality__title">
+          <span data-i18n="home.quality.title">{t(lang, 'home.quality.title')}</span>
+        </h2>
+        <p class="quality__body">
+          <span data-i18n="home.quality.body">{t(lang, 'home.quality.body')}</span>
+        </p>
+        <div class="quality__row">
+          <Button variant="primary" href={`${base}kachestvo`}>
+            <span data-i18n="home.quality.cta">{t(lang, 'home.quality.cta')}</span>
+          </Button>
+          <HaccpBadge lang={lang} size="sm" />
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Stats strip -->
-    <div class="hero__stats">
-      <div class="container">
-        <div class="hero__stats-grid">
+  <!-- ── Private label teaser ───────────────────────────────── -->
+  <section class="label-teaser">
+    <div class="container label-teaser__inner">
+      <div class="label-teaser__text">
+        <span class="eyebrow" data-i18n="home.label.eyebrow">{t(lang, 'home.label.eyebrow')}</span>
+        <h2 class="label-teaser__title">
+          <span data-i18n="home.label.title">{t(lang, 'home.label.title')}</span>
+        </h2>
+        <p class="label-teaser__body">
+          <span data-i18n="home.label.body">{t(lang, 'home.label.body')}</span>
+        </p>
+      </div>
+      <Button variant="ghost" href={`${base}b2b#label`}>
+        <span data-i18n="home.label.cta">{t(lang, 'home.label.cta')}</span>
+      </Button>
+    </div>
+  </section>
 
-          <div class="hero__stat">
-            <span class="hero__stat-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M16 4C16 4 7 13 7 19a9 9 0 0 0 18 0c0-6-9-15-9-15z" stroke="white" stroke-width="1.75" stroke-linejoin="round" fill="none" opacity="0.85"/>
-              </svg>
-            </span>
-            <div>
-              <p class="hero__stat-title"><span data-i18n="hero.stat1.title">Премиум качество</span></p>
-              <p class="hero__stat-body"><span data-i18n="hero.stat1.body">Пречистено до съвършенство</span></p>
-            </div>
-          </div>
-
-          <div class="hero__stat">
-            <span class="hero__stat-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M16 4l10 4v8c0 6-4 10-10 12C10 26 6 22 6 16V8l10-4z" stroke="white" stroke-width="1.75" stroke-linejoin="round" fill="none" opacity="0.85"/>
-                <path d="M12 16l3 3 5-5" stroke="white" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <div>
-              <p class="hero__stat-title"><span data-i18n="hero.stat2.title">Безопасност на храните</span></p>
-              <p class="hero__stat-body"><span data-i18n="hero.stat2.body">Международни стандарти</span></p>
-            </div>
-          </div>
-
-          <div class="hero__stat">
-            <span class="hero__stat-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <path d="M16 28C9 28 5 22 5 16S9 4 16 4s11 6 11 12" stroke="white" stroke-width="1.75" stroke-linecap="round" fill="none" opacity="0.85"/>
-                <path d="M16 4c4 4 6 8 6 12" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
-                <path d="M9 28c0-6 4-12 7-14" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <div>
-              <p class="hero__stat-title"><span data-i18n="hero.stat3.title">Устойчиви практики</span></p>
-              <p class="hero__stat-body"><span data-i18n="hero.stat3.body">Грижа за нашата планета</span></p>
-            </div>
-          </div>
-
-          <div class="hero__stat">
-            <span class="hero__stat-icon" aria-hidden="true">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                <circle cx="12" cy="10" r="4" stroke="white" stroke-width="1.75" fill="none" opacity="0.85"/>
-                <circle cx="22" cy="10" r="4" stroke="white" stroke-width="1.75" fill="none" opacity="0.85"/>
-                <path d="M4 26c0-4 4-7 8-7" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
-                <path d="M14 26c0-4 4-7 8-7s8 3 8 7" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
-              </svg>
-            </span>
-            <div>
-              <p class="hero__stat-title"><span data-i18n="hero.stat4.title">Надежден партньор</span></p>
-              <p class="hero__stat-body"><span data-i18n="hero.stat4.body">Надежден. Последователен. Глобален.</span></p>
-            </div>
-          </div>
-
-        </div>
+  <!-- ── Closing CTA ────────────────────────────────────────── -->
+  <section class="closing">
+    <div class="container closing__inner">
+      <h2 class="closing__title">
+        <span data-i18n="home.cta.title">{t(lang, 'home.cta.title')}</span>
+      </h2>
+      <p class="closing__body">
+        <span data-i18n="home.cta.body">{t(lang, 'home.cta.body')}</span>
+      </p>
+      <div class="closing__actions">
+        <Button variant="primary" size="lg" href={`${base}uslugi`}>
+          <span data-i18n="nav.cta.order">{t(lang, 'nav.cta.order')}</span>
+        </Button>
+        <Button variant="ghost" size="lg" href={`${base}contact`}>
+          <span data-i18n="home.cta.secondary">{t(lang, 'home.cta.secondary')}</span>
+        </Button>
       </div>
     </div>
-  </div>
-
-  <!-- ── Services section ────────────────────────────────────── -->
-  <ServicesSection lang={lang} />
-
-  <!-- ── 6-stage filtration scrollytelling ───────────────────── -->
-  <FiltrationSection lang={lang} />
-
-  <!-- ── Products section ────────────────────────────────────── -->
-  <ProductShowcase lang={lang} />
-
-  <!-- ── Private label / production under your brand ─────────── -->
-  <PrivateLabelSection />
+  </section>
 
   <Footer slot="footer" lang={lang} />
 
 </Layout>
 
 <style>
-  /* ── Hero wrapper ─────────────────────────────────────────── */
+  .eyebrow {
+    display:        inline-block;
+    font-size:      var(--text-xs);
+    font-weight:    var(--font-weight-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color:          var(--color-secondary-hover);
+    margin-bottom:  var(--space-3);
+  }
+
+  /* ── Hero ───────────────────────────────────────────────── */
   .hero {
-    position:            relative;
-    min-height:          100vh;
-    margin-top:          -72px;
-    display:             flex;
-    flex-direction:      column;
-    background-image:
-      linear-gradient(to bottom, rgba(8, 18, 55, 0.52) 0%, rgba(8, 18, 55, 0.68) 100%),
-      var(--hero-image);
-    background-size:     100% 100%, cover;
-    background-position: center, center;
-    background-repeat:   no-repeat;
-    background-color:    var(--color-primary-dark);
+    background: linear-gradient(180deg, var(--color-tint) 0%, var(--color-bg) 100%);
+    overflow:   hidden;
   }
 
-  /* ── Logo image in transparent navbar ────────────────────── */
-  .hero-logo {
-    height:      72px;
-    width:       auto;
-    display:     block;
-    object-fit:  contain;
+  .hero__inner {
+    display:               grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap:                   var(--space-16);
+    align-items:           center;
+    padding-block:         var(--space-16) var(--space-20);
   }
 
-  /* ── Hero body (main content area) ───────────────────────── */
-  .hero__body {
-    flex:            1;
-    display:         flex;
-    align-items:     center;
-    padding-top:     72px; /* accounts for navbar height */
-    padding-bottom:  var(--space-20);
-  }
-
-  .hero__content {
-    max-width: 580px;
+  .hero__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-6xl);
+    line-height:    var(--leading-none);
+    letter-spacing: -0.02em;
+    color:          var(--color-primary);
+    margin:         var(--space-5) 0 0;
+    max-width:      14ch;
   }
 
   .hero__subtitle {
-    color:       rgba(255, 255, 255, 0.80);
     font-size:   var(--text-xl);
-    margin-top:  var(--space-5);
+    color:       var(--color-text);
     line-height: var(--leading-relaxed);
+    margin-top:  var(--space-5);
+    max-width:   52ch;
   }
 
   .hero__cta {
-    display: flex;
-    gap: var(--space-6);
-    margin-top: var(--space-10);
+    display:    flex;
+    flex-wrap:  wrap;
+    gap:        var(--space-4);
+    margin-top: var(--space-8);
   }
 
-  .hero__trust {
-    margin-bottom: var(--space-5);
+  .hero__kicker {
+    margin-top:     var(--space-8);
+    padding-top:    var(--space-5);
+    border-top:     1px solid var(--color-border-light);
+    font-size:      var(--text-sm);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color:          var(--color-text-muted);
+    font-weight:    var(--font-weight-medium);
   }
 
-  /* ── Stats pill ───────────────────────────────────────────── */
-  .hero__stats {
-    padding-bottom: var(--space-8);
+  .hero__media {
+    justify-self: center;
   }
 
-  .hero__stats-grid {
+  .hero__media :global(img) {
+    width:         100%;
+    max-width:     440px;
+    height:        auto;
+    border-radius: var(--radius-2xl);
+    box-shadow:    0 24px 64px rgba(18, 37, 74, 0.16);
+    display:       block;
+  }
+
+  /* ── Proof bar ──────────────────────────────────────────── */
+  .proof {
+    background:    var(--color-surface);
+    border-block:  1px solid var(--color-border-light);
+    padding-block: var(--space-12);
+  }
+
+  .proof__grid {
+    display:               grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:                   var(--space-10);
+  }
+
+  .proof__item {
+    display:         block;
+    text-decoration: none;
+    padding-left:    var(--space-5);
+    border-left:     2px solid var(--color-secondary);
+  }
+
+  .proof__value {
+    display:        block;
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    line-height:    var(--leading-none);
+    letter-spacing: -0.02em;
+    color:          var(--color-primary);
+  }
+
+  .proof__label {
+    display:     block;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size:   var(--text-base);
+    color:       var(--color-text);
+    margin-top:  var(--space-2);
+  }
+
+  .proof__body {
+    display:     block;
+    font-size:   var(--text-sm);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin-top:  var(--space-2);
+  }
+
+  .proof__item:hover .proof__value {
+    color: var(--color-secondary-hover);
+  }
+
+  /* ── Paths ──────────────────────────────────────────────── */
+  .paths {
+    background:    var(--color-bg);
+    padding-block: var(--space-20);
+  }
+
+  .paths__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    letter-spacing: -0.01em;
+    margin:         0 0 var(--space-10);
+  }
+
+  .paths__grid {
+    display:               grid;
+    grid-template-columns: 1fr 1fr;
+    gap:                   var(--space-6);
+  }
+
+  .path-card {
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-xl);
+    padding:       var(--space-10);
+    display:       flex;
+    flex-direction: column;
+    align-items:   flex-start;
+  }
+
+  .path-card--business {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .path-card__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-2xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    margin:         0 0 var(--space-3);
+  }
+
+  .path-card--business .path-card__title {
+    color: var(--color-white);
+  }
+
+  .path-card__body {
+    font-size:   var(--text-base);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0 0 var(--space-6);
+  }
+
+  .path-card--business .path-card__body {
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .path-card__list {
+    list-style:     none;
+    margin:         0 0 var(--space-8);
+    padding:        0;
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--space-3);
+    flex:           1;
+  }
+
+  .path-card__list li {
+    display:     flex;
+    align-items: flex-start;
+    gap:         var(--space-3);
+    font-size:   var(--text-sm);
+    color:       var(--color-text);
+  }
+
+  .path-card--business .path-card__list li {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .path-card__check {
+    flex-shrink:     0;
+    width:           20px;
+    height:          20px;
+    border-radius:   var(--radius-full);
+    background:      var(--color-secondary-light);
+    color:           var(--color-secondary-hover);
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    margin-top:      1px;
+  }
+
+  .path-card--business .path-card__check {
+    background: rgba(255, 255, 255, 0.14);
+    color:      var(--color-secondary);
+  }
+
+  /* ── Featured products ──────────────────────────────────── */
+  .featured {
+    background:    var(--color-surface);
+    padding-block: var(--space-20);
+  }
+
+  .featured__header {
+    max-width:     640px;
+    margin-bottom: var(--space-10);
+  }
+
+  .featured__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    letter-spacing: -0.01em;
+    margin:         0 0 var(--space-3);
+  }
+
+  .featured__subtitle {
+    font-size:   var(--text-lg);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  .featured__grid {
     display:               grid;
     grid-template-columns: repeat(4, 1fr);
-    padding:               var(--space-5) var(--space-6);
-    background-color:      rgba(12, 28, 80, 0.62);
-    backdrop-filter:       blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border:                1px solid rgba(255, 255, 255, 0.15);
-    border-radius:         9999px;
+    gap:                   var(--space-6);
   }
 
-  .hero__stat {
-    display:      flex;
-    gap:          var(--space-3);
-    align-items:  flex-start;
-    padding:      0 var(--space-8);
-    border-left:  1px solid rgba(255, 255, 255, 0.18);
-    color:        var(--color-white);
+  .featured__cta {
+    margin-top: var(--space-10);
+    text-align: center;
   }
 
-  .hero__stat:first-child {
-    border-left:  none;
-    padding-left: var(--space-4);
+  /* ── Quality teaser ─────────────────────────────────────── */
+  .quality {
+    background:    var(--color-bg);
+    padding-block: var(--space-20);
   }
 
-  .hero__stat:last-child {
-    padding-right: var(--space-4);
+  .quality__inner {
+    display:               grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap:                   var(--space-16);
+    align-items:           center;
   }
 
-  .hero__stat-icon {
-    flex-shrink: 0;
-    margin-top:  var(--space-1);
+  .quality__media {
+    border-radius: var(--radius-2xl);
+    overflow:      hidden;
+    aspect-ratio:  4 / 3;
+    background:    var(--color-tint);
   }
 
-  .hero__stat-title {
-    font-family:     var(--font-heading);
-    font-weight:     var(--font-weight-semibold);
-    font-size:       var(--text-sm);
-    text-transform:  uppercase;
-    letter-spacing:  0.06em;
-    color:           var(--color-white);
-    line-height:     var(--leading-tight);
+  .quality__media :global(img) {
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    display:    block;
   }
 
-  .hero__stat-body {
-    font-size:  var(--text-sm);
-    color:      rgba(255, 255, 255, 0.62);
-    margin-top: var(--space-1);
-    line-height: var(--leading-normal);
+  .quality__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    letter-spacing: -0.01em;
+    margin:         0 0 var(--space-4);
   }
 
-  /* ── Responsive ───────────────────────────────────────────── */
+  .quality__body {
+    font-size:   var(--text-lg);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0 0 var(--space-8);
+    max-width:   56ch;
+  }
+
+  .quality__row {
+    display:     flex;
+    align-items: center;
+    flex-wrap:   wrap;
+    gap:         var(--space-5);
+  }
+
+  /* ── Private label teaser ───────────────────────────────── */
+  .label-teaser {
+    background:    var(--color-surface);
+    border-top:    1px solid var(--color-border-light);
+    padding-block: var(--space-16);
+  }
+
+  .label-teaser__inner {
+    display:         flex;
+    align-items:     center;
+    justify-content: space-between;
+    gap:             var(--space-10);
+  }
+
+  .label-teaser__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-3xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    letter-spacing: -0.01em;
+    margin:         0 0 var(--space-3);
+  }
+
+  .label-teaser__body {
+    font-size:   var(--text-base);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+    max-width:   58ch;
+  }
+
+  /* ── Closing ────────────────────────────────────────────── */
+  .closing {
+    background:    linear-gradient(180deg, var(--color-bg) 0%, var(--color-tint) 100%);
+    padding-block: var(--space-24);
+  }
+
+  .closing__inner {
+    text-align: center;
+    max-width:  640px;
+  }
+
+  .closing__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-5xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-none);
+    letter-spacing: -0.015em;
+    margin:         0 0 var(--space-5);
+  }
+
+  .closing__body {
+    font-size:   var(--text-lg);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0 0 var(--space-8);
+  }
+
+  .closing__actions {
+    display:         flex;
+    justify-content: center;
+    flex-wrap:       wrap;
+    gap:             var(--space-4);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .featured__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 900px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+      padding-block: var(--space-10) var(--space-16);
+    }
+
+    .hero__media { order: -1; }
+    .hero__media :global(img) { max-width: 320px; }
+
+    .quality__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+  }
+
   @media (max-width: 768px) {
-    .hero__content {
-      max-width: 100%;
-    }
+    .paths,
+    .featured,
+    .quality { padding-block: var(--space-16); }
 
-    .hero__trust {
-      margin-top: var(--space-16);
-    }
+    .paths__grid { grid-template-columns: 1fr; }
+    .featured__grid { grid-template-columns: 1fr; }
 
-    .hero__subtitle {
-      font-size: var(--text-lg);
-    }
-
-    .hero__cta {
+    .label-teaser__inner {
       flex-direction: column;
-      gap: var(--space-3);
-      align-items: stretch;
+      align-items:    flex-start;
     }
 
-    .hero__cta :global(.btn) {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .hero__stats-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-4);
-      padding: var(--space-5) var(--space-5);
-      border-radius: var(--radius-lg);
-    }
-
-    .hero__stat {
-      padding: 0 var(--space-4);
-    }
-
-    .hero__stat:nth-child(odd) {
-      border-left: none;
-      padding-left: var(--space-2);
-    }
-
-    .hero__stat:nth-child(even) {
-      border-left: 1px solid rgba(255, 255, 255, 0.18);
-    }
-
-    .hero__stat:first-child,
-    .hero__stat:last-child {
-      padding-right: var(--space-2);
-    }
+    .closing { padding-block: var(--space-16); }
   }
 
   @media (max-width: 480px) {
-    .hero__stats-grid {
-      grid-template-columns: 1fr;
-      border-radius: var(--radius-lg);
-    }
+    .hero__cta { flex-direction: column; align-items: stretch; }
+    .hero__cta :global(.btn) { width: 100%; justify-content: center; }
 
-    .hero__stat,
-    .hero__stat:nth-child(even) {
-      border-left: none;
-      padding-left: var(--space-2);
-      border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding-top: var(--space-4);
-    }
-
-    .hero__stat:first-child {
-      border-top: none;
-      padding-top: 0;
-    }
+    .closing__actions { flex-direction: column; align-items: stretch; }
+    .closing__actions :global(.btn) { width: 100%; }
   }
 </style>
