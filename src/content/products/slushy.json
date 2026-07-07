@@ -1,0 +1,9 @@
+{
+  "key": "products.slushy",
+  "category": "concentrates",
+  "image": "../../assets/products/snowflake.webp",
+  "badgeKey": "products.badge.b2b.only",
+  "badgeVariant": "primary",
+  "b2bOnly": true,
+  "order": 21
+}

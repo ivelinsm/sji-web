@@ -1,0 +1,9 @@
+{
+  "key": "products.pet",
+  "category": "concentrates",
+  "image": "../../assets/products/pet-bottles.webp",
+  "badgeKey": "products.badge.pet",
+  "badgeVariant": "neutral",
+  "b2bOnly": true,
+  "order": 22
+}

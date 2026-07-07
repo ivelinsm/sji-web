@@ -1,0 +1,9 @@
+{
+  "key": "products.bultop",
+  "category": "concentrates",
+  "image": "../../assets/products/lemon-juice-tint.webp",
+  "badgeKey": "products.badge.juice",
+  "badgeVariant": "secondary",
+  "hasSizes": false,
+  "order": 23
+}

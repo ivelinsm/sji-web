@@ -1,0 +1,8 @@
+{
+  "key": "products.santos.soda.lemon",
+  "category": "waters",
+  "image": "../../assets/products/lemon.webp",
+  "badgeKey": "products.badge.sparkling",
+  "badgeVariant": "primary",
+  "order": 4
+}

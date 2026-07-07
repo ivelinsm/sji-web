@@ -1,0 +1,157 @@
+---
+import { Image } from 'astro:assets';
+import Badge from './Badge.astro';
+import { t } from '../i18n/utils';
+import type { Lang } from '../i18n/utils';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  product: CollectionEntry<'products'>;
+  lang?: Lang;
+}
+
+const { product, lang = 'bg' } = Astro.props;
+const d = product.data;
+---
+
+<article class:list={['product-card', d.b2bOnly && 'product-card--b2b']}>
+  <div class="product-card__media">
+    <Image
+      src={d.image}
+      alt={t(lang, `${d.key}.name`)}
+      widths={[240, 360, 480]}
+      sizes="(max-width: 768px) 90vw, 300px"
+    />
+  </div>
+
+  <div class="product-card__body">
+    <div class="product-card__top">
+      <Badge variant={d.badgeVariant}>
+        <span data-i18n={d.badgeKey}>{t(lang, d.badgeKey)}</span>
+      </Badge>
+    </div>
+
+    <h3 class="product-card__name">
+      <span data-i18n={`${d.key}.name`}>{t(lang, `${d.key}.name`)}</span>
+    </h3>
+
+    <p class="product-card__desc">
+      <span data-i18n={`${d.key}.desc`}>{t(lang, `${d.key}.desc`)}</span>
+    </p>
+
+    {d.hasFlavors && (
+      <p class="product-card__flavors">
+        <span data-i18n={`${d.key}.flavors`}>{t(lang, `${d.key}.flavors`)}</span>
+      </p>
+    )}
+
+    {d.hasSizes && (
+      <p class="product-card__sizes">
+        <span data-i18n={`${d.key}.sizes`}>{t(lang, `${d.key}.sizes`)}</span>
+      </p>
+    )}
+
+    {d.noteKey && (
+      <p class="product-card__note">
+        <span data-i18n={d.noteKey}>{t(lang, d.noteKey)}</span>
+      </p>
+    )}
+  </div>
+</article>
+
+<style>
+  .product-card {
+    display:        flex;
+    flex-direction: column;
+    background:     var(--color-surface);
+    border:         1px solid var(--color-border-light);
+    border-radius:  var(--radius-lg);
+    overflow:       hidden;
+    transition:
+      transform    var(--transition-base),
+      box-shadow   var(--transition-base),
+      border-color var(--transition-base);
+  }
+
+  .product-card:hover {
+    transform:    translateY(-2px);
+    box-shadow:   var(--shadow-md);
+    border-color: var(--color-secondary);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card:hover { transform: none; }
+  }
+
+  .product-card--b2b {
+    border-left: 3px solid var(--color-primary);
+  }
+
+  /* One media treatment for every SKU: light aqua ground, contained photo */
+  .product-card__media {
+    aspect-ratio: 1 / 1;
+    background:   linear-gradient(160deg, var(--color-tint) 0%, var(--color-bg) 100%);
+    padding:      var(--space-5);
+  }
+
+  .product-card__media :global(img) {
+    width:      100%;
+    height:     100%;
+    object-fit: contain;
+    display:    block;
+  }
+
+  .product-card__body {
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--space-3);
+    padding:        var(--space-5) var(--space-6) var(--space-6);
+    flex:           1;
+  }
+
+  .product-card__top {
+    display: flex;
+  }
+
+  .product-card__name {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size:   var(--text-xl);
+    color:       var(--color-primary);
+    line-height: var(--leading-tight);
+    margin:      0;
+  }
+
+  .product-card__desc {
+    font-size:   var(--text-sm);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+    flex:        1;
+  }
+
+  .product-card__flavors {
+    font-size:     var(--text-xs);
+    color:         var(--color-secondary-hover);
+    font-weight:   var(--font-weight-medium);
+    background:    var(--color-secondary-light);
+    padding:       var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    margin:        0;
+    line-height:   var(--leading-normal);
+  }
+
+  .product-card__sizes {
+    font-size:   var(--text-sm);
+    color:       var(--color-text-muted);
+    font-weight: var(--font-weight-medium);
+    margin:      0;
+  }
+
+  .product-card__note {
+    font-size:   var(--text-xs);
+    color:       var(--color-primary);
+    font-weight: var(--font-weight-medium);
+    margin:      0;
+  }
+</style>

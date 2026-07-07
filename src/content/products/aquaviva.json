@@ -1,0 +1,9 @@
+{
+  "key": "products.aquaviva",
+  "category": "waters",
+  "image": "../../assets/products/aqua-viva-1-5.webp",
+  "badgeKey": "products.badge.still",
+  "badgeVariant": "secondary",
+  "featured": true,
+  "order": 1
+}

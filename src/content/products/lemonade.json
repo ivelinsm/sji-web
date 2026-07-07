@@ -1,0 +1,8 @@
+{
+  "key": "products.lemonade",
+  "category": "drinks",
+  "image": "../../assets/products/limonata-small-tint.webp",
+  "badgeKey": "products.badge.lemonade",
+  "badgeVariant": "secondary",
+  "order": 13
+}

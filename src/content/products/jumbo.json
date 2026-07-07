@@ -1,0 +1,9 @@
+{
+  "key": "products.jumbo",
+  "category": "concentrates",
+  "image": "../../assets/products/jumbo.webp",
+  "badgeKey": "products.badge.concentrate",
+  "badgeVariant": "secondary",
+  "noteKey": "products.jumbo.sizes.b2b",
+  "order": 20
+}

@@ -1,0 +1,8 @@
+{
+  "key": "products.santos.soda",
+  "category": "waters",
+  "image": "../../assets/products/soda-aqua.webp",
+  "badgeKey": "products.badge.sparkling",
+  "badgeVariant": "primary",
+  "order": 3
+}

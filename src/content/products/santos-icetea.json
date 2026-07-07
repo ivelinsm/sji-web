@@ -1,0 +1,10 @@
+{
+  "key": "products.santos.icetea",
+  "category": "drinks",
+  "image": "../../assets/products/ice-tea.webp",
+  "badgeKey": "products.badge.tea",
+  "badgeVariant": "secondary",
+  "hasFlavors": true,
+  "featured": true,
+  "order": 12
+}

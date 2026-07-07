@@ -1,0 +1,10 @@
+{
+  "key": "products.santos.drinks",
+  "category": "drinks",
+  "image": "../../assets/products/santos-grapefruit.webp",
+  "badgeKey": "products.badge.drinks",
+  "badgeVariant": "secondary",
+  "hasFlavors": true,
+  "featured": true,
+  "order": 10
+}

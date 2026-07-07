@@ -1,0 +1,9 @@
+{
+  "key": "products.naslada",
+  "category": "drinks",
+  "image": "../../assets/products/naslada.webp",
+  "badgeKey": "products.badge.drinks",
+  "badgeVariant": "secondary",
+  "featured": true,
+  "order": 11
+}

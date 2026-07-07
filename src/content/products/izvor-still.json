@@ -1,0 +1,8 @@
+{
+  "key": "products.izvor.still",
+  "category": "waters",
+  "image": "../../assets/products/izvor-water.webp",
+  "badgeKey": "products.badge.still",
+  "badgeVariant": "secondary",
+  "order": 2
+}

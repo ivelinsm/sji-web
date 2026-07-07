@@ -1,0 +1,8 @@
+{
+  "key": "products.izvor.sparkling",
+  "category": "waters",
+  "image": "../../assets/products/bubbles.webp",
+  "badgeKey": "products.badge.sparkling",
+  "badgeVariant": "primary",
+  "order": 5
+}
