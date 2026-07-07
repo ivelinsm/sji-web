@@ -16,7 +16,7 @@ jobs:
 
     env:
       PAGES_SITE: https://ivelinsm.github.io
-      PAGES_BASE: /sji-web
+      PAGES_BASE: /sji-web/
 
     steps:
       - uses: actions/checkout@v4
