@@ -1,0 +1,434 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Footer from '../components/Footer.astro';
+import HaccpBadge from '../components/HaccpBadge.astro';
+import { t } from '../i18n/utils';
+import { Image } from 'astro:assets';
+
+import vodaHydra from '../assets/products/voda-hydra.webp';
+import vodaVeranda from '../assets/products/voda-veranda.webp';
+import vodaXbody from '../assets/products/voda-xbody.webp';
+
+const lang = 'bg';
+const base = import.meta.env.BASE_URL;
+
+const labelSpecs = [1, 2, 3, 4].map((n) => ({
+  labelKey: `b2b.label.spec${n}.label`,
+  valueKey: `b2b.label.spec${n}.value`,
+}));
+
+const labelSteps = [1, 2, 3, 4].map((n) => ({
+  num: `0${n}`,
+  titleKey: `b2b.label.step${n}.title`,
+  bodyKey: `b2b.label.step${n}.body`,
+}));
+---
+
+<Layout
+  title={t(lang, 'b2b.page.title')}
+  description={t(lang, 'b2b.page.description')}
+  titleKey="b2b.page.title"
+  descriptionKey="b2b.page.description"
+>
+
+  <SiteHeader slot="header" lang={lang} />
+
+  <PageHero
+    lang={lang}
+    eyebrowKey="b2b.hero.eyebrow"
+    titleKey="b2b.hero.title"
+    subtitleKey="b2b.hero.subtitle"
+  >
+    <div slot="extra" class="b2b-trust-row">
+      <span class="b2b-trust-item" data-i18n="b2b.trust.item1">{t(lang, 'b2b.trust.item1')}</span>
+      <span class="b2b-trust-item" data-i18n="b2b.trust.item2">{t(lang, 'b2b.trust.item2')}</span>
+      <span class="b2b-trust-item" data-i18n="b2b.trust.item3">{t(lang, 'b2b.trust.item3')}</span>
+    </div>
+  </PageHero>
+
+  <!-- ── Wholesale ──────────────────────────────────────────── -->
+  <section id="wholesale" class="bb-section bb-section--surface">
+    <div class="container bb-split">
+      <div class="bb-split__text">
+        <h2 class="bb-title">
+          <span data-i18n="b2b.wholesale.title">{t(lang, 'b2b.wholesale.title')}</span>
+        </h2>
+        <p class="bb-body">
+          <span data-i18n="b2b.wholesale.body">{t(lang, 'b2b.wholesale.body')}</span>
+        </p>
+        <ul class="bb-list" role="list">
+          {[1, 2, 3].map((n) => (
+            <li class="bb-list__item">
+              <span class="bb-check" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                  <path d="M4 9.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span data-i18n={`b2b.wholesale.item${n}`}>{t(lang, `b2b.wholesale.item${n}`)}</span>
+            </li>
+          ))}
+        </ul>
+        <Button variant="primary" href={`${base}contact?type=distribution`}>
+          <span data-i18n="b2b.wholesale.cta">{t(lang, 'b2b.wholesale.cta')}</span>
+        </Button>
+      </div>
+
+      <div class="bb-split__aside">
+        <div class="bb-mini-card">
+          <h3 class="bb-mini-card__title">
+            <span data-i18n="b2b.slushy.title">{t(lang, 'b2b.slushy.title')}</span>
+          </h3>
+          <p class="bb-mini-card__body">
+            <span data-i18n="b2b.slushy.body">{t(lang, 'b2b.slushy.body')}</span>
+          </p>
+        </div>
+        <div class="bb-mini-card">
+          <h3 class="bb-mini-card__title">
+            <span data-i18n="b2b.pet.title">{t(lang, 'b2b.pet.title')}</span>
+          </h3>
+          <p class="bb-mini-card__body">
+            <span data-i18n="b2b.pet.body">{t(lang, 'b2b.pet.body')}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Private label ──────────────────────────────────────── -->
+  <section id="label" class="bb-section bb-section--bg">
+    <div class="container">
+      <div class="bb-label-head">
+        <div>
+          <h2 class="bb-title">
+            <span data-i18n="b2b.label.title">{t(lang, 'b2b.label.title')}</span>
+          </h2>
+          <p class="bb-body">
+            <span data-i18n="b2b.label.body">{t(lang, 'b2b.label.body')}</span>
+          </p>
+        </div>
+        <div class="bb-bottles" aria-hidden="true">
+          <Image src={vodaHydra} alt="" width={96} height={240} />
+          <Image src={vodaVeranda} alt="" width={108} height={270} />
+          <Image src={vodaXbody} alt="" width={96} height={240} />
+        </div>
+      </div>
+
+      <!-- Spec table: precision over adjectives -->
+      <dl class="bb-specs">
+        {labelSpecs.map((s) => (
+          <div class="bb-spec">
+            <dt class="bb-spec__label">
+              <span data-i18n={s.labelKey}>{t(lang, s.labelKey)}</span>
+            </dt>
+            <dd class="bb-spec__value">
+              <span data-i18n={s.valueKey}>{t(lang, s.valueKey)}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <ol class="bb-steps" role="list">
+        {labelSteps.map((s) => (
+          <li class="bb-step">
+            <span class="bb-step__num" aria-hidden="true">{s.num}</span>
+            <h3 class="bb-step__title">
+              <span data-i18n={s.titleKey}>{t(lang, s.titleKey)}</span>
+            </h3>
+            <p class="bb-step__body">
+              <span data-i18n={s.bodyKey}>{t(lang, s.bodyKey)}</span>
+            </p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="bb-label-cta">
+        <Button variant="primary" size="lg" href={`${base}contact?type=label`}>
+          <span data-i18n="b2b.label.cta">{t(lang, 'b2b.label.cta')}</span>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Why SJI + closing ──────────────────────────────────── -->
+  <section class="bb-section bb-section--surface">
+    <div class="container bb-why">
+      <div class="bb-why__badge">
+        <HaccpBadge lang={lang} />
+      </div>
+      <h2 class="bb-why__title">
+        <span data-i18n="b2b.cta.title">{t(lang, 'b2b.cta.title')}</span>
+      </h2>
+      <p class="bb-why__body">
+        <span data-i18n="b2b.cta.body">{t(lang, 'b2b.cta.body')}</span>
+      </p>
+      <Button variant="primary" size="lg" href={`${base}contact?type=business`}>
+        <span data-i18n="b2b.cta.button">{t(lang, 'b2b.cta.button')}</span>
+      </Button>
+    </div>
+  </section>
+
+  <Footer slot="footer" lang={lang} />
+
+</Layout>
+
+<style>
+  /* ── Trust row in hero ──────────────────────────────────── */
+  .b2b-trust-row {
+    display:    flex;
+    flex-wrap:  wrap;
+    gap:        var(--space-3);
+    margin-top: var(--space-8);
+  }
+
+  .b2b-trust-item {
+    display:       inline-flex;
+    align-items:   center;
+    padding:       var(--space-2) var(--space-4);
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-full);
+    font-size:     var(--text-sm);
+    font-weight:   var(--font-weight-medium);
+    color:         var(--color-text);
+  }
+
+  /* ── Sections ───────────────────────────────────────────── */
+  .bb-section { padding-block: var(--space-20); }
+  .bb-section--surface { background: var(--color-surface); }
+  .bb-section--bg      { background: var(--color-bg); }
+
+  .bb-title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    letter-spacing: -0.01em;
+    margin:         0 0 var(--space-4);
+  }
+
+  .bb-body {
+    font-size:   var(--text-lg);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0 0 var(--space-6);
+    max-width:   58ch;
+  }
+
+  /* ── Wholesale split ────────────────────────────────────── */
+  .bb-split {
+    display:               grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap:                   var(--space-16);
+    align-items:           start;
+  }
+
+  .bb-list {
+    list-style:     none;
+    margin:         0 0 var(--space-8);
+    padding:        0;
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--space-3);
+  }
+
+  .bb-list__item {
+    display:     flex;
+    align-items: flex-start;
+    gap:         var(--space-3);
+    font-size:   var(--text-base);
+    color:       var(--color-text);
+  }
+
+  .bb-check {
+    flex-shrink:     0;
+    width:           22px;
+    height:          22px;
+    border-radius:   var(--radius-full);
+    background:      var(--color-secondary-light);
+    color:           var(--color-secondary-hover);
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    margin-top:      1px;
+  }
+
+  .bb-split__aside {
+    display:        flex;
+    flex-direction: column;
+    gap:            var(--space-5);
+  }
+
+  .bb-mini-card {
+    background:    var(--color-bg);
+    border:        1px solid var(--color-border-light);
+    border-left:   3px solid var(--color-secondary);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-6);
+  }
+
+  .bb-mini-card__title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size:   var(--text-lg);
+    color:       var(--color-primary);
+    margin:      0 0 var(--space-2);
+  }
+
+  .bb-mini-card__body {
+    font-size:   var(--text-sm);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  /* ── Private label ──────────────────────────────────────── */
+  .bb-label-head {
+    display:               grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap:                   var(--space-10);
+    align-items:           center;
+    margin-bottom:         var(--space-10);
+  }
+
+  .bb-bottles {
+    display:         flex;
+    justify-content: center;
+    align-items:     flex-end;
+    gap:             var(--space-4);
+  }
+
+  .bb-bottles :global(img) {
+    height:     auto;
+    max-height: 240px;
+    width:      auto;
+    filter:     drop-shadow(0 16px 28px rgba(18, 37, 74, 0.18));
+  }
+
+  .bb-bottles :global(img:nth-child(2)) {
+    max-height: 270px;
+  }
+
+  .bb-specs {
+    display:               grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:                   var(--space-6);
+    margin:                0 0 var(--space-12);
+  }
+
+  .bb-spec {
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-6);
+  }
+
+  .bb-spec__label {
+    font-size:      var(--text-xs);
+    font-weight:    var(--font-weight-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color:          var(--color-text-muted);
+    margin:         0 0 var(--space-2);
+  }
+
+  .bb-spec__value {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size:   var(--text-base);
+    color:       var(--color-primary);
+    line-height: var(--leading-normal);
+    margin:      0;
+  }
+
+  .bb-steps {
+    list-style:            none;
+    margin:                0 0 var(--space-10);
+    padding:               0;
+    display:               grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:                   var(--space-6);
+  }
+
+  .bb-step {
+    border-top:  2px solid var(--color-border-light);
+    padding-top: var(--space-5);
+  }
+
+  .bb-step__num {
+    display:       block;
+    font-family:   var(--font-heading);
+    font-weight:   var(--font-weight-bold);
+    font-size:     var(--text-2xl);
+    color:         var(--color-secondary);
+    line-height:   1;
+    margin-bottom: var(--space-3);
+  }
+
+  .bb-step__title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size:   var(--text-lg);
+    color:       var(--color-primary);
+    margin:      0 0 var(--space-2);
+  }
+
+  .bb-step__body {
+    font-size:   var(--text-sm);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  .bb-label-cta { text-align: center; }
+
+  /* ── Why / closing ──────────────────────────────────────── */
+  .bb-why {
+    text-align: center;
+    max-width:  640px;
+  }
+
+  .bb-why__badge {
+    display:         flex;
+    justify-content: center;
+    margin-bottom:   var(--space-6);
+  }
+
+  .bb-why__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    margin:         0 0 var(--space-4);
+  }
+
+  .bb-why__body {
+    font-size:   var(--text-lg);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0 0 var(--space-8);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .bb-specs,
+    .bb-steps { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .bb-section { padding-block: var(--space-16); }
+
+    .bb-split,
+    .bb-label-head { grid-template-columns: 1fr; gap: var(--space-10); }
+
+    .bb-specs,
+    .bb-steps { grid-template-columns: 1fr; }
+
+    .bb-bottles :global(img)  { max-height: 180px; }
+    .bb-bottles :global(img:nth-child(2)) { max-height: 200px; }
+  }
+</style>

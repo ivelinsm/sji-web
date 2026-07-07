@@ -1,14 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Button from '../components/Button.astro';
-import Navbar from '../components/Navbar.astro';
-import NavLink from '../components/NavLink.astro';
-import LangSwitcher from '../components/LangSwitcher.astro';
-import Badge from '../components/Badge.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import PageHero from '../components/PageHero.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { t } from '../i18n/utils';
-import { Image } from 'astro:assets';
-import logo from '../assets/logo.webp';
 import Footer from '../components/Footer.astro';
 
 const lang = 'bg';
@@ -55,36 +50,14 @@ const localBusinessSchema = JSON.stringify({
 >
   <script type="application/ld+json" slot="head" set:html={localBusinessSchema} />
 
-  <!-- ── Navbar ─────────────────────────────────────────────── -->
-  <Navbar slot="header" variant="transparent">
-    <Image slot="logo" src={logo} alt="SJI" class="nav-logo" />
-    <NavLink slot="links" href={base}><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></NavLink>
-    <NavLink slot="links" href={`${base}products`}><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></NavLink>
-    <NavLink slot="links" href={`${base}about`}><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></NavLink>
-    <NavLink slot="links" href={`${base}contact`}><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></NavLink>
-    <Button slot="actions" variant="ghost" href={`${base}contact`} size="sm">
-      <span data-i18n="nav.cta.enquiry">{t(lang, 'nav.cta.enquiry')}</span>
-    </Button>
-    <LangSwitcher slot="actions" />
-  </Navbar>
+  <SiteHeader slot="header" lang={lang} />
 
-  <!-- ── Page hero ──────────────────────────────────────────── -->
-  <div class="page-hero">
-    <div class="page-hero__bg" aria-hidden="true"></div>
-    <div class="container">
-      <div class="page-hero__inner">
-        <Badge variant="secondary">
-          <span data-i18n="contact.hero.eyebrow">{t(lang, 'contact.hero.eyebrow')}</span>
-        </Badge>
-        <h1 class="page-hero__title">
-          <span data-i18n="contact.hero.title">{t(lang, 'contact.hero.title')}</span>
-        </h1>
-        <p class="page-hero__subtitle">
-          <span data-i18n="contact.hero.subtitle">{t(lang, 'contact.hero.subtitle')}</span>
-        </p>
-      </div>
-    </div>
-  </div>
+  <PageHero
+    lang={lang}
+    eyebrowKey="contact.hero.eyebrow"
+    titleKey="contact.hero.title"
+    subtitleKey="contact.hero.subtitle"
+  />
 
   <!-- ── Contact section ─────────────────────────────────────── -->
   <section class="contact-section">
@@ -278,58 +251,6 @@ const localBusinessSchema = JSON.stringify({
 </script>
 
 <style>
-  .nav-logo {
-    height:     52px;
-    width:      auto;
-    display:    block;
-    object-fit: contain;
-  }
-
-  /* ── Page hero ─────────────────────────────────────────── */
-  .page-hero {
-    position:   relative;
-    background-color: var(--color-primary);
-    margin-top:       -72px;
-    padding-top:      calc(72px + var(--space-20));
-    padding-bottom:   var(--space-16);
-    overflow:         hidden;
-  }
-
-  .page-hero__bg {
-    position:   absolute;
-    inset:      0;
-    background: radial-gradient(ellipse at 80% 30%, rgba(39, 169, 216, 0.28) 0%, transparent 60%),
-                radial-gradient(ellipse at 10% 90%, rgba(255, 255, 255, 0.05) 0%, transparent 55%);
-    pointer-events: none;
-  }
-
-  .page-hero .container {
-    position: relative;
-    z-index:  1;
-  }
-
-  .page-hero__inner {
-    max-width: 640px;
-  }
-
-  .page-hero__title {
-    font-family:   var(--font-heading);
-    font-weight:   var(--font-weight-bold);
-    font-size:     var(--text-5xl);
-    color:         var(--color-white);
-    line-height:   var(--leading-tight);
-    margin-top:    var(--space-4);
-    margin-bottom: 0;
-  }
-
-  .page-hero__subtitle {
-    font-size:   var(--text-lg);
-    color:       rgba(255, 255, 255, 0.78);
-    line-height: var(--leading-relaxed);
-    margin-top:  var(--space-4);
-    max-width:   560px;
-  }
-
   /* ── Contact section ───────────────────────────────────── */
   .contact-section {
     background-color: var(--color-bg);
@@ -440,12 +361,7 @@ const localBusinessSchema = JSON.stringify({
   }
 
   @media (max-width: 768px) {
-    .page-hero__title    { font-size: var(--text-4xl); }
-    .contact-section     { padding-block: var(--space-16); }
-  }
-
-  @media (max-width: 480px) {
-    .page-hero__title { font-size: var(--text-3xl); }
+    .contact-section { padding-block: var(--space-16); }
   }
 
   /* ── Map section ───────────────────────────────────────── */

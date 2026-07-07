@@ -50,30 +50,35 @@ const base = import.meta.env.BASE_URL;
         <ul class="site-footer__links">
           <li><a href={base} class="site-footer__link"><span data-i18n="nav.home">{t(lang, 'nav.home')}</span></a></li>
           <li><a href={`${base}products`} class="site-footer__link"><span data-i18n="nav.products">{t(lang, 'nav.products')}</span></a></li>
+          <li><a href={`${base}kachestvo`} class="site-footer__link"><span data-i18n="nav.quality">{t(lang, 'nav.quality')}</span></a></li>
           <li><a href={`${base}about`} class="site-footer__link"><span data-i18n="nav.about">{t(lang, 'nav.about')}</span></a></li>
-          <li><a href={`${base}contact`} class="site-footer__link"><span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span></a></li>
         </ul>
       </div>
 
-      <!-- Column 3: Services -->
+      <!-- Column 3: For customers -->
       <div class="site-footer__col">
         <h3 class="site-footer__col-title">
-          <span data-i18n="footer.services.title">{t(lang, 'footer.services.title')}</span>
+          <span data-i18n="footer.clients.title">{t(lang, 'footer.clients.title')}</span>
         </h3>
         <ul class="site-footer__links">
           <li>
-            <a href={`${base}contact`} class="site-footer__link">
-              <span data-i18n="footer.services.delivery">{t(lang, 'footer.services.delivery')}</span>
+            <a href={`${base}uslugi`} class="site-footer__link">
+              <span data-i18n="nav.services">{t(lang, 'nav.services')}</span>
             </a>
           </li>
           <li>
-            <a href={`${base}products#b2b`} class="site-footer__link">
-              <span data-i18n="footer.services.b2b">{t(lang, 'footer.services.b2b')}</span>
+            <a href={`${base}b2b`} class="site-footer__link">
+              <span data-i18n="nav.b2b">{t(lang, 'nav.b2b')}</span>
+            </a>
+          </li>
+          <li>
+            <a href={`${base}faq`} class="site-footer__link">
+              <span data-i18n="nav.faq">{t(lang, 'nav.faq')}</span>
             </a>
           </li>
           <li>
             <a href={`${base}contact`} class="site-footer__link">
-              <span data-i18n="footer.services.co2">{t(lang, 'footer.services.co2')}</span>
+              <span data-i18n="nav.contact">{t(lang, 'nav.contact')}</span>
             </a>
           </li>
         </ul>

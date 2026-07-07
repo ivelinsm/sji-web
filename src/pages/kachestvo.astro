@@ -1,0 +1,566 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import PageHero from '../components/PageHero.astro';
+import Button from '../components/Button.astro';
+import Footer from '../components/Footer.astro';
+import HaccpBadge from '../components/HaccpBadge.astro';
+import { t } from '../i18n/utils';
+import { Image } from 'astro:assets';
+
+import phase1 from '../assets/phase1.webp';
+import phase2 from '../assets/phase2.webp';
+import phase3 from '../assets/phase3.webp';
+import phase4 from '../assets/phase4.webp';
+import phase5 from '../assets/phase5.webp';
+import phase6 from '../assets/phase6.webp';
+
+const lang = 'bg';
+const base = import.meta.env.BASE_URL;
+
+const phases = [
+  { pad: '01', image: phase1, titleKey: 'filtration.phase1.title', bodyKey: 'filtration.phase1.body' },
+  { pad: '02', image: phase2, titleKey: 'filtration.phase2.title', bodyKey: 'filtration.phase2.body' },
+  { pad: '03', image: phase3, titleKey: 'filtration.phase3.title', bodyKey: 'filtration.phase3.body' },
+  { pad: '04', image: phase4, titleKey: 'filtration.phase4.title', bodyKey: 'filtration.phase4.body' },
+  { pad: '05', image: phase5, titleKey: 'filtration.phase5.title', bodyKey: 'filtration.phase5.body' },
+  { pad: '06', image: phase6, titleKey: 'filtration.phase6.title', bodyKey: 'filtration.phase6.body' },
+];
+
+const labGroups = [1, 2, 3, 4].map((n) => ({
+  titleKey: `kachestvo.lab.group${n}.title`,
+  bodyKey: `kachestvo.lab.group${n}.body`,
+}));
+
+const stats = [1, 2, 3].map((n) => ({
+  valueKey: `about.science.stat${n}.value`,
+  labelKey: `about.science.stat${n}.label`,
+  bodyKey: `about.science.stat${n}.body`,
+}));
+---
+
+<Layout
+  title={t(lang, 'kachestvo.page.title')}
+  description={t(lang, 'kachestvo.page.description')}
+  titleKey="kachestvo.page.title"
+  descriptionKey="kachestvo.page.description"
+>
+
+  <SiteHeader slot="header" lang={lang} />
+
+  <PageHero
+    lang={lang}
+    eyebrowKey="kachestvo.hero.eyebrow"
+    titleKey="kachestvo.hero.title"
+    subtitleKey="kachestvo.hero.subtitle"
+  />
+
+  <!-- ── Verification stats ─────────────────────────────────── -->
+  <section class="q-stats">
+    <div class="container">
+      <div class="q-stats__grid">
+        {stats.map((s) => (
+          <article class="q-stat">
+            <span class="q-stat__value" data-i18n={s.valueKey}>{t(lang, s.valueKey)}</span>
+            <span class="q-stat__label" data-i18n={s.labelKey}>{t(lang, s.labelKey)}</span>
+            <p class="q-stat__body" data-i18n={s.bodyKey}>{t(lang, s.bodyKey)}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Six-stage process ──────────────────────────────────── -->
+  <section id="process" class="q-process">
+    <div class="container">
+      <header class="q-section-header">
+        <span class="q-eyebrow" data-i18n="kachestvo.process.eyebrow">{t(lang, 'kachestvo.process.eyebrow')}</span>
+        <h2 class="q-section-title">
+          <span data-i18n="kachestvo.process.title">{t(lang, 'kachestvo.process.title')}</span>
+        </h2>
+        <p class="q-section-intro">
+          <span data-i18n="kachestvo.process.intro">{t(lang, 'kachestvo.process.intro')}</span>
+        </p>
+      </header>
+
+      <ol class="q-steps" role="list">
+        {phases.map((p) => (
+          <li class="q-step">
+            <div class="q-step__media">
+              <Image
+                src={p.image}
+                alt=""
+                widths={[420, 640, 860]}
+                sizes="(max-width: 768px) 92vw, 420px"
+                loading="lazy"
+              />
+              <span class="q-step__num" aria-hidden="true">{p.pad}</span>
+            </div>
+            <div class="q-step__text">
+              <span class="q-step__tag">
+                <span data-i18n="filtration.phase.label">{t(lang, 'filtration.phase.label')}</span>
+                {' '}{p.pad}
+              </span>
+              <h3 class="q-step__title">
+                <span data-i18n={p.titleKey}>{t(lang, p.titleKey)}</span>
+              </h3>
+              <p class="q-step__body">
+                <span data-i18n={p.bodyKey}>{t(lang, p.bodyKey)}</span>
+              </p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── Laboratory control ─────────────────────────────────── -->
+  <section id="lab" class="q-lab">
+    <div class="container">
+      <header class="q-section-header">
+        <span class="q-eyebrow" data-i18n="kachestvo.lab.eyebrow">{t(lang, 'kachestvo.lab.eyebrow')}</span>
+        <h2 class="q-section-title">
+          <span data-i18n="kachestvo.lab.title">{t(lang, 'kachestvo.lab.title')}</span>
+        </h2>
+        <p class="q-section-intro">
+          <span data-i18n="kachestvo.lab.intro">{t(lang, 'kachestvo.lab.intro')}</span>
+        </p>
+      </header>
+
+      <div class="q-lab__groups">
+        {labGroups.map((g) => (
+          <article class="q-lab-group">
+            <h3 class="q-lab-group__title">
+              <span data-i18n={g.titleKey}>{t(lang, g.titleKey)}</span>
+            </h3>
+            <p class="q-lab-group__body">
+              <span data-i18n={g.bodyKey}>{t(lang, g.bodyKey)}</span>
+            </p>
+          </article>
+        ))}
+      </div>
+
+      <!-- Honest placeholder until real monthly reports are supplied -->
+      <div class="q-lab__docs">
+        <div class="q-lab__docs-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M6 2h9l5 5v15H6V2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M14 2v6h6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M9 13h8M9 17h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="q-lab__docs-text">
+          <h3 class="q-lab__docs-title">
+            <span data-i18n="kachestvo.lab.placeholder.title">{t(lang, 'kachestvo.lab.placeholder.title')}</span>
+          </h3>
+          <p class="q-lab__docs-body">
+            <span data-i18n="kachestvo.lab.placeholder.body">{t(lang, 'kachestvo.lab.placeholder.body')}</span>
+          </p>
+        </div>
+        <Button variant="ghost" href={`${base}contact?type=general`}>
+          <span data-i18n="kachestvo.lab.placeholder.cta">{t(lang, 'kachestvo.lab.placeholder.cta')}</span>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HACCP + real-time monitoring ───────────────────────── -->
+  <section class="q-assurance">
+    <div class="container">
+      <div class="q-assurance__grid">
+        <article class="q-assurance__card">
+          <HaccpBadge lang={lang} />
+          <h2 class="q-assurance__title">
+            <span data-i18n="kachestvo.haccp.title">{t(lang, 'kachestvo.haccp.title')}</span>
+          </h2>
+          <p class="q-assurance__body">
+            <span data-i18n="kachestvo.haccp.body">{t(lang, 'kachestvo.haccp.body')}</span>
+          </p>
+        </article>
+
+        <article class="q-assurance__card">
+          <span class="q-assurance__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M3 12h4l3-7 4 14 3-7h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <h2 class="q-assurance__title">
+            <span data-i18n="kachestvo.monitoring.title">{t(lang, 'kachestvo.monitoring.title')}</span>
+          </h2>
+          <p class="q-assurance__body">
+            <span data-i18n="kachestvo.monitoring.body">{t(lang, 'kachestvo.monitoring.body')}</span>
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Closing CTA ────────────────────────────────────────── -->
+  <section class="closing-band">
+    <div class="container closing-band__inner">
+      <h2 class="closing-band__title">
+        <span data-i18n="kachestvo.cta.title">{t(lang, 'kachestvo.cta.title')}</span>
+      </h2>
+      <p class="closing-band__body">
+        <span data-i18n="kachestvo.cta.body">{t(lang, 'kachestvo.cta.body')}</span>
+      </p>
+      <div class="closing-band__actions">
+        <Button variant="primary" href={`${base}contact`}>
+          <span data-i18n="kachestvo.cta.button">{t(lang, 'kachestvo.cta.button')}</span>
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" lang={lang} />
+
+</Layout>
+
+<style>
+  /* ── Shared section header ──────────────────────────────── */
+  .q-section-header {
+    max-width:     680px;
+    margin-bottom: var(--space-12);
+  }
+
+  .q-eyebrow {
+    display:        inline-block;
+    font-size:      var(--text-xs);
+    font-weight:    var(--font-weight-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color:          var(--color-secondary-hover);
+    margin-bottom:  var(--space-3);
+  }
+
+  .q-section-title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    letter-spacing: -0.01em;
+    margin:         0 0 var(--space-4);
+  }
+
+  .q-section-intro {
+    font-size:   var(--text-lg);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  /* ── Stats ──────────────────────────────────────────────── */
+  .q-stats {
+    background:    var(--color-bg);
+    padding-block: var(--space-4) var(--space-16);
+  }
+
+  .q-stats__grid {
+    display:               grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:                   var(--space-6);
+  }
+
+  .q-stat {
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-8);
+  }
+
+  .q-stat__value {
+    display:        block;
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-5xl);
+    line-height:    var(--leading-none);
+    letter-spacing: -0.02em;
+    color:          var(--color-primary);
+  }
+
+  .q-stat__label {
+    display:     block;
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size:   var(--text-base);
+    color:       var(--color-text);
+    margin-top:  var(--space-2);
+  }
+
+  .q-stat__body {
+    font-size:   var(--text-sm);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      var(--space-3) 0 0;
+  }
+
+  /* ── Process steps ──────────────────────────────────────── */
+  .q-process {
+    background:    var(--color-surface);
+    padding-block: var(--space-20);
+  }
+
+  .q-steps {
+    list-style: none;
+    margin:     0;
+    padding:    0;
+    display:    flex;
+    flex-direction: column;
+    gap:        var(--space-16);
+  }
+
+  .q-step {
+    display:               grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap:                   var(--space-12);
+    align-items:           center;
+  }
+
+  /* Alternate media side for editorial rhythm */
+  .q-step:nth-child(even) .q-step__media { order: 2; }
+
+  .q-step__media {
+    position:      relative;
+    border-radius: var(--radius-xl);
+    overflow:      hidden;
+    aspect-ratio:  4 / 3;
+    background:    var(--color-tint);
+  }
+
+  .q-step__media :global(img) {
+    width:      100%;
+    height:     100%;
+    object-fit: cover;
+    display:    block;
+  }
+
+  .q-step__num {
+    position:       absolute;
+    right:          var(--space-4);
+    bottom:         var(--space-3);
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-6xl);
+    line-height:    1;
+    letter-spacing: -0.02em;
+    color:          rgba(255, 255, 255, 0.92);
+    text-shadow:    0 4px 24px rgba(18, 37, 74, 0.5);
+    pointer-events: none;
+  }
+
+  .q-step__tag {
+    display:        inline-block;
+    font-size:      var(--text-xs);
+    font-weight:    var(--font-weight-semibold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color:          var(--color-secondary-hover);
+    margin-bottom:  var(--space-3);
+  }
+
+  .q-step__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-3xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    letter-spacing: -0.01em;
+    margin:         0 0 var(--space-3);
+  }
+
+  .q-step__body {
+    font-size:   var(--text-lg);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+    max-width:   52ch;
+  }
+
+  /* ── Lab section ────────────────────────────────────────── */
+  .q-lab {
+    background:    var(--color-bg);
+    padding-block: var(--space-20);
+  }
+
+  .q-lab__groups {
+    display:               grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:                   var(--space-6);
+    margin-bottom:         var(--space-10);
+  }
+
+  .q-lab-group {
+    background:    var(--color-surface);
+    border:        1px solid var(--color-border-light);
+    border-top:    3px solid var(--color-secondary);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-6);
+  }
+
+  .q-lab-group__title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size:   var(--text-lg);
+    color:       var(--color-primary);
+    margin:      0 0 var(--space-2);
+  }
+
+  .q-lab-group__body {
+    font-size:   var(--text-sm);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  /* Document placeholder styled like a file, not like marketing */
+  .q-lab__docs {
+    display:       flex;
+    align-items:   center;
+    gap:           var(--space-6);
+    background:    var(--color-surface);
+    border:        1px dashed var(--color-border);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-8);
+  }
+
+  .q-lab__docs-icon {
+    flex-shrink:     0;
+    width:           56px;
+    height:          56px;
+    border-radius:   var(--radius-md);
+    background:      var(--color-secondary-light);
+    color:           var(--color-secondary-hover);
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+  }
+
+  .q-lab__docs-text { flex: 1; }
+
+  .q-lab__docs-title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size:   var(--text-xl);
+    color:       var(--color-primary);
+    margin:      0 0 var(--space-2);
+  }
+
+  .q-lab__docs-body {
+    font-size:   var(--text-base);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+    max-width:   58ch;
+  }
+
+  /* ── Assurance cards ────────────────────────────────────── */
+  .q-assurance {
+    background:    var(--color-surface);
+    padding-block: var(--space-20);
+  }
+
+  .q-assurance__grid {
+    display:               grid;
+    grid-template-columns: 1fr 1fr;
+    gap:                   var(--space-6);
+  }
+
+  .q-assurance__card {
+    background:    var(--color-bg);
+    border:        1px solid var(--color-border-light);
+    border-radius: var(--radius-lg);
+    padding:       var(--space-8);
+  }
+
+  .q-assurance__icon {
+    display:         inline-flex;
+    align-items:     center;
+    justify-content: center;
+    width:           48px;
+    height:          48px;
+    border-radius:   var(--radius-md);
+    background:      var(--color-secondary-light);
+    color:           var(--color-secondary-hover);
+  }
+
+  .q-assurance__title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-bold);
+    font-size:   var(--text-2xl);
+    color:       var(--color-primary);
+    line-height: var(--leading-tight);
+    margin:      var(--space-5) 0 var(--space-3);
+  }
+
+  .q-assurance__body {
+    font-size:   var(--text-base);
+    color:       var(--color-text);
+    line-height: var(--leading-relaxed);
+    margin:      0;
+  }
+
+  /* ── Closing band ───────────────────────────────────────── */
+  .closing-band {
+    background:    var(--color-bg);
+    border-top:    1px solid var(--color-border-light);
+    padding-block: var(--space-20);
+  }
+
+  .closing-band__inner {
+    text-align: center;
+    max-width:  620px;
+  }
+
+  .closing-band__title {
+    font-family:    var(--font-heading);
+    font-weight:    var(--font-weight-bold);
+    font-size:      var(--text-4xl);
+    color:          var(--color-primary);
+    line-height:    var(--leading-tight);
+    margin:         0 0 var(--space-4);
+  }
+
+  .closing-band__body {
+    font-size:   var(--text-lg);
+    color:       var(--color-text-muted);
+    line-height: var(--leading-relaxed);
+    margin:      0 0 var(--space-8);
+  }
+
+  .closing-band__actions {
+    display:         flex;
+    justify-content: center;
+    gap:             var(--space-4);
+  }
+
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .q-lab__groups { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .q-stats__grid { grid-template-columns: 1fr; }
+    .q-process,
+    .q-lab,
+    .q-assurance,
+    .closing-band { padding-block: var(--space-16); }
+
+    .q-steps { gap: var(--space-12); }
+
+    .q-step {
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+    .q-step:nth-child(even) .q-step__media { order: 0; }
+
+    .q-lab__groups { grid-template-columns: 1fr; }
+
+    .q-lab__docs {
+      flex-direction: column;
+      align-items:    flex-start;
+    }
+
+    .q-assurance__grid { grid-template-columns: 1fr; }
+  }
+</style>

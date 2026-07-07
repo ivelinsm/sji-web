@@ -101,11 +101,17 @@ const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
           <option value="general" data-i18n="contact.form.inquiryType.option.general">
             {t(lang, 'contact.form.inquiryType.option.general')}
           </option>
+          <option value="delivery" data-i18n="contact.form.inquiryType.option.delivery">
+            {t(lang, 'contact.form.inquiryType.option.delivery')}
+          </option>
           <option value="business" data-i18n="contact.form.inquiryType.option.business">
             {t(lang, 'contact.form.inquiryType.option.business')}
           </option>
           <option value="distribution" data-i18n="contact.form.inquiryType.option.distribution">
             {t(lang, 'contact.form.inquiryType.option.distribution')}
+          </option>
+          <option value="label" data-i18n="contact.form.inquiryType.option.label">
+            {t(lang, 'contact.form.inquiryType.option.label')}
           </option>
           <option value="press" data-i18n="contact.form.inquiryType.option.press">
             {t(lang, 'contact.form.inquiryType.option.press')}
@@ -210,6 +216,18 @@ const hcaptchaSitekey = import.meta.env.PUBLIC_HCAPTCHA_SITEKEY ?? '';
   function init() {
     const form = document.querySelector<HTMLFormElement>('.contact-form');
     if (!form) return;
+
+    // CTAs across the site link here with ?type=delivery|business|label|...
+    // so the visitor's intent survives the click.
+    const typeParam = new URLSearchParams(window.location.search).get('type');
+    const inquirySelect = form.elements.namedItem('inquiryType') as HTMLSelectElement | null;
+    if (
+      typeParam &&
+      inquirySelect &&
+      Array.from(inquirySelect.options).some((o) => o.value === typeParam)
+    ) {
+      inquirySelect.value = typeParam;
+    }
 
     const statusEl = form.querySelector<HTMLElement>('[data-status]');
     const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
