@@ -378,9 +378,13 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
       <span class="ab-eyebrow">
         <span data-i18n="about.euProject.eyebrow">{t(lang, 'about.euProject.eyebrow')}</span>
       </span>
-      <h2 class="ab-closing__title ab-eu-project__title">
-        <span data-i18n="about.euProject.title">{t(lang, 'about.euProject.title')}</span>
-      </h2>
+      <div class="ab-eu-project__img-wrapper">
+        <img class="ab-eu-project__image" src="/images/eu-flag.webp" alt="Flag of EU">
+        <h2 class="ab-closing__title ab-eu-project__title">
+          <span data-i18n="about.euProject.title">{t(lang, 'about.euProject.title')}</span>
+        </h2>
+
+        </div>
       <h3 class="ab-subtitle ab-eu-project__subtitle ab-eu-project__h3">
         <span data-i18n="about.euProject.subtitle">{t(lang, 'about.euProject.subtitle')}</span>
       </h3>
@@ -422,6 +426,9 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
           </p>
         </div>
       </div>
+      <a data-i18n="about.euProject.download" href="/document.pdf" download>
+        {t(lang, 'about.euProject.download')}
+      </a>
     </div>
   </section>
 
@@ -1379,8 +1386,16 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
       margin: 4rem 0;
     }
 
-    .ab-eu-project__title{
+    .ab-eu-project__img-wrapper{
+      display: flex;
+      gap: 3rem;
+      align-items: center;
       margin-bottom: 5rem !important
+    }
+
+    .ab-eu-project__image {
+      max-width: 300px;
+      object-fit: contain
     }
 
     .ab-eu-project__subtitle{
@@ -1441,6 +1456,16 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
     .ab-eu-project__inner-wrap {
       width: 100%;
       max-width: 340px;
+    }
+
+    .ab-eu-project__img-wrapper{
+      flex-wrap: wrap;
+      margin-bottom: 1rem !important;
+      border-bottom: 1px solid var(--color-primary)
+    }
+
+    .ab-eu-project__image {
+      max-width: 220px;
     }
 
     .ab-hero {
