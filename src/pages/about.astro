@@ -67,6 +67,9 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
           <Button variant="ghost-white" href="#story">
             <span data-i18n="about.hero.cta.learn">{t(lang, 'about.hero.cta.learn')}</span>
           </Button>
+          <Button variant="ghost-white" href="#eu-project">
+              <span data-i18n="about.hero.cta.eu">{t(lang, 'about.hero.cta.eu')}</span>
+          </Button>
         </div>
 
         <p class="ab-hero__kicker">
@@ -362,6 +365,62 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
         <Button variant="ghost" href={`${base}contact`}>
           <span data-i18n="about.closing.cta.partner">{t(lang, 'about.closing.cta.partner')}</span>
         </Button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       7 · EU Fincancing Project · calm gradient
+       ═══════════════════════════════════════════════════════════ -->
+
+  <section id="eu-project" class="ab-eu-project">
+    <div class="container">
+      <span class="ab-eyebrow">
+        <span data-i18n="about.euProject.eyebrow">{t(lang, 'about.euProject.eyebrow')}</span>
+      </span>
+      <h2 class="ab-closing__title ab-eu-project__title">
+        <span data-i18n="about.euProject.title">{t(lang, 'about.euProject.title')}</span>
+      </h2>
+      <h3 class="ab-subtitle ab-eu-project__subtitle ab-eu-project__h3">
+        <span data-i18n="about.euProject.subtitle">{t(lang, 'about.euProject.subtitle')}</span>
+      </h3>
+      <h4 class="ab-subtitle ab-eu-project__subtitle">
+        <span data-i18n="about.euProject.projectNumber">{t(lang, 'about.euProject.projectNumber')}</span>
+      </h4>
+      <p class="ab-closing__body ab-eu-project__body">
+        <span data-i18n="about.euProject.body">{t(lang, 'about.euProject.body')}</span>
+      </p>
+      <h4 class="ab-subtitle ab-eu-project__subtitle">
+        <span data-i18n="about.euProject.objectiveTitle">{t(lang, 'about.euProject.objectiveTitle')}</span>
+      </h4>
+      <p class="ab-closing__body ab-eu-project__body">
+        <span data-i18n="about.euProject.objectiveBody">{t(lang, 'about.euProject.objectiveBody')}</span>
+      </p>
+      <div class="ab-eu-project__inner">
+        <div class="ab-eu-project__inner-wrap">
+          <h4 class="ab-subtitle ab-eu-project__subtitle-2">
+            <span data-i18n="about.euProject.durationTitle">{t(lang, 'about.euProject.durationTitle')}</span>
+          </h4>
+          <p class="ab-closing__body ab-eu-project__body">
+            <span data-i18n="about.euProject.durationValue">{t(lang, 'about.euProject.durationValue')}</span>
+          </p>
+        </div>
+        <div class="ab-eu-project__inner-wrap">
+          <h4 class="ab-subtitle ab-eu-project__subtitle-2">
+            <span data-i18n="about.euProject.totalBudgetTitle">{t(lang, 'about.euProject.totalBudgetTitle')}</span>
+          </h4>
+          <p class="ab-closing__body ab-eu-project__body">
+            <span data-i18n="about.euProject.totalBudgetValue">{t(lang, 'about.euProject.totalBudgetValue')}</span>
+          </p>
+        </div>
+        <div class="ab-eu-project__inner-wrap">
+          <h4 class="ab-subtitle ab-eu-project__subtitle-2">
+            <span data-i18n="about.euProject.euFundingTitle">{t(lang, 'about.euProject.euFundingTitle')}</span>
+          </h4>
+          <p class="ab-closing__body ab-eu-project__body">
+            <span data-i18n="about.euProject.euFundingValue">{t(lang, 'about.euProject.euFundingValue')}</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -1311,6 +1370,42 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
     gap: var(--space-4);
   }
 
+
+  /* ─────────────────────────────────────────────────────────────
+     7. EU Financing Project
+     ───────────────────────────────────────────────────────────── */
+
+    .ab-eu-project {
+      margin: 4rem 0;
+    }
+
+    .ab-eu-project__title{
+      margin-bottom: 5rem !important
+    }
+
+    .ab-eu-project__subtitle{
+      margin-bottom: 1rem !important
+    }
+
+    .ab-eu-project__h3 {
+      margin-bottom: 2.4rem !important
+    }
+
+    .ab-eu-project__body {
+        margin-bottom: 5rem
+    }
+  .ab-eu-project__inner {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .ab-eu-project__inner-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   /* ─────────────────────────────────────────────────────────────
      RESPONSIVE
      ───────────────────────────────────────────────────────────── */
@@ -1339,6 +1434,15 @@ const heroBg = await getImage({ src: machine1, format: 'webp', width: 2000 });
   }
 
   @media (max-width: 768px) {
+    .ab-eu-project__inner {
+      flex-direction: column;
+      align-items: center;
+    }
+    .ab-eu-project__inner-wrap {
+      width: 100%;
+      max-width: 340px;
+    }
+
     .ab-hero {
       min-height: 80vh;
       padding-top: calc(72px + var(--space-12));
